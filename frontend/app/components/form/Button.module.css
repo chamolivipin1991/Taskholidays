@@ -1,0 +1,166 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 52px;
+  padding: 0 var(--space-2xl);
+
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: 1;
+
+  border-radius: 100px;
+  border: none;
+  white-space: nowrap;
+  cursor: pointer;
+
+  position: relative;
+  overflow: hidden;
+
+  color: var(--color-text-inverse);
+  background-color: var(--color-brand-primary);
+}
+
+.button:disabled {
+  background-color: var(--color-border-secondary);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+/* Ripple hover effect */
+.button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.button:hover::before {
+  transform: scale(2.5);
+}
+
+/* Text wrapper */
+.ctaText {
+  position: relative;
+  z-index: 1;
+  font-weight: var(--font-weight-regular);
+}
+
+/* ==============================
+   Sizes
+   ============================== */
+
+.small {
+  height: 40px;
+  padding: 0 var(--space-lg);
+  font-size: var(--font-size-sm);
+}
+
+/* ==============================
+   Variants
+   ============================== */
+
+/* Primary (default CTA) */
+.dark {
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+}
+
+.dark:hover {
+  background-color: var(--color-brand-secondary);
+}
+
+/* Accent / Action */
+.darkRed {
+  background-color: var(--color-error);
+  color: var(--color-text-inverse);
+}
+
+.darkRed:hover {
+  background-color: #b91c1c; /* slightly darker error */
+}
+
+/* Accent outline */
+.darkRedEmpty {
+  background-color: transparent;
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+}
+
+.darkRedEmpty:hover {
+  background-color: rgba(220, 38, 38, 0.1);
+}
+
+/* Text-only active */
+.activeLine {
+  background: transparent;
+  border: none;
+  padding: var(--space-xs);
+  color: var(--color-brand-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.activeLine:hover {
+  color: var(--color-brand-primary);
+}
+
+/* Bordered */
+.darkBordered {
+  background: transparent;
+  border: 1px solid var(--color-text-primary);
+  color: var(--color-text-primary);
+}
+
+.darkBorderedTheme {
+  border-color: var(--color-brand-primary);
+  color: var(--color-brand-primary);
+}
+
+/* Link-like */
+.darkLine {
+  background: transparent;
+  border: none;
+  color: var(--color-brand-primary);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-sm) var(--space-xs);
+  height: auto;
+  border-radius: 0;
+  border-bottom: 2px solid transparent;
+}
+.darkLine:hover {
+  border-bottom-color: var(--color-brand-primary);
+}
+
+/* Neutral */
+.simple {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.simple:hover {
+  color: var(--color-text-secondary);
+}
+
+.button__icon {
+  display: inline-flex;
+  align-items: center;
+  margin-left: var(--space-xs);
+  margin-right: var(--space-xs);
+  z-index: 1;
+}
+
+/* ==============================
+   Responsive
+   ============================== */
+
+@media (max-width: 767px) {
+  .button {
+    height: 48px;
+    font-size: var(--font-size-md);
+  }
+}

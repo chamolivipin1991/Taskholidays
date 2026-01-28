@@ -1,0 +1,211 @@
+/* ==============================
+   CSS RESET
+   ============================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==============================
+   ROOT VARIABLES
+   ============================== */
+
+:root {
+  /* ==============================
+     FONT FAMILY
+     ============================== */
+
+  --font-primary:
+    var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+
+  /* ==============================
+     BRAND COLORS (TASK HOLIDAYS)
+     ============================== */
+
+  --color-brand-primary: #1f4e79; /* Deep ocean blue */
+  --color-brand-secondary: #2d6fa3; /* Action / links */
+  --color-brand-accent: #7fb6d9; /* Highlights */
+
+  /* ==============================
+     BACKGROUNDS
+     ============================== */
+
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8fafc;
+  --color-bg-muted: #f1f5f9;
+  --color-bg-overlay: rgba(15, 23, 42, 0.6);
+
+  /* ==============================
+     TEXT
+     ============================== */
+
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+  --color-text-inverse: #ffffff;
+
+  /* ==============================
+     BORDERS
+     ============================== */
+
+  --color-border-primary: #e2e8f0;
+  --color-border-secondary: #cbd5e1;
+
+  /* ==============================
+     STATES
+     ============================== */
+
+  --color-success: #16a34a;
+  --color-warning: #f59e0b;
+  --color-error: #dc2626;
+
+  /* ==============================
+     TYPOGRAPHY
+     ============================== */
+
+  /* Font sizes */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-md: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.5rem; /* 24px */
+  --font-size-2xl: 2.25rem; /* 36px */
+  --font-size-hero: clamp(3rem, 8vw, 7.5rem);
+
+  /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Line heights */
+  --line-height-tight: 1.2;
+  --line-height-base: 1.6;
+  --line-height-relaxed: 1.8;
+
+  /* ==============================
+     SPACING (4px scale)
+     ============================== */
+
+  --space-2xs: 0.25rem; /* 4px */
+  --space-xs: 0.5rem; /* 8px */
+  --space-sm: 0.75rem; /* 12px */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 1.5rem; /* 24px */
+  --space-xl: 2rem; /* 32px */
+  --space-2xl: 3rem; /* 48px */
+}
+
+/* ==============================
+   BASE STYLES
+   ============================== */
+
+html {
+  font-size: 100%; /* 1rem = 16px */
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ==============================
+   TYPOGRAPHY ELEMENTS
+   ============================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+p {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+small {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* ==============================
+   ELEMENT RESETS
+   ============================== */
+
+ol,
+ul {
+  list-style: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* ==============================
+   LAYOUT HELPERS
+   ============================== */
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.container_full {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.section_white__spacing {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.flex_1 {
+  flex: 1;
+}

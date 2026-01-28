@@ -1,0 +1,30 @@
+.enquiry__label {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  text-align: left;
+}
+
+.enquiry__fields {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: var(--space-xs) 0;
+  text-align: left;
+  color: var(--color-text-primary);
+}
+
+.enquiry__privacy {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  text-align: left;
+}
+.enquiry__fields .selectMonthYear_dropdown__wrapper {
+  flex: 1;
+}
+.enquiry__submit {
+  height: 40px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}

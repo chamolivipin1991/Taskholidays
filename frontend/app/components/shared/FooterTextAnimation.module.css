@@ -1,0 +1,78 @@
+.footer__backgroundText {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--font-size-hero);
+  font-weight: var(--font-weight-extrabold);
+  color: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.footer__slot {
+  display: inline-block;
+  position: relative;
+  height: 4rem;
+  overflow: hidden;
+}
+
+.footer__word {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+}
+
+.footer__char {
+  display: inline-block;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ===============================
+   EXIT (current word goes UP)
+   =============================== */
+
+.footer__char--exit {
+  animation: footerCharExit 0.8s ease-in forwards;
+  animation-delay: var(--char-delay);
+}
+
+/* ===============================
+   ENTER (next word comes FROM BOTTOM)
+   =============================== */
+
+.footer__char--enter {
+  transform: translateY(100%);
+  opacity: 0;
+  animation: footerCharEnter 0.8s ease-out forwards;
+  animation-delay: var(--char-delay);
+}
+
+/* ===============================
+   Keyframes
+   =============================== */
+
+@keyframes footerCharExit {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+}
+
+@keyframes footerCharEnter {
+  from {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,120 @@
+.countryCode {
+  min-width: 125px;
+  flex: 0.3;
+}
+
+.countryCode__label {
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 100%;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* React-Select Overrides */
+.countryCode :global(.taskholidays__control) {
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  min-height: 50.8px;
+}
+
+.countryCode :global(.taskholidays__control:hover) {
+  border-color: #d1d1d1;
+}
+
+.countryCode :global(.taskholidays__control--is-focused) {
+  border-color: #000;
+  box-shadow: 0 0 0 1px #000;
+}
+
+.countryCode
+  :global(.taskholidays__indicator.taskholidays__dropdown-indicator) {
+  color: #000;
+}
+
+.countryCode :global(.taskholidays__single-value) {
+  display: flex;
+  align-items: center;
+}
+
+.countryCode :global(.taskholidays__single-value .option_name) {
+  display: none;
+}
+
+.countryCode :global(.taskholidays__menu) {
+  min-width: 240px;
+  z-index: 111;
+}
+
+.countryCode :global(.taskholidays__menu-list) {
+  padding: 4px;
+}
+
+.countryCode :global(.taskholidays__option) {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.countryCode :global(.taskholidays__option--is-focused) {
+  background-color: #f5f5f5;
+}
+
+.countryCode :global(.taskholidays__option--is-selected) {
+  background-color: #e6e6e6;
+}
+
+/* Custom Option Styling */
+.countryCode__option {
+  display: flex;
+  align-items: center;
+}
+
+.countryCode__option-img {
+  width: 20px;
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.countryCode__option-isd {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 155.3%;
+  color: rgba(22, 22, 22, 0.5);
+  margin-right: 10px;
+}
+
+.countryCode__option-name {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 155.3%;
+  color: rgba(22, 22, 22, 0.5);
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 767px) {
+  .countryCode {
+    min-width: auto;
+  }
+
+  .countryCode :global(.taskholidays__control) {
+    min-height: 44px;
+  }
+
+  .countryCode__option-img {
+    width: 16px;
+    font-size: 16px;
+  }
+
+  .countryCode__option-isd {
+    font-size: 16px;
+    line-height: 24px;
+    color: #2a2b42;
+  }
+
+  .countryCode__option-name {
+    font-size: 16px;
+    line-height: 24px;
+    color: #2a2b42;
+  }
+}

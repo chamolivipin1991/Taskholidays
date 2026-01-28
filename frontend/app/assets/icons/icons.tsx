@@ -1,0 +1,49 @@
+import { SVGProps } from "react";
+
+// Define props interface with all common SVG props
+export interface IconProps extends SVGProps<SVGSVGElement> {
+  size?: number | string;
+}
+
+export const CalendarIcon = ({
+  className,
+  fill = "#e3e3e3", // Default value
+  size = 24, // Default size (makes more sense than "48px")
+  ...props // Capture all other SVG props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={typeof size === "number" ? `${size}px` : size}
+      width={typeof size === "number" ? `${size}px` : size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="M310.51-398.46q-15.03 0-25.08-10.19-10.04-10.19-10.04-24.84 0-15.03 9.99-25.08 9.99-10.04 24.84-10.04 14.84 0 25.08 9.99 10.24 9.99 10.24 24.84 0 14.84-10.19 25.08-10.19 10.24-24.84 10.24Zm171.99 0q-14.65 0-24.75-10.19t-10.1-24.84q0-15.03 10.09-25.08 10.08-10.04 24.63-10.04 14.55 0 25 9.99 10.44 9.99 10.44 25.03 0 14.65-10.33 24.89-10.32 10.24-24.98 10.24Zm166.48 0q-14.65 0-24.89-10.19t-10.24-24.84q0-15.03 10.18-25.08 10.19-10.04 24.84-10.04t24.89 9.99Q684-448.63 684-433.59q0 14.65-10.19 24.89-10.18 10.24-24.83 10.24ZM198.83-103.08q-22.6 0-39.33-16.73-16.73-16.73-16.73-39.33v-576.95q0-22.6 16.73-39.33 16.73-16.73 39.42-16.73h75.39v-70h48.84v70h315.23v-70h47.7v70h75q22.69 0 39.42 16.73t16.73 39.33v576.95q0 22.6-16.73 39.33-16.73 16.73-39.33 16.73H198.83Zm.09-43.84h562.16q4.61 0 8.46-3.85 3.84-3.85 3.84-8.46v-395.15H186.62v395.15q0 4.61 3.84 8.46 3.85 3.85 8.46 3.85Zm-12.3-451.31h586.76V-736q0-4.61-3.84-8.46-3.85-3.85-8.46-3.85H198.92q-4.61 0-8.46 3.85-3.84 3.85-3.84 8.46v137.77Zm0 0v-150.08 150.08Z" />
+    </svg>
+  );
+};
+
+// Example of another icon with the same pattern
+export const ArrowIcon = ({
+  className,
+  fill = "#e3e3e3",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={typeof size === "number" ? `${size}px` : size}
+      width={typeof size === "number" ? `${size}px` : size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="m552.61-257.31-31.38-30.88 171.85-171.85h-510v-43.84h510L520.62-676.35 552-706.54l224.92 224.92-224.31 224.31Z" />
+    </svg>
+  );
+};

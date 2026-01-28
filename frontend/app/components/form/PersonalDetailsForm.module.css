@@ -1,0 +1,76 @@
+.personalDetailsForm {
+  width: 100%;
+}
+
+.personalDetailsForm__sectionTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.personalDetailsForm__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.personalDetailsForm__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.personalDetailsForm__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.personalDetailsForm__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.personalDetailsForm__error {
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+  margin-top: var(--space-2xs);
+}
+
+.personalDetailsForm__actions {
+  margin-top: var(--space-xl);
+  text-align: center;
+}
+
+.personalDetailsForm__submit {
+  background-color: var(--color-brand-primary);
+  color: white;
+  border: none;
+  border-radius: var(--space-xs);
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+  margin-bottom: var(--space-md);
+}
+
+.personalDetailsForm__submit:hover {
+  background-color: var(--color-brand-secondary);
+}
+
+.personalDetailsForm__privacy {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .personalDetailsForm__grid {
+    grid-template-columns: 1fr;
+  }
+}

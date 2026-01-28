@@ -1,0 +1,109 @@
+.destinations__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 10px; /* magic number */
+  gap: 1rem;
+}
+
+/* ===============================
+   Card
+   =============================== */
+
+.destination_card {
+  width: 100%;
+  position: relative;
+  /* height: 280px; */
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  grid-row: span 13;
+}
+
+.destination_card__tall {
+  /* height: 360px; */
+  grid-row: span 16;
+}
+.destination_card__small {
+  grid-row: span 10;
+}
+
+.destination_card:hover {
+  transform: translateY(-6px);
+}
+.destination_card__imagewrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.destination_card__image {
+  object-fit: cover;
+}
+
+/* OVERLAY */
+.destination_card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.25rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.05));
+  color: #fff;
+}
+
+.destination_card__title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--color-bg-primary);
+}
+
+.destination_card__description {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0.9;
+  color: var(--color-bg-primary);
+}
+
+/* ICON */
+.destination_card__icon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transform: rotate(-45deg);
+}
+
+/* ===============================
+   Responsive
+   =============================== */
+
+@media (max-width: 1024px) {
+  .destinations__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .destinations__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .destination_card,
+  .destination_card__tall {
+    height: 260px;
+  }
+}
