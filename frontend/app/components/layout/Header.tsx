@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowIcon } from "@/assets/icons/icons";
+import { ArrowIcon, BurgerMenuIcon, CloseIcon } from "@/assets/icons/icons";
 import brandLogoImg from "@/assets/images/taskholiday_logo.png";
 import AppImage from "@/components/shared/AppImage";
 import Button from "@/components/form/Button";
 
 import styles from "./Header.module.css";
+import PlanTripModal from "@/components/form/PlanTripModal";
+
+import { EnquiryFormValues } from "@/components/form/EnquiryForm";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +25,11 @@ const Header = () => {
       behavior: "smooth",
       block: "start",
     });
+  };
+
+  const handleFormSubmit = (data: EnquiryFormValues) => {
+    console.log("Form submitted from header:", data);
+    // Handle API submission
   };
 
   return (
@@ -50,10 +58,12 @@ const Header = () => {
           </nav>
 
           {/* CTA */}
-          <Button
+          <PlanTripModal
+            onFormSubmit={handleFormSubmit}
+            modalTitle="Plan Your Perfect Trip"
+            modalSize="large"
             variant="dark"
             text="Plan Your Trip"
-            onClick={() => handleScroll("plan-trip")}
             className={styles.header__cta}
             icon={
               <ArrowIcon
@@ -67,9 +77,16 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <Button
             variant="simple"
-            text="☰"
+            text=""
             onClick={() => setIsOpen(true)}
             className={styles.header__menuButton}
+            icon={
+              <BurgerMenuIcon
+                className={styles.header__ctaIcon}
+                fill="var(--color-brand-primary)"
+                size={48}
+              />
+            }
           />
         </div>
       </header>
@@ -90,9 +107,16 @@ const Header = () => {
       >
         <Button
           variant="simple"
-          text="✕"
+          text=""
           onClick={() => setIsOpen(false)}
           className={styles.header__close}
+          icon={
+            <CloseIcon
+              className={styles.header__ctaIcon}
+              fill="var(--color-brand-primary)"
+              size={48}
+            />
+          }
         />
 
         <nav className={styles.header__drawerNav}>

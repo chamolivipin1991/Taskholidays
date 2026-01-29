@@ -97,13 +97,16 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .destinations__grid {
     grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
   }
 
   .destination_card,
   .destination_card__tall {
     height: 260px;
+    grid-row: span 13;
   }
 }

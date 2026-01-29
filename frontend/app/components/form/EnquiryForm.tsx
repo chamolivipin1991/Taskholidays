@@ -7,6 +7,7 @@ import Select from "react-select";
 import Input from "@/components/form/Input";
 import { getMonthOptions, getYearOptions } from "@/utils/dateOptions";
 import styles from "./EnquiryForm.module.css";
+import Button from "@/components/form/Button";
 
 // Destination options
 export const destinationOptions = [
@@ -91,9 +92,6 @@ export default function EnquiryForm({
       {/* Date Fields (Month & Year) */}
       {showDateFields && (
         <>
-          <p className={styles.enquiryForm__sectionTitle}>
-            When do you want to go?
-          </p>
           <div className={styles.enquiryForm__dateFields}>
             <div className={styles.enquiryForm__field}>
               <Controller
@@ -105,10 +103,25 @@ export default function EnquiryForm({
                     options={getMonthOptions(selectedYear)}
                     placeholder="Month"
                     classNamePrefix="selectMonthYear"
+                    menuPortalTarget={
+                      typeof window !== "undefined" ? document.body : null
+                    }
+                    menuPosition="fixed"
                     styles={{
+                      container: (base) => ({
+                        ...base,
+                        width: "100%",
+                        textAlign: "left",
+                        fontSize: "14px",
+                      }),
                       control: (base) => ({
                         ...base,
                         borderColor: errors.month ? "#dc2626" : "#d1d5db",
+                        width: "100%",
+                      }),
+                      menuPortal: (base) => ({
+                        ...base,
+                        zIndex: 9999,
                       }),
                     }}
                   />
@@ -131,10 +144,25 @@ export default function EnquiryForm({
                     options={getYearOptions()}
                     placeholder="Year"
                     classNamePrefix="selectMonthYear"
+                    menuPortalTarget={
+                      typeof window !== "undefined" ? document.body : null
+                    }
+                    menuPosition="fixed"
                     styles={{
+                      container: (base) => ({
+                        ...base,
+                        width: "100%",
+                        textAlign: "left",
+                        fontSize: "14px",
+                      }),
                       control: (base) => ({
                         ...base,
                         borderColor: errors.year ? "#dc2626" : "#d1d5db",
+                        width: "100%",
+                      }),
+                      menuPortal: (base) => ({
+                        ...base,
+                        zIndex: 9999,
                       }),
                     }}
                   />
@@ -153,27 +181,23 @@ export default function EnquiryForm({
       {/* Personal Information Fields */}
       {showPersonalFields && (
         <>
-          <p className={styles.enquiryForm__sectionTitle}>
-            Tell us about yourself
-          </p>
           <div className={styles.enquiryForm__fields}>
             {/* Full Name */}
-            <div className={styles.enquiryForm__field}>
-              <label className={styles.enquiryForm__label}>Full Name *</label>
-              <Input
-                {...register("fullName")}
-                placeholder="Enter your full name"
-                type="text"
-              />
-              {errors.fullName && (
-                <span className={styles.enquiryForm__error}>
-                  {errors.fullName.message}
-                </span>
-              )}
-            </div>
-
-            {/* Grid for Contact Number and Email */}
             <div className={styles.enquiryForm__grid}>
+              <div className={styles.enquiryForm__field}>
+                <label className={styles.enquiryForm__label}>Full Name *</label>
+                <Input
+                  {...register("fullName")}
+                  placeholder="Enter your full name"
+                  type="text"
+                />
+                {errors.fullName && (
+                  <span className={styles.enquiryForm__error}>
+                    {errors.fullName.message}
+                  </span>
+                )}
+              </div>
+
               <div className={styles.enquiryForm__field}>
                 <label className={styles.enquiryForm__label}>
                   Contact Number *
@@ -189,7 +213,9 @@ export default function EnquiryForm({
                   </span>
                 )}
               </div>
+            </div>
 
+            <div className={styles.enquiryForm__grid}>
               <div className={styles.enquiryForm__field}>
                 <label className={styles.enquiryForm__label}>Email ID *</label>
                 <Input
@@ -203,35 +229,54 @@ export default function EnquiryForm({
                   </span>
                 )}
               </div>
-            </div>
 
-            {/* Destination */}
-            <div className={styles.enquiryForm__field}>
-              <label className={styles.enquiryForm__label}>Destination *</label>
-              <Controller
-                name="destination"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    {...field}
-                    options={destinationOptions}
-                    placeholder="Select a destination"
-                    classNamePrefix="select"
-                    isSearchable
-                    styles={{
-                      control: (base) => ({
-                        ...base,
-                        borderColor: errors.destination ? "#dc2626" : "#d1d5db",
-                      }),
-                    }}
-                  />
+              {/* Destination */}
+              <div className={styles.enquiryForm__field}>
+                <label className={styles.enquiryForm__label}>
+                  Destination *
+                </label>
+                <Controller
+                  name="destination"
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      options={destinationOptions}
+                      placeholder="Select a destination"
+                      classNamePrefix="select"
+                      isSearchable
+                      menuPortalTarget={
+                        typeof window !== "undefined" ? document.body : null
+                      }
+                      menuPosition="fixed"
+                      styles={{
+                        container: (base) => ({
+                          ...base,
+                          width: "100%",
+                          textAlign: "left",
+                          fontSize: "14px",
+                        }),
+                        control: (base) => ({
+                          ...base,
+                          width: "100%",
+                          borderColor: errors.destination
+                            ? "#dc2626"
+                            : "#d1d5db",
+                        }),
+                        menuPortal: (base) => ({
+                          ...base,
+                          zIndex: 9999,
+                        }),
+                      }}
+                    />
+                  )}
+                />
+                {errors.destination && (
+                  <span className={styles.enquiryForm__error}>
+                    Please select a destination
+                  </span>
                 )}
-              />
-              {errors.destination && (
-                <span className={styles.enquiryForm__error}>
-                  Please select a destination
-                </span>
-              )}
+              </div>
             </div>
           </div>
         </>
@@ -239,13 +284,13 @@ export default function EnquiryForm({
 
       {/* Submit Button */}
       <div className={styles.enquiryForm__actions}>
-        <button
+        <Button
           type="submit"
-          className={styles.enquiryForm__submit}
+          variant="dark"
+          text={submitButtonText}
           disabled={isSubmitting}
-        >
-          {submitButtonText}
-        </button>
+          className={styles.enquiryForm__submit}
+        />
 
         {!hidePrivacyText && (
           <p className={styles.enquiryForm__privacy}>

@@ -4,7 +4,7 @@
   width: 100%;
   z-index: 10;
   padding: 20px 0;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .header__container {
@@ -110,6 +110,8 @@
   font-size: 16px;
   cursor: pointer;
   text-align: left;
+  display: block;
+  width: 100%;
 }
 
 .header__drawerCta {
@@ -122,12 +124,26 @@
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .header__nav {
     display: none;
   }
-
-  .header__menuButton {
+  .header__container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .header__menuButton,
+  .header__close {
     display: block;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+  }
+
+  .header {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  .header__cta {
+    display: none;
   }
 }

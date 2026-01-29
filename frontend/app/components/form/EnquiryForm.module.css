@@ -32,7 +32,8 @@
 .enquiryForm__field {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  align-items: flex-start;
+  gap: var(--space-2xs);
 }
 
 .enquiryForm__label {

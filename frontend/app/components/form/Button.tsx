@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Button.module.css";
 import clsx from "clsx";
 
-type ButtonVariant =
+export type ButtonVariant =
   | "dark"
   | "darkRed"
   | "darkRedEmpty"
@@ -12,7 +12,7 @@ type ButtonVariant =
   | "darkLine"
   | "simple";
 
-interface ButtonProps {
+export interface ButtonProps {
   variant: ButtonVariant;
   type?: "button" | "submit" | "reset";
   onClick?: () => void;

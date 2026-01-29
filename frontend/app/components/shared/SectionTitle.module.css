@@ -30,7 +30,19 @@
 }
 
 .sectionTitle__subheading {
-  font-size: 1rem;
+  font-size: var(--font-size-lg);
   color: var(--text-primary);
   line-height: 1.6;
+}
+
+@media screen and (max-width: 768px) {
+  .sectionTitle__bgText {
+    font-size: 3.5rem;
+  }
+  .sectionTitle__heading {
+    font-size: var(--font-size-xl);
+  }
+  .sectionTitle__subheading {
+    font-size: var(--font-size-sm);
+  }
 }

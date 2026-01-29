@@ -9,6 +9,7 @@ import bannerImg from "@/assets/images/home_banner.jpg";
 import { CalendarIcon } from "@/assets/icons/icons";
 import Testimonials from "@/components/shared/Testimonials";
 import PlanYourTrip from "@/components/home/PlanYourTrip";
+import EnquiryForm from "@/components/form/EnquiryForm";
 
 export default function Home() {
   return (
@@ -78,7 +79,7 @@ export default function Home() {
           },
         ]}
       />
-      <PlanYourTrip />
+
       <Footer />
     </>
   );

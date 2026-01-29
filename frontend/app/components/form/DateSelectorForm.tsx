@@ -5,7 +5,9 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Select from "react-select";
 import { getMonthOptions, getYearOptions } from "@/utils/dateOptions";
+import Button, { ButtonVariant } from "@/components/form/Button"; // Import Button component
 import styles from "./DateSelectorForm.module.css";
+import { CheckIcon } from "@/assets/icons/icons";
 
 // Schema for date selection only
 const dateSelectorSchema = z.object({
@@ -23,9 +25,15 @@ export type DateSelectorValues = z.infer<typeof dateSelectorSchema>;
 
 interface DateSelectorFormProps {
   onSubmit: (data: DateSelectorValues) => void;
+  submitButtonVariant?: ButtonVariant;
+  submitButtonText?: string;
 }
 
-export default function DateSelectorForm({ onSubmit }: DateSelectorFormProps) {
+export default function DateSelectorForm({
+  onSubmit,
+  submitButtonVariant = "dark",
+  submitButtonText = "GET STARTED",
+}: DateSelectorFormProps) {
   const {
     control,
     handleSubmit,
@@ -51,6 +59,26 @@ export default function DateSelectorForm({ onSubmit }: DateSelectorFormProps) {
               options={getMonthOptions(selectedYear)}
               placeholder="Month"
               classNamePrefix="selectMonthYear"
+              menuPortalTarget={
+                typeof window !== "undefined" ? document.body : null
+              }
+              menuPosition="fixed"
+              styles={{
+                container: (base) => ({
+                  ...base,
+                  width: "100%",
+                  textAlign: "left",
+                  fontSize: "14px",
+                }),
+                control: (base) => ({
+                  ...base,
+                  width: "100%",
+                }),
+                menuPortal: (base) => ({
+                  ...base,
+                  zIndex: 9999,
+                }),
+              }}
             />
           )}
         />
@@ -64,20 +92,49 @@ export default function DateSelectorForm({ onSubmit }: DateSelectorFormProps) {
               options={getYearOptions()}
               placeholder="Year"
               classNamePrefix="selectMonthYear"
+              menuPortalTarget={
+                typeof window !== "undefined" ? document.body : null
+              }
+              menuPosition="fixed"
+              styles={{
+                container: (base) => ({
+                  ...base,
+                  width: "100%",
+                  textAlign: "left",
+                  fontSize: "14px",
+                }),
+                control: (base) => ({
+                  ...base,
+                  width: "100%",
+                }),
+                menuPortal: (base) => ({
+                  ...base,
+                  zIndex: 9999,
+                }),
+              }}
             />
           )}
         />
 
-        <button
+        <Button
           type="submit"
-          className={styles.dateSelector__submit}
+          variant={submitButtonVariant}
+          text={submitButtonText}
           disabled={isSubmitting}
-        >
-          GET STARTED
-        </button>
+          small={true}
+          className={styles.dateSelector__submit}
+          // Add icon if needed (example with right arrow)
+          // icon={<ArrowRight size={20} />}
+          // iconPosition="right"
+        />
       </div>
 
-      <p className={styles.dateSelector__privacy}>✓ 100% Privacy Guaranteed</p>
+      <p className={styles.dateSelector__privacy}>
+        <span className={styles.dateSelector__privacy__icon}>
+          <CheckIcon fill="var(--color-text-primary)" size={20} />
+        </span>
+        100% Privacy Guaranteed
+      </p>
     </form>
   );
 }

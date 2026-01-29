@@ -47,3 +47,66 @@ export const ArrowIcon = ({
     </svg>
   );
 };
+
+export const CheckIcon = ({
+  className,
+  fill = "#e3e3e3",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={typeof size === "number" ? `${size}px` : size}
+      width={typeof size === "number" ? `${size}px` : size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="M378-246 154-470l43-43 181 181 384-384 43 43-427 427Z" />
+    </svg>
+  );
+};
+
+export const BurgerMenuIcon = ({
+  className,
+  fill = "#e3e3e3",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={typeof size === "number" ? `${size}px` : size}
+      width={typeof size === "number" ? `${size}px` : size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="M120-240v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z" />
+    </svg>
+  );
+};
+
+export const CloseIcon = ({
+  className,
+  fill = "#e3e3e3",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={typeof size === "number" ? `${size}px` : size}
+      width={typeof size === "number" ? `${size}px` : size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
+    </svg>
+  );
+};

@@ -57,7 +57,7 @@ export default function TwoStepEnquiryForm() {
             onSubmit={handleFullSubmit}
             showDateFields={false}
             showPersonalFields={true}
-            submitButtonText="Submit Enquiry →"
+            submitButtonText="Submit Enquiry"
             hidePrivacyText={true}
           />
         </div>
