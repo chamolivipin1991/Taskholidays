@@ -131,7 +131,7 @@ export default function DateSelectorForm({
 
       <p className={styles.dateSelector__privacy}>
         <span className={styles.dateSelector__privacy__icon}>
-          <CheckIcon fill="var(--color-text-primary)" size={20} />
+          <CheckIcon fill="var(--color-bg-primary)" size={20} />
         </span>
         100% Privacy Guaranteed
       </p>

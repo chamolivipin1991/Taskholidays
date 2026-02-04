@@ -29,6 +29,14 @@ export interface TravelPackage {
   exclusions?: string[];
   itinerary: ItineraryDay[];
   startingPrice?: number;
+  price: number;
+  popular: boolean;
+}
+
+export interface DestinationImage {
+  folder: string;
+  file: string;
+  alt: string;
 }
 
 export interface Destination {
@@ -36,7 +44,7 @@ export interface Destination {
   slug: string;
   title: string;
   description: string;
-  heroImage: StaticImageData;
+  heroImage: DestinationImage;
   packages?: TravelPackage[];
   bestSeason?: string[];
   tags?: string[];

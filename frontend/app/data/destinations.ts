@@ -8,7 +8,11 @@ export const destinations: Destination[] = [
     title: "Andaman",
     description:
       "Pristine beaches, crystal-clear waters, and serene island vibes.",
-    heroImage: demoImage,
+    heroImage: {
+      folder: "andaman",
+      file: "andaman_taskholidays_1.jpg",
+      alt: "Pristine beaches and blue waters of Andaman Islands",
+    },
     bestSeason: ["October", "November", "December", "January"],
     tags: ["beach", "honeymoon", "family"],
     packages: [
@@ -17,6 +21,8 @@ export const destinations: Destination[] = [
         name: "Andaman Explorer",
         duration: "5 Days / 4 Nights",
         images: ["url1", "url2", "url3"],
+        price: 23444,
+        popular: true,
         inclusions: ["Hotel", "Breakfast", "Sightseeing", "Transfers"],
         itinerary: [
           {
@@ -61,7 +67,11 @@ export const destinations: Destination[] = [
     title: "Kerala",
     description:
       "Backwaters, lush greenery, hill stations, and peaceful retreats.",
-    heroImage: demoImage,
+    heroImage: {
+      folder: "kerala",
+      file: "kerala_taskholidays_1.jpg",
+      alt: "Pristine beaches and blue waters of Andaman Islands",
+    },
     tags: ["nature", "relaxation", "family"],
     packages: [
       {
@@ -69,6 +79,8 @@ export const destinations: Destination[] = [
         name: "Kerala Bliss",
         duration: "6 Days / 5 Nights",
         images: ["url1", "url2"],
+        price: 23444,
+        popular: false,
         inclusions: ["Houseboat", "Breakfast", "Sightseeing"],
         itinerary: [
           {
@@ -95,7 +107,11 @@ export const destinations: Destination[] = [
     title: "Ladakh",
     description:
       "High-altitude adventures, monasteries, and breathtaking landscapes.",
-    heroImage: demoImage,
+    heroImage: {
+      folder: "ladakh",
+      file: "ladakh_taskholidays_1.jpg",
+      alt: "Pristine beaches and blue waters of Andaman Islands",
+    },
     tags: ["adventure", "bike-trip", "mountains"],
   },
 
@@ -104,7 +120,11 @@ export const destinations: Destination[] = [
     slug: "rajasthan",
     title: "Rajasthan",
     description: "Royal palaces, deserts, forts, and rich cultural heritage.",
-    heroImage: demoImage,
+    heroImage: {
+      folder: "rajasthan",
+      file: "rajasthan_taskholidays_1.jpg",
+      alt: "Pristine beaches and blue waters of Andaman Islands",
+    },
     tags: ["heritage", "culture", "desert"],
   },
 
@@ -113,7 +133,11 @@ export const destinations: Destination[] = [
     slug: "bali",
     title: "Bali",
     description: "Tropical beaches, temples, and vibrant nightlife.",
-    heroImage: demoImage,
+    heroImage: {
+      folder: "bali",
+      file: "bali_taskholidays_1.jpg",
+      alt: "Pristine beaches and blue waters of Andaman Islands",
+    },
     tags: ["international", "beach", "honeymoon"],
   },
 
@@ -122,7 +146,11 @@ export const destinations: Destination[] = [
     slug: "dubai",
     title: "Dubai",
     description: "Luxury shopping, futuristic skyline, and desert adventures.",
-    heroImage: demoImage,
+    heroImage: {
+      folder: "dubai",
+      file: "dubai_taskholidays_1.jpg",
+      alt: "Pristine beaches and blue waters of Andaman Islands",
+    },
     tags: ["international", "luxury", "city"],
   },
 ];

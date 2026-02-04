@@ -6,7 +6,7 @@
 .dateSelector__label {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
+  color: var(--color-bg-primary);
   margin-bottom: var(--space-sm);
   text-align: center;
 }
@@ -42,7 +42,7 @@
 
 .dateSelector__privacy {
   font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
+  color: var(--color-bg-primary);
   text-align: center;
   display: flex;
   align-items: center;

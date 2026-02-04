@@ -8,6 +8,7 @@ import Input from "@/components/form/Input";
 import { getMonthOptions, getYearOptions } from "@/utils/dateOptions";
 import styles from "./EnquiryForm.module.css";
 import Button from "@/components/form/Button";
+import { CheckIcon } from "@/assets/icons/icons";
 
 // Destination options
 export const destinationOptions = [
@@ -21,33 +22,43 @@ export const destinationOptions = [
 
 // Zod schema for all fields
 export const enquiryFormSchema = z.object({
-  month: z.object({
-    label: z.string(),
-    value: z.number(),
-  }),
-  year: z.object({
-    label: z.string(),
-    value: z.number(),
-  }),
+  month: z
+    .object({
+      label: z.string(),
+      value: z.number(),
+    })
+    .optional(),
+
+  year: z
+    .object({
+      label: z.string(),
+      value: z.number(),
+    })
+    .optional(),
+
   fullName: z
     .string()
     .min(1, "Full name is required")
     .regex(/^[A-Za-z\s]+$/, "Full name should contain only letters and spaces")
-    .max(100, "Full name is too long"),
+    .max(100),
+
   contactNumber: z
     .string()
     .min(1, "Contact number is required")
     .regex(/^[0-9+\-\s()]+$/, "Invalid phone number format")
-    .min(10, "Phone number must be at least 10 digits")
-    .max(15, "Phone number is too long"),
-  email: z
-    .string()
-    .min(1, "Email is required")
-    .email("Please enter a valid email address"),
-  destination: z.object({
-    value: z.string(),
-    label: z.string(),
-  }),
+    .min(10)
+    .max(15),
+
+  email: z.string().email(),
+
+  destination: z
+    .object({
+      value: z.string(),
+      label: z.string(),
+    })
+    .optional(),
+
+  packageDuration: z.string().optional(), // ✅ NEW
 });
 
 export type EnquiryFormValues = z.infer<typeof enquiryFormSchema>;
@@ -59,6 +70,7 @@ interface EnquiryFormProps {
   showPersonalFields?: boolean;
   submitButtonText?: string;
   hidePrivacyText?: boolean;
+  isPackageEnquiry?: boolean; // ✅ NEW
 }
 
 export default function EnquiryForm({
@@ -68,6 +80,7 @@ export default function EnquiryForm({
   showPersonalFields = true,
   submitButtonText = "Submit Enquiry →",
   hidePrivacyText = false,
+  isPackageEnquiry = false,
 }: EnquiryFormProps) {
   const {
     register,
@@ -89,6 +102,29 @@ export default function EnquiryForm({
 
   return (
     <form className={styles.enquiryForm} onSubmit={handleSubmit(onSubmit)}>
+      {/* Package Info (only when coming from a package) */}
+      {isPackageEnquiry && (
+        <div className={styles.enquiryForm__packageInfo}>
+          {/* Destination */}
+          {initialValues?.destination && (
+            <div className={styles.enquiryForm__field}>
+              <label className={styles.enquiryForm__label}>Destination</label>
+              <Input value={initialValues.destination.label} disabled />
+            </div>
+          )}
+
+          {/* Package Duration */}
+          {initialValues?.packageDuration && (
+            <div className={styles.enquiryForm__field}>
+              <label className={styles.enquiryForm__label}>
+                Package Duration
+              </label>
+              <Input value={initialValues.packageDuration} disabled />
+              <input type="hidden" {...register("packageDuration")} />
+            </div>
+          )}
+        </div>
+      )}
       {/* Date Fields (Month & Year) */}
       {showDateFields && (
         <>
@@ -204,7 +240,7 @@ export default function EnquiryForm({
                 </label>
                 <Input
                   {...register("contactNumber")}
-                  placeholder="e.g., +91 9876543210"
+                  placeholder=""
                   type="tel"
                 />
                 {errors.contactNumber && (
@@ -294,7 +330,10 @@ export default function EnquiryForm({
 
         {!hidePrivacyText && (
           <p className={styles.enquiryForm__privacy}>
-            ✓ 100% Privacy Guaranteed
+            <span className={styles.dateSelector__privacy__icon}>
+              <CheckIcon fill="var(--color-text-primary)" size={20} />
+            </span>
+            100% Privacy Guaranteed
           </p>
         )}
       </div>

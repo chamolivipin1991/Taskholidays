@@ -1,448 +1,259 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./PackagesSection.module.css";
 import { CalendarIcon } from "@/assets/icons/icons";
 import SectionTitle from "@/components/shared/SectionTitle";
+import EnquiryModal from "@/components/form/EnquiryModal";
 
-// Types
-interface Package {
-  id: number;
-  title: string;
-  location: string;
-  description: string;
-  duration: string;
-  includes: string[];
-  travelDates: string;
-  bookingDeadline: string;
-  price: number;
-  popular?: boolean;
-  tags: string[]; // Add tags for filtering
-}
+import { destinations } from "@/data/destinations";
+import { adaptDestinationsToPackages } from "@/utils/adapters/packageAdapter";
+import { UIPackage } from "@/types/package";
+import { EnquiryFormValues } from "@/components/form/EnquiryForm";
+import { Filter } from "@/types/filter";
+/* ---------------- FILTER CONFIG ---------------- */
 
-interface Filter {
-  id: string;
-  label: string;
-}
-
-// Updated Data with tags
-const packagesData: Package[] = [
-  {
-    id: 1,
-    title: "Santorini",
-    location: "Greece",
-    description:
-      "Experience the charm of whitewashed villages, crystal-clear waters, and breathtaking sunsets.",
-    duration: "7 Days and 6 Nights",
-    includes: ["Return international flight", "Hotel stay"],
-    travelDates: "May – October 2025",
-    bookingDeadline: "Book by 30 April 2025",
-    price: 2799,
-    popular: true,
-    tags: ["europe", "beach", "island"], // Added tags
-  },
-  {
-    id: 2,
-    title: "Sahara Desert",
-    location: "Morocco",
-    description:
-      "Embark on an unforgettable journey through the mesmerizing Sahara Desert.",
-    duration: "5 Days and 4 Nights",
-    includes: ["Guided desert tours", "Camel rides"],
-    travelDates: "October – April 2025",
-    bookingDeadline: "Book by 15 September 2025",
-    price: 1499,
-    tags: ["africa", "desert", "adventure"],
-  },
-  {
-    id: 3,
-    title: "Maldives",
-    location: "Indian Ocean",
-    description:
-      "Relax in paradise on the serene beaches of the Maldives. Enjoy crystal-clear waters.",
-    duration: "6 Days and 5 Nights",
-    includes: ["Return flights", "Luxury resort stay"],
-    travelDates: "Year-round availability",
-    bookingDeadline: "Book by 30 June 2025",
-    price: 2199,
-    tags: ["asia", "beach", "luxury"],
-  },
-];
-
-// Mock more packages for demonstration
-const additionalPackages: Package[] = [
-  {
-    id: 4,
-    title: "London",
-    location: "United Kingdom",
-    description:
-      "Explore historical landmarks, world-class museums, and vibrant culture in the heart of London.",
-    duration: "5 Days and 4 Nights",
-    includes: [
-      "Return flights",
-      "City center hotel",
-      "Hop-on hop-off bus tour",
-    ],
-    travelDates: "March – December 2025",
-    bookingDeadline: "Book by 28 February 2025",
-    price: 1899,
-    tags: ["europe", "city", "culture"],
-  },
-  {
-    id: 5,
-    title: "Barcelona",
-    location: "Spain",
-    description:
-      "Discover Gaudí's masterpieces, Mediterranean beaches, and vibrant Spanish culture.",
-    duration: "6 Days and 5 Nights",
-    includes: [
-      "Return flights",
-      "Beachfront accommodation",
-      "Sagrada Familia tickets",
-    ],
-    travelDates: "April – November 2025",
-    bookingDeadline: "Book by 31 March 2025",
-    price: 1999,
-    tags: ["europe", "beach", "culture"],
-  },
-  {
-    id: 6,
-    title: "Paris",
-    location: "France",
-    description:
-      "Romantic getaway to the City of Lights with iconic landmarks and exquisite cuisine.",
-    duration: "4 Days and 3 Nights",
-    includes: [
-      "Return flights",
-      "Hotel near Eiffel Tower",
-      "Seine River cruise",
-    ],
-    travelDates: "Year-round availability",
-    bookingDeadline: "Book 60 days in advance",
-    price: 1699,
-    popular: true,
-    tags: ["europe", "city", "romantic"],
-  },
-  {
-    id: 7,
-    title: "New York",
-    location: "USA",
-    description:
-      "Experience the energy of the Big Apple with Broadway shows and iconic skyline views.",
-    duration: "7 Days and 6 Nights",
-    includes: [
-      "Return flights",
-      "Times Square hotel",
-      "Statue of Liberty tour",
-    ],
-    travelDates: "All year",
-    bookingDeadline: "Book 90 days in advance",
-    price: 2499,
-    tags: ["north america", "city", "shopping"],
-  },
-  {
-    id: 8,
-    title: "Dubai",
-    location: "UAE",
-    description:
-      "Luxury desert oasis with futuristic architecture and world-class shopping.",
-    duration: "5 Days and 4 Nights",
-    includes: ["Return flights", "5-star hotel", "Desert safari with dinner"],
-    travelDates: "October – April 2026",
-    bookingDeadline: "Book by 30 September 2025",
-    price: 2299,
-    tags: ["middle east", "desert", "luxury"],
-  },
-  {
-    id: 9,
-    title: "Sydney",
-    location: "Australia",
-    description:
-      "Explore iconic Opera House, beautiful harbors, and stunning beaches down under.",
-    duration: "8 Days and 7 Nights",
-    includes: ["Return flights", "Harbor view hotel", "BridgeClimb experience"],
-    travelDates: "September – April 2026",
-    bookingDeadline: "Book by 31 August 2025",
-    price: 2999,
-    tags: ["australia", "beach", "adventure"],
-  },
-];
-
-const allPackages = [...packagesData, ...additionalPackages];
-
-const filters: Filter[] = [
+export const filters: Filter[] = [
   { id: "all", label: "All Locations" },
-  { id: "london", label: "London" },
-  { id: "spain", label: "Spain" },
-  { id: "paris", label: "Paris" },
-  { id: "new-york", label: "New York" },
-  { id: "dubai", label: "Dubai" },
-  { id: "sydney", label: "Sydney" },
-  { id: "manchester", label: "Manchester" },
-  { id: "rome", label: "Rome" },
-  { id: "istanbul", label: "Istanbul" },
-  { id: "bangkok", label: "Bangkok" },
-  { id: "greece", label: "Greece" },
-  { id: "morocco", label: "Morocco" },
-  { id: "maldives", label: "Maldives" },
+
+  ...destinations.map((destination) => ({
+    id: destination.slug,
+    label: destination.title,
+  })),
 ];
 
-// Mapping filter IDs to package tags/locations
-const filterMapping: Record<string, string[]> = {
-  all: [], // Special case - shows all
-  london: ["london", "united kingdom"],
-  spain: ["spain", "barcelona"],
-  paris: ["paris", "france"],
-  "new-york": ["new york", "usa", "north america"],
-  dubai: ["dubai", "uae", "middle east"],
-  sydney: ["sydney", "australia"],
-  manchester: ["united kingdom", "europe"], // Approximation
-  rome: ["italy", "europe"], // Approximation
-  istanbul: ["turkey", "middle east"], // Approximation
-  bangkok: ["thailand", "asia"], // Approximation
-  greece: ["greece", "santorini"],
-  morocco: ["morocco", "africa"],
-  maldives: ["maldives", "asia", "indian ocean"],
-};
+/* ---------------- COMPONENT ---------------- */
 
 export default function PackagesSection() {
+  const router = useRouter();
+  /* -------- DATA ADAPTATION -------- */
+
+  const allPackages: UIPackage[] = useMemo(
+    () => adaptDestinationsToPackages(destinations),
+    [],
+  );
+
+  /* -------- STATE -------- */
+
   const [activeFilter, setActiveFilter] = useState("all");
-  const [filteredPackages, setFilteredPackages] = useState<Package[]>(
-    allPackages.slice(0, 3)
-  ); // Show first 3 by default
-  const [showAllPackages, setShowAllPackages] = useState(false);
+  const [visiblePackages, setVisiblePackages] = useState<UIPackage[]>(
+    allPackages.slice(0, 3),
+  );
+  const [showAll, setShowAll] = useState(false);
+
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+  const [enquiryInitialValues, setEnquiryInitialValues] =
+    useState<Partial<EnquiryFormValues>>();
+
+  /* -------- FILTER HANDLER -------- */
 
   const handleFilterClick = (filterId: string) => {
     setActiveFilter(filterId);
+    setShowAll(false);
 
     if (filterId === "all") {
-      // Show first 3 packages for "All" to match the design
-      setFilteredPackages(allPackages.slice(0, 3));
-      setShowAllPackages(false);
+      setVisiblePackages(allPackages.slice(0, 3));
       return;
     }
 
-    const searchTerms = filterMapping[filterId] || [filterId.toLowerCase()];
+    const filtered = allPackages.filter(
+      (pkg) => pkg.destinationSlug === filterId,
+    );
 
-    const filtered = allPackages.filter((pkg) => {
-      // Check if package matches any of the search terms
-      const packageText = `${pkg.title} ${pkg.location} ${pkg.tags.join(
-        " "
-      )}`.toLowerCase();
-
-      return searchTerms.some(
-        (term) =>
-          packageText.includes(term.toLowerCase()) ||
-          pkg.title.toLowerCase().includes(term.toLowerCase()) ||
-          pkg.location.toLowerCase().includes(term.toLowerCase())
-      );
-    });
-
-    setFilteredPackages(filtered);
-    setShowAllPackages(false);
+    setVisiblePackages(filtered);
   };
 
+  /* -------- LOAD MORE / LESS -------- */
+
   const handleLoadMore = () => {
-    setShowAllPackages(true);
-    if (activeFilter === "all") {
-      setFilteredPackages(allPackages);
-    } else {
-      // Already filtered, show all filtered results
-    }
+    setVisiblePackages(allPackages);
+    setShowAll(true);
   };
 
   const handleShowLess = () => {
-    setShowAllPackages(false);
-    if (activeFilter === "all") {
-      setFilteredPackages(allPackages.slice(0, 3));
-    }
+    setVisiblePackages(allPackages.slice(0, 3));
+    setShowAll(false);
   };
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("en-US", {
+  /* -------- ENQUIRY HANDLER -------- */
+
+  const handleBookNow = (pkg: UIPackage) => {
+    setEnquiryInitialValues({
+      destination: {
+        value: pkg.destinationSlug,
+        label: pkg.location,
+      },
+      packageDuration: pkg.duration,
+    });
+    setIsEnquiryOpen(true);
+  };
+
+  const handleEnquirySubmit = (data: EnquiryFormValues) => {
+    console.log("Enquiry Submitted:", data);
+  };
+
+  /* -------- PRICE FORMATTER -------- */
+
+  const formatPrice = (price?: number) => {
+    if (!price) return "On Request";
+    return new Intl.NumberFormat("en-IN", {
       style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 0,
+      currency: "INR",
       maximumFractionDigits: 0,
     }).format(price);
   };
 
+  /* ---------------- RENDER ---------------- */
+
+  const handleViewDetails = (pkg: UIPackage) => {
+    router.push(`/packages/${pkg.destinationSlug}/details/${pkg.durationSlug}`);
+  };
+
   return (
-    <section
-      className={`${styles.packagesSection} section_white__spacing`}
-      aria-labelledby="packages-heading"
-    >
-      <div className="container">
-        <SectionTitle
-          heading="Featured Destinations"
-          subheading="Handpicked travel experiences to the most iconic, breathtaking, and
-        exciting locations. Choose your next adventure and start making memories
-        today."
-          backgroundText="Destination"
-        />
+    <>
+      <section
+        className={`${styles.packagesSection} section_white__spacing`}
+        aria-labelledby="packages-heading"
+      >
+        <div className="container">
+          <SectionTitle
+            heading="Handpicked Packages"
+            subheading="Carefully curated travel experiences designed for comfort, adventure, and unforgettable memories."
+            backgroundText="Packages"
+          />
 
-        {/* Filter Navigation */}
-        <nav
-          className={styles.filterNav}
-          aria-label="Filter packages by location"
-        >
-          <ul className={styles.filterList} role="list">
-            {filters.map((filter) => (
-              <li key={filter.id}>
-                <button
-                  className={`${styles.filterButton} ${
-                    activeFilter === filter.id ? styles.filterButtonActive : ""
+          {/* ---------- FILTER NAVIGATION ---------- */}
+          <nav
+            className={styles.filterNav}
+            aria-label="Filter packages by category"
+          >
+            <ul className={styles.filterList} role="list">
+              {filters.map((filter) => (
+                <li key={filter.id}>
+                  <button
+                    className={`${styles.filterButton} ${
+                      activeFilter === filter.id
+                        ? styles.filterButtonActive
+                        : ""
+                    }`}
+                    onClick={() => handleFilterClick(filter.id)}
+                    aria-pressed={activeFilter === filter.id}
+                  >
+                    {filter.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* ---------- PACKAGES GRID ---------- */}
+          <div className={styles.packagesGrid}>
+            {visiblePackages.length > 0 ? (
+              visiblePackages.map((pkg) => (
+                <article
+                  key={pkg.id}
+                  className={`${styles.packageCard} ${
+                    pkg.popular ? styles.packageCardPopular : ""
                   }`}
-                  onClick={() => handleFilterClick(filter.id)}
-                  aria-pressed={activeFilter === filter.id}
-                  aria-label={`Filter by ${filter.label}`}
                 >
-                  {filter.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
+                  {pkg.popular && (
+                    <div className={styles.popularBadge}>Popular</div>
+                  )}
 
-        {/* Filter Results Info */}
-        {activeFilter !== "all" && (
-          <div className={styles.filterResultsInfo}>
-            <p>
-              Showing {filteredPackages.length} package
-              {filteredPackages.length !== 1 ? "s" : ""} for "
-              <span className={styles.filterName}>
-                {filters.find((f) => f.id === activeFilter)?.label}
-              </span>
-              "
-            </p>
-          </div>
-        )}
-
-        {/* Packages Grid */}
-        <div className={styles.packagesGrid}>
-          {filteredPackages.length > 0 ? (
-            filteredPackages.map((pkg) => (
-              <article
-                key={pkg.id}
-                className={`${styles.packageCard} ${
-                  pkg.popular ? styles.packageCardPopular : ""
-                }`}
-                aria-labelledby={`package-${pkg.id}-title`}
-              >
-                {pkg.popular && (
-                  <div
-                    className={styles.popularBadge}
-                    aria-label="Popular package"
-                  >
-                    Popular
-                  </div>
-                )}
-
-                <div className={styles.packageHeader}>
-                  <h3
-                    id={`package-${pkg.id}-title`}
-                    className={styles.packageTitle}
-                  >
-                    {pkg.title},{" "}
-                    <span className={styles.packageLocation}>
-                      {pkg.location}
-                    </span>
-                  </h3>
-                  <p className={styles.packageDescription}>{pkg.description}</p>
-                </div>
-
-                <div className={styles.packageDetails}>
-                  <div className={styles.duration}>
-                    <CalendarIcon className={styles.icon} />
-                    <span>{pkg.duration}</span>
-                  </div>
-
-                  <ul className={styles.includesList} role="list">
-                    {pkg.includes.map((item, index) => (
-                      <li key={index} className={styles.includesItem}>
-                        <CalendarIcon
-                          className={styles.checkIcon}
-                          aria-hidden="true"
-                        />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className={styles.dateInfo}>
-                    <div className={styles.dateItem}>
-                      <CalendarIcon className={styles.icon} />
-                      <div>
-                        <span className={styles.dateLabel}>Travel Dates:</span>
-                        <span className={styles.dateValue}>
-                          {pkg.travelDates}
-                        </span>
-                      </div>
-                    </div>
-                    <div className={styles.dateItem}>
-                      <CalendarIcon className={styles.icon} />
-                      <div>
-                        <span className={styles.dateLabel}>
-                          Booking Deadline:
-                        </span>
-                        <span className={styles.dateValue}>
-                          {pkg.bookingDeadline}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className={styles.packageFooter}>
-                    <div className={styles.price}>
-                      <span className={styles.priceLabel}>per person</span>
-                      <span className={styles.priceValue}>
-                        {formatPrice(pkg.price)}
+                  <div className={styles.packageHeader}>
+                    <h3 className={styles.packageTitle}>
+                      {pkg.title},{" "}
+                      <span className={styles.packageLocation}>
+                        {pkg.location}
                       </span>
-                    </div>
-                    <button
-                      className={styles.bookButton}
-                      aria-label={`Book ${pkg.title}, ${
-                        pkg.location
-                      } package for ${formatPrice(pkg.price)}`}
-                    >
-                      Book Now
-                    </button>
+                    </h3>
+                    <p className={styles.packageDescription}>
+                      {pkg.description}
+                    </p>
                   </div>
-                </div>
-              </article>
-            ))
-          ) : (
-            <div className={styles.noResults}>
-              <p>
-                No packages found for this destination. Please try another
-                filter.
+
+                  <div className={styles.packageDetails}>
+                    <div className={styles.duration}>
+                      <CalendarIcon className={styles.icon} />
+                      <span>{pkg.duration}</span>
+                    </div>
+
+                    <ul className={styles.includesList}>
+                      {pkg.includes.map((item, index) => (
+                        <li key={index} className={styles.includesItem}>
+                          <CalendarIcon className={styles.checkIcon} />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className={styles.packageFooter}>
+                      <div className={styles.price}>
+                        <span className={styles.priceLabel}>per person</span>
+                        <span className={styles.priceValue}>
+                          {formatPrice(pkg.price)}
+                        </span>
+                      </div>
+
+                      <div className={styles.actionButtons}>
+                        <button
+                          className={styles.viewButton}
+                          onClick={() => handleViewDetails(pkg)}
+                        >
+                          View Details
+                        </button>
+
+                        <button
+                          className={styles.bookButton}
+                          onClick={() => handleBookNow(pkg)}
+                        >
+                          Book Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))
+            ) : (
+              <p className={styles.noResults}>
+                No packages found for this filter.
               </p>
+            )}
+          </div>
+
+          {/* ---------- LOAD MORE / LESS ---------- */}
+          {activeFilter === "all" && allPackages.length > 3 && (
+            <div className={styles.loadMoreContainer}>
+              {!showAll ? (
+                <button
+                  className={styles.loadMoreButton}
+                  onClick={handleLoadMore}
+                >
+                  View All Packages ({allPackages.length - 3} more)
+                </button>
+              ) : (
+                <button
+                  className={styles.loadMoreButton}
+                  onClick={handleShowLess}
+                >
+                  Show Less
+                </button>
+              )}
             </div>
           )}
         </div>
+      </section>
 
-        {/* Load More / Show Less buttons */}
-        {activeFilter === "all" &&
-          !showAllPackages &&
-          allPackages.length > 3 && (
-            <div className={styles.loadMoreContainer}>
-              <button
-                className={styles.loadMoreButton}
-                onClick={handleLoadMore}
-              >
-                View All Packages ({allPackages.length - 3} more)
-              </button>
-            </div>
-          )}
-
-        {activeFilter === "all" && showAllPackages && (
-          <div className={styles.loadMoreContainer}>
-            <button className={styles.loadMoreButton} onClick={handleShowLess}>
-              Show Less
-            </button>
-          </div>
-        )}
-      </div>
-    </section>
+      {/* ---------- ENQUIRY MODAL ---------- */}
+      <EnquiryModal
+        isOpen={isEnquiryOpen}
+        onClose={() => setIsEnquiryOpen(false)}
+        initialValues={enquiryInitialValues}
+        onSubmit={handleEnquirySubmit}
+        showDateFields={true}
+        size="medium"
+      />
+    </>
   );
 }

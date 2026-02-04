@@ -100,15 +100,13 @@ const Footer = () => {
         {/* Bottom */}
         <div className={styles.footer__bottom}>
           <p className={styles.footer__copyright}>
-            &copy; {new Date().getFullYear()} Task Holiday. All Rights Reserved
+            &copy; {new Date().getFullYear()} Task Holidays. All Rights Reserved
           </p>
 
           <div className={styles.footer__bottomLinks}>
             <a href="#">Privacy Policy</a>
             <span>|</span>
             <a href="#">Terms of Service</a>
-            <span>|</span>
-            <a href="#">Manage Cookies</a>
           </div>
         </div>
       </div>

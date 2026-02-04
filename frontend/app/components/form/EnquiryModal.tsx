@@ -39,6 +39,7 @@ const EnquiryModal: React.FC<EnquiryModalProps> = ({
         showPersonalFields={true}
         submitButtonText="Find My Perfect Trip →"
         hidePrivacyText={false}
+        isPackageEnquiry={!!initialValues?.packageDuration}
       />
     </AppModal>
   );
