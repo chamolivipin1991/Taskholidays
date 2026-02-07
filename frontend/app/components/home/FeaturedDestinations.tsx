@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import AppImage from "@/components/shared/AppImage";
 import SectionTitle from "@/components/shared/SectionTitle";
