@@ -3,6 +3,7 @@ import AppImage from "@/components/shared/AppImage";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { ArrowIcon } from "@/assets/icons/icons";
 import Link from "next/link";
+import { CldImage } from "next-cloudinary";
 import { destinations } from "@/data/destinations";
 import type { Destination } from "@/types/destination";
 
@@ -107,11 +108,9 @@ const FeaturedDestinations = () => {
                 src={resolveDestinationImage(
                   destination.heroImage.folder,
                   destination.heroImage.file,
-                  "q_auto,f_auto", // Remove width transformation here
                 )}
                 alt={destination.heroImage.alt}
-                width={1200}
-                height={800} // Add height for better performance
+                fill
                 sizes="(max-width: 768px) 100vw, 33vw"
               />
               <div className={styles.destination_card__overlay}>

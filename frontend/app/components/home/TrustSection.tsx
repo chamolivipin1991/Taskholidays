@@ -70,7 +70,7 @@ export default function TrustSection({
               src={centerImage.src}
               alt={centerImage.alt}
               fill
-              wrapperClassName={styles["trust__image-container"]}
+              // wrapperClassName={styles["trust__image-container"]}
               className={styles["trust__image"]}
               priority
             />
