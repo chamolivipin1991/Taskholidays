@@ -93,7 +93,7 @@ const FeaturedDestinations = () => {
                 `}
               aria-label={`View packages for ${destination.title}`}
             >
-              <AppImage
+              {/* <AppImage
                 src={resolveDestinationImage(
                   destination.heroImage.folder,
                   destination.heroImage.file,
@@ -102,8 +102,18 @@ const FeaturedDestinations = () => {
                 alt={destination.heroImage.alt}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
+              /> */}
+              <AppImage
+                src={resolveDestinationImage(
+                  destination.heroImage.folder,
+                  destination.heroImage.file,
+                  "q_auto,f_auto", // Remove width transformation here
+                )}
+                alt={destination.heroImage.alt}
+                width={1200}
+                height={800} // Add height for better performance
+                sizes="(max-width: 768px) 100vw, 33vw"
               />
-
               <div className={styles.destination_card__overlay}>
                 <h3 className={styles.destination_card__title}>
                   {destination.title}
