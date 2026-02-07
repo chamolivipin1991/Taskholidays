@@ -104,11 +104,18 @@ const FeaturedDestinations = () => {
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
               /> */}
-              <AppImage
+              {/* <AppImage
                 src={resolveDestinationImage(
                   destination.heroImage.folder,
                   destination.heroImage.file,
                 )}
+                alt={destination.heroImage.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+              /> */}
+
+              <AppImage
+                src={`${destination.heroImage.folder}/${destination.heroImage.file.replace(/\.[^/.]+$/, "")}`}
                 alt={destination.heroImage.alt}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
@@ -121,7 +128,6 @@ const FeaturedDestinations = () => {
                   {destination.description}
                 </p>
               </div>
-
               <span className={styles.destination_card__icon}>
                 <ArrowIcon fill="var(--color-text-primary)" size={20} />
               </span>
