@@ -104,7 +104,7 @@ const FeaturedDestinations = () => {
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
               /> */}
-              {/* <AppImage
+              <AppImage
                 src={resolveDestinationImage(
                   destination.heroImage.folder,
                   destination.heroImage.file,
@@ -112,14 +112,16 @@ const FeaturedDestinations = () => {
                 alt={destination.heroImage.alt}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
-              /> */}
-
-              <AppImage
-                src={`${destination.heroImage.folder}/${destination.heroImage.file.replace(/\.[^/.]+$/, "")}`}
-                alt={destination.heroImage.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
               />
+
+              <CldImage
+                src="https://res.cloudinary.com/dyhcnz8ws/image/upload/v1770090758/ladakh_taskholidays_9_pnanxx.jpg"
+                width="100"
+                height="100"
+                preserveTransformations
+                alt="test"
+              />
+
               <div className={styles.destination_card__overlay}>
                 <h3 className={styles.destination_card__title}>
                   {destination.title}
