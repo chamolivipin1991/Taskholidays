@@ -1,19 +1,15 @@
-"use client";
-import React from "react";
-import AppImage from "@/components/shared/AppImage";
+import Link from "next/link";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { ArrowIcon } from "@/assets/icons/icons";
-import Link from "next/link";
-import { CldImage } from "next-cloudinary";
+
 import { destinations } from "@/data/destinations";
 import type { Destination } from "@/types/destination";
+import { destinationImages } from "@/assets/images";
 
 import styles from "./FeaturedDestinations.module.css";
 
-import { resolveDestinationImage } from "@/utils/getImageUrl";
-
 /**
- * Slot-based layout config (UI driven, not data driven)
+ * Slot-based layout config
  */
 const layoutByIndex: Record<number, { tall?: boolean; small?: boolean }> = {
   1: { tall: true },
@@ -21,53 +17,23 @@ const layoutByIndex: Record<number, { tall?: boolean; small?: boolean }> = {
 };
 
 /**
- * Deterministic shuffle based on a seed (SSR/CSR consistent)
- * Uses Fisher-Yates algorithm with a pseudo-random generator
+ * Stable sort
  */
-function deterministicShuffle<T>(
-  array: T[],
-  seed: string = "featured-destinations",
-): T[] {
-  const result = [...array];
-
-  // Create a simple deterministic pseudo-random number generator
-  let hash = 0;
-  for (let i = 0; i < seed.length; i++) {
-    hash = (hash << 5) - hash + seed.charCodeAt(i);
-    hash = hash & hash;
-  }
-
-  // Simple PRNG
-  function seededRandom() {
-    hash = (hash * 9301 + 49297) % 233280;
-    return hash / 233280;
-  }
-
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(seededRandom() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
-  }
-
-  return result;
+function stableSortDestinations<T extends Destination>(items: T[]): T[] {
+  return [...items].sort((a, b) => a.title.localeCompare(b.title));
 }
 
 /**
- * Sort destinations by a stable order (e.g., alphabetical or by priority)
+ * Deterministic image rotation
  */
-function stableSortDestinations<T extends Destination>(destinations: T[]): T[] {
-  return [...destinations].sort((a, b) => {
-    // Sort by id or title for stable ordering
-    return a.title.localeCompare(b.title);
-    // OR: return a.id - b.id; // if you want to sort by ID
-  });
+function getDestinationImage(slug: string, index: number): string | null {
+  const images = destinationImages[slug];
+  if (!images?.length) return null;
+  return images[index % images.length];
 }
 
-const FeaturedDestinations = () => {
-  // Use stable sort instead of random shuffle for hydration safety
+export default function FeaturedDestinationsServer() {
   const sortedDestinations = stableSortDestinations(destinations);
-
-  // OR: Use deterministic shuffle with a fixed seed
-  // const shuffledDestinations = deterministicShuffle(destinations, "homepage");
 
   return (
     <section
@@ -75,52 +41,29 @@ const FeaturedDestinations = () => {
     >
       <SectionTitle
         heading="Featured Destinations"
-        subheading="Handpicked travel experiences to the most iconic, breathtaking, and
-        exciting locations. Choose your next adventure and start making memories
-        today."
+        subheading="Handpicked travel experiences to the most iconic, breathtaking, and exciting locations."
         backgroundText="Destination"
       />
 
       <div className={styles.destinations__grid}>
-        {sortedDestinations.map((destination: Destination, index: number) => {
+        {sortedDestinations.map((destination, index) => {
           const layout = layoutByIndex[index] || {};
+          const imagePublicId = getDestinationImage(destination.slug, index);
 
           return (
             <Link
               key={destination.id}
               href={`/packages/${destination.slug}`}
               className={`${styles.destination_card}
-                  ${layout.tall ? styles.destination_card__tall : ""}
-                  ${layout.small ? styles.destination_card__small : ""}
-                `}
-              aria-label={`View packages for ${destination.title}`}
+                ${layout.tall ? styles.destination_card__tall : ""}
+                ${layout.small ? styles.destination_card__small : ""}
+              `}
             >
-              {/* <AppImage
-                src={resolveDestinationImage(
-                  destination.heroImage.folder,
-                  destination.heroImage.file,
-                  "w_1200,q_auto,f_auto",
-                )}
+              {/* 👇 CLIENT IMAGE */}
+              <FeaturedDestinationImage
+                publicId={imagePublicId}
                 alt={destination.heroImage.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-              /> */}
-              <AppImage
-                src={resolveDestinationImage(
-                  destination.heroImage.folder,
-                  destination.heroImage.file,
-                )}
-                alt={destination.heroImage.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-
-              <CldImage
-                src="https://res.cloudinary.com/dyhcnz8ws/image/upload/v1770090758/ladakh_taskholidays_9_pnanxx.jpg"
-                width="100"
-                height="100"
-                preserveTransformations
-                alt="test"
+                priority={index < 2}
               />
 
               <div className={styles.destination_card__overlay}>
@@ -131,6 +74,7 @@ const FeaturedDestinations = () => {
                   {destination.description}
                 </p>
               </div>
+
               <span className={styles.destination_card__icon}>
                 <ArrowIcon fill="var(--color-text-primary)" size={20} />
               </span>
@@ -140,6 +84,9 @@ const FeaturedDestinations = () => {
       </div>
     </section>
   );
-};
+}
 
-export default FeaturedDestinations;
+/**
+ * Import CLIENT component lazily
+ */
+import FeaturedDestinationImage from "./FeaturedDestinations.client";
