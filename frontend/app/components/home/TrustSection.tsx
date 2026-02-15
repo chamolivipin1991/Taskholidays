@@ -34,11 +34,11 @@ export default function TrustSection({
     <section className={styles["trust"]}>
       <div className="container">
         <SectionTitle
-          heading="Featured Destinations"
+          heading="Why Choose Us"
           subheading="Handpicked travel experiences to the most iconic, breathtaking, and
         exciting locations. Choose your next adventure and start making memories
         today."
-          backgroundText="Destination"
+          backgroundText="Trust"
         />
         <div className={styles["trust__grid"]}>
           {/* LEFT COLUMN */}

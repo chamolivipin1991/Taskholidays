@@ -1,51 +1,99 @@
-import { StaticImageData } from "next/image";
-
-export interface Hotel {
-  id: number;
-  name: string;
-  location: string;
-  starRating: 1 | 2 | 3 | 4 | 5;
-  category?: "standard" | "deluxe" | "premium" | "luxury";
-  images?: string[];
-  facilities?: string[];
-  checkInTime?: string;
-  checkOutTime?: string;
-}
-
-export interface ItineraryDay {
-  day: number;
-  title: string;
-  location: string;
-  hotels: Hotel[];
-  activities?: string[];
-}
-
-export interface TravelPackage {
-  id: number;
-  name: string;
-  duration: string; // e.g. "5 Days / 4 Nights"
-  images: string[];
-  inclusions: string[];
-  exclusions?: string[];
-  itinerary: ItineraryDay[];
-  startingPrice?: number;
-  price: number;
-  popular: boolean;
-}
-
+/* ===========================
+   HERO IMAGE
+=========================== */
 export interface DestinationImage {
   folder: string;
   file: string;
   alt: string;
 }
 
+/* ===========================
+   SHORT ITINERARY
+=========================== */
+export interface ShortItineraryDay {
+  day: string;
+  title: string;
+  location: string;
+  stay?: string;
+  sightSeeing?: string;
+  breakfastNextDay?: boolean;
+}
+
+/* ===========================
+   HOTEL (AS PER DATA)
+=========================== */
+export interface PackageHotel {
+  location: string;
+  duration: string;
+  durationNumber: number[];
+  hotelName: string;
+  star: number;
+  category: string;
+  facilities: string[];
+  checkInTime: string;
+  checkoutTime: string;
+  stayLink: string;
+}
+
+/* ===========================
+   CRUISE
+=========================== */
+export interface Cruise {
+  day: number;
+  location: string;
+  category: string;
+  name: string;
+}
+
+/* ===========================
+   SIGHTSEEING ITEM
+=========================== */
+export interface SightseeingItem {
+  name: string;
+  detail: string;
+}
+
+/* ===========================
+   DETAILED ITINERARY
+=========================== */
+export interface DetailedItineraryDay {
+  day: string;
+  location: string;
+  stay: string;
+  title: string;
+  itineraryPoints: string[];
+  sightseeingLocation: string;
+  sightseeingItems: SightseeingItem[];
+  instruction: string;
+  note: string[];
+  inclusions: string;
+}
+
+/* ===========================
+   TRAVEL PACKAGE (EXACT MATCH)
+=========================== */
+export interface TravelPackage {
+  packageId: string;
+  title: string;
+  duration: string;
+  shortItinerary: ShortItineraryDay[];
+  hotels: PackageHotel[];
+  cruise: Cruise[];
+  detailedItinerary: DetailedItineraryDay[];
+  tripExclusions: string[];
+  popular?: boolean;
+}
+
+/* ===========================
+   DESTINATION
+=========================== */
 export interface Destination {
   id: number;
   slug: string;
   title: string;
   description: string;
   heroImage: DestinationImage;
-  packages?: TravelPackage[];
-  bestSeason?: string[];
-  tags?: string[];
+  bestSeason: string[];
+  tags: string[];
+  packages: TravelPackage[];
 }

@@ -33,19 +33,10 @@ const Footer = () => {
               <h4 className={styles.footer__heading}>Quick Links</h4>
               <ul className={styles.footer__list}>
                 <li>
-                  <a href="#">Home</a>
+                  <Link href="/packages/andaman">Andaman</Link>
                 </li>
                 <li>
-                  <a href="#">Packages</a>
-                </li>
-                <li>
-                  <a href="#">Contact Us</a>
-                </li>
-                <li>
-                  <a href="#">About Us</a>
-                </li>
-                <li>
-                  <a href="#">Plan Your Trip</a>
+                  <Link href="/packages/kerala">Kerala</Link>
                 </li>
               </ul>
             </div>
@@ -54,19 +45,10 @@ const Footer = () => {
               <h4 className={styles.footer__heading}>Destinations</h4>
               <ul className={styles.footer__list}>
                 <li>
-                  <a href="#">Exotic Beaches</a>
+                  <Link href="/packages/bali">Bali</Link>
                 </li>
                 <li>
-                  <a href="#">Cultural Capitals</a>
-                </li>
-                <li>
-                  <a href="#">Adventure Escapes</a>
-                </li>
-                <li>
-                  <a href="#">Family Vacations</a>
-                </li>
-                <li>
-                  <a href="#">Luxury Travel</a>
+                  <Link href="/packages/dubai">Dubai</Link>
                 </li>
               </ul>
             </div>
@@ -75,19 +57,10 @@ const Footer = () => {
               <h4 className={styles.footer__heading}>Support</h4>
               <ul className={styles.footer__list}>
                 <li>
-                  <a href="#">Help Center</a>
+                  <Link href="/packages/rajasthan">Rajasthan</Link>
                 </li>
                 <li>
-                  <a href="#">Anti-discrimination</a>
-                </li>
-                <li>
-                  <a href="#">Disability Support</a>
-                </li>
-                <li>
-                  <a href="#">Cancellation Options</a>
-                </li>
-                <li>
-                  <a href="#">Report Neighborhood Concern</a>
+                  <Link href="/packages/ladakh">Ladakh</Link>
                 </li>
               </ul>
             </div>
@@ -104,9 +77,13 @@ const Footer = () => {
           </p>
 
           <div className={styles.footer__bottomLinks}>
-            <a href="#">Privacy Policy</a>
+            <Link href="/" aria-label="home">
+              Home
+            </Link>
             <span>|</span>
-            <a href="#">Terms of Service</a>
+            <Link href="/tnc" aria-label="tnc">
+              Terms of Service
+            </Link>
           </div>
         </div>
       </div>

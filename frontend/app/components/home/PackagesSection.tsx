@@ -3,51 +3,106 @@
 import React, { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./PackagesSection.module.css";
-import { CalendarIcon } from "@/assets/icons/icons";
+import { CalendarIcon, CheckIcon } from "@/assets/icons/icons";
 import SectionTitle from "@/components/shared/SectionTitle";
 import EnquiryModal from "@/components/form/EnquiryModal";
+import Button from "@/components/form/Button"; // ← import Button
 
 import { destinations } from "@/data/destinations";
-import { adaptDestinationsToPackages } from "@/utils/adapters/packageAdapter";
-import { UIPackage } from "@/types/package";
 import { EnquiryFormValues } from "@/components/form/EnquiryForm";
 import { Filter } from "@/types/filter";
-/* ---------------- FILTER CONFIG ---------------- */
 
+/* ---------------- FILTER CONFIG ---------------- */
 export const filters: Filter[] = [
   { id: "all", label: "All Locations" },
-
   ...destinations.map((destination) => ({
     id: destination.slug,
     label: destination.title,
   })),
 ];
 
-/* ---------------- COMPONENT ---------------- */
+/* ---------------- TYPES ---------------- */
+interface UIPackage {
+  id: string;
+  title: string;
+  location: string;
+  description: string;
+  duration: string;
+  includes: string[];
+  price?: number;
+  popular?: boolean;
+  destinationSlug: string;
+  packageId: string;
+  shortItinerary?: any[];
+}
 
+/* ---------------- COMPONENT ---------------- */
 export default function PackagesSection() {
   const router = useRouter();
-  /* -------- DATA ADAPTATION -------- */
 
-  const allPackages: UIPackage[] = useMemo(
-    () => adaptDestinationsToPackages(destinations),
-    [],
-  );
+  /* -------- DATA TRANSFORMATION -------- */
+  const allPackages: UIPackage[] = useMemo(() => {
+    const packages: UIPackage[] = [];
+
+    destinations.forEach((destination) => {
+      if (!destination.packages || destination.packages.length === 0) return;
+
+      destination.packages.forEach((pkg) => {
+        const includes: string[] = [];
+
+        if (pkg.hotels && pkg.hotels.length > 0) {
+          includes.push("Accommodation");
+        }
+
+        if (
+          pkg.shortItinerary &&
+          pkg.shortItinerary.some((day: any) => day.breakfastNextDay)
+        ) {
+          includes.push("Breakfast");
+        }
+
+        if (pkg.cruise && pkg.cruise.length > 0) {
+          includes.push("Cruise Tickets");
+        }
+
+        if (pkg.detailedItinerary && pkg.detailedItinerary.length > 0) {
+          includes.push("Sightseeing");
+        }
+
+        includes.push("Transport");
+
+        const uiPackage: UIPackage = {
+          id: `${destination.id}-${pkg.packageId}`,
+          title: pkg.title,
+          location: destination.title,
+          description: destination.description,
+          duration: pkg.duration,
+          includes,
+          price: 25000, // TODO: make dynamic
+          popular: Math.random() > 0.5,
+          destinationSlug: destination.slug,
+          packageId: pkg.packageId,
+          shortItinerary: pkg.shortItinerary,
+        };
+
+        packages.push(uiPackage);
+      });
+    });
+
+    return packages;
+  }, []);
 
   /* -------- STATE -------- */
-
   const [activeFilter, setActiveFilter] = useState("all");
   const [visiblePackages, setVisiblePackages] = useState<UIPackage[]>(
     allPackages.slice(0, 3),
   );
   const [showAll, setShowAll] = useState(false);
-
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
   const [enquiryInitialValues, setEnquiryInitialValues] =
     useState<Partial<EnquiryFormValues>>();
 
-  /* -------- FILTER HANDLER -------- */
-
+  /* -------- HANDLERS -------- */
   const handleFilterClick = (filterId: string) => {
     setActiveFilter(filterId);
     setShowAll(false);
@@ -60,11 +115,8 @@ export default function PackagesSection() {
     const filtered = allPackages.filter(
       (pkg) => pkg.destinationSlug === filterId,
     );
-
     setVisiblePackages(filtered);
   };
-
-  /* -------- LOAD MORE / LESS -------- */
 
   const handleLoadMore = () => {
     setVisiblePackages(allPackages);
@@ -75,8 +127,6 @@ export default function PackagesSection() {
     setVisiblePackages(allPackages.slice(0, 3));
     setShowAll(false);
   };
-
-  /* -------- ENQUIRY HANDLER -------- */
 
   const handleBookNow = (pkg: UIPackage) => {
     setEnquiryInitialValues({
@@ -93,7 +143,9 @@ export default function PackagesSection() {
     console.log("Enquiry Submitted:", data);
   };
 
-  /* -------- PRICE FORMATTER -------- */
+  const handleViewDetails = (pkg: UIPackage) => {
+    router.push(`/packages/${pkg.destinationSlug}/details/${pkg.packageId}`);
+  };
 
   const formatPrice = (price?: number) => {
     if (!price) return "On Request";
@@ -105,11 +157,6 @@ export default function PackagesSection() {
   };
 
   /* ---------------- RENDER ---------------- */
-
-  const handleViewDetails = (pkg: UIPackage) => {
-    router.push(`/packages/${pkg.destinationSlug}/details/${pkg.durationSlug}`);
-  };
-
   return (
     <>
       <section
@@ -131,17 +178,14 @@ export default function PackagesSection() {
             <ul className={styles.filterList} role="list">
               {filters.map((filter) => (
                 <li key={filter.id}>
-                  <button
-                    className={`${styles.filterButton} ${
-                      activeFilter === filter.id
-                        ? styles.filterButtonActive
-                        : ""
-                    }`}
+                  <Button
+                    variant={
+                      activeFilter === filter.id ? "dark" : "darkBordered"
+                    }
                     onClick={() => handleFilterClick(filter.id)}
+                    text={filter.label}
                     aria-pressed={activeFilter === filter.id}
-                  >
-                    {filter.label}
-                  </button>
+                  />
                 </li>
               ))}
             </ul>
@@ -180,36 +224,32 @@ export default function PackagesSection() {
                     </div>
 
                     <ul className={styles.includesList}>
-                      {pkg.includes.map((item, index) => (
+                      {pkg.includes.slice(0, 4).map((item, index) => (
                         <li key={index} className={styles.includesItem}>
-                          <CalendarIcon className={styles.checkIcon} />
+                          <CheckIcon className={styles.checkIcon} size={16} />
                           <span>{item}</span>
                         </li>
                       ))}
+                      {pkg.includes.length > 4 && (
+                        <li className={styles.includesItem}>
+                          <CheckIcon className={styles.checkIcon} size={16} />
+                          <span>+{pkg.includes.length - 4} more</span>
+                        </li>
+                      )}
                     </ul>
 
                     <div className={styles.packageFooter}>
-                      <div className={styles.price}>
-                        <span className={styles.priceLabel}>per person</span>
-                        <span className={styles.priceValue}>
-                          {formatPrice(pkg.price)}
-                        </span>
-                      </div>
-
                       <div className={styles.actionButtons}>
-                        <button
-                          className={styles.viewButton}
+                        <Button
+                          variant="activeLine"
                           onClick={() => handleViewDetails(pkg)}
-                        >
-                          View Details
-                        </button>
-
-                        <button
-                          className={styles.bookButton}
+                          text="View Details"
+                        />
+                        <Button
+                          variant="dark"
                           onClick={() => handleBookNow(pkg)}
-                        >
-                          Book Now
-                        </button>
+                          text="Book Now"
+                        />
                       </div>
                     </div>
                   </div>
@@ -226,19 +266,17 @@ export default function PackagesSection() {
           {activeFilter === "all" && allPackages.length > 3 && (
             <div className={styles.loadMoreContainer}>
               {!showAll ? (
-                <button
-                  className={styles.loadMoreButton}
+                <Button
+                  variant="darkBordered"
                   onClick={handleLoadMore}
-                >
-                  View All Packages ({allPackages.length - 3} more)
-                </button>
+                  text={`View All Packages (${allPackages.length - 3} more)`}
+                />
               ) : (
-                <button
-                  className={styles.loadMoreButton}
+                <Button
+                  variant="darkBordered"
                   onClick={handleShowLess}
-                >
-                  Show Less
-                </button>
+                  text="Show Less"
+                />
               )}
             </div>
           )}

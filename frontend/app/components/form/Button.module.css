@@ -102,6 +102,8 @@
   padding: var(--space-xs);
   color: var(--color-brand-secondary);
   font-weight: var(--font-weight-medium);
+  border-radius: 0;
+  white-space: nowrap;
 }
 
 .activeLine:hover {

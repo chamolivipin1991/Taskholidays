@@ -28,18 +28,16 @@ const PlanTripModal: React.FC<PlanTripModalProps> = ({
 
   const handleSubmit = (data: EnquiryFormValues) => {
     onFormSubmit(data);
-    // Additional logic can be added here
   };
 
   return (
     <>
-      {/* Render button or custom children */}
       {children ? (
         React.cloneElement(children, {
-          onClick: modal.open,
+          onClick: () => modal.open(), // ✅ FIXED
         })
       ) : (
-        <Button {...buttonProps} onClick={modal.open} />
+        <Button {...buttonProps} onClick={() => modal.open()} /> // ✅ FIXED
       )}
 
       <EnquiryModal

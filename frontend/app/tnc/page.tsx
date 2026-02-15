@@ -95,7 +95,7 @@ const tncData: TncItem[] = [
 const TermsConditionsPage = () => {
   return (
     <>
-      <Header />
+      <Header navItems={[]} />
       <main className={`${styles.tnc} section_white__spacing`}>
         <section className={`${styles.tnc__hero}`}>
           <div className={`${styles.tnc__container} container `}>

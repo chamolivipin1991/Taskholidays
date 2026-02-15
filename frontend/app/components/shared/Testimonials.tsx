@@ -23,11 +23,11 @@ export default function Testimonials({ items }: TestimonialsProps) {
     <section className={`section_white__spacing ${styles["testimonials"]}`}>
       <div className="container">
         <SectionTitle
-          heading="Featured Destinations"
+          heading="Happy Customers"
           subheading="Handpicked travel experiences to the most iconic, breathtaking, and
         exciting locations. Choose your next adventure and start making memories
         today."
-          backgroundText="Destination"
+          backgroundText="Reviews"
         />
         <div className={styles["testimonials__grid"]}>
           {items.map((item) => (

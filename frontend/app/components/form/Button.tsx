@@ -12,16 +12,11 @@ export type ButtonVariant =
   | "darkLine"
   | "simple";
 
-export interface ButtonProps {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant: ButtonVariant;
-  type?: "button" | "submit" | "reset";
-  onClick?: () => void;
   text: string;
-  className?: string;
-  disabled?: boolean;
   small?: boolean;
   textInSpan?: boolean;
-
   icon?: React.ReactNode;
   iconPosition?: "left" | "right";
 }
@@ -37,6 +32,7 @@ const Button = ({
   textInSpan = false,
   icon,
   iconPosition = "right",
+  ...rest
 }: ButtonProps) => {
   return (
     <button
@@ -49,13 +45,12 @@ const Button = ({
         small && styles.small,
         className,
       )}
+      {...rest}
     >
       {icon && iconPosition === "left" && (
         <span className={styles.button__icon}>{icon}</span>
       )}
-
       {textInSpan ? <span className={styles.ctaText}>{text}</span> : text}
-
       {icon && iconPosition === "right" && (
         <span className={styles.button__icon}>{icon}</span>
       )}

@@ -5,26 +5,89 @@ import Link from "next/link";
 import { ArrowIcon, BurgerMenuIcon, CloseIcon } from "@/assets/icons/icons";
 import brandLogoImg from "@/assets/images/taskholiday_logo.png";
 import AppImage from "@/components/shared/AppImage";
-import Button from "@/components/form/Button";
-
-import styles from "./Header.module.css";
+import Button, { ButtonVariant } from "@/components/form/Button";
 import PlanTripModal from "@/components/form/PlanTripModal";
+import styles from "./Header.module.css";
 
 import { EnquiryFormValues } from "@/components/form/EnquiryForm";
 
-const Header = () => {
+/* ---------- TYPES (Serializable only) ---------- */
+export interface HeaderNavItem {
+  /** Display text */
+  text: string;
+  /** Optional href – renders as Next.js Link */
+  href?: string;
+  /** Optional element ID to scroll to (overrides href if both are present) */
+  id?: string;
+  /** Button variant – defaults to "darkLine" */
+  variant?: ButtonVariant;
+}
+
+export interface HeaderProps {
+  /** Navigation items for desktop & mobile drawer */
+  navItems?: HeaderNavItem[];
+  /** Optional custom logo component/element */
+  logo?: React.ReactNode;
+}
+
+/* ---------- COMPONENT ---------- */
+const Header = ({
+  navItems,
+  logo = (
+    <Link href="/" aria-label="Go to homepage">
+      <AppImage src={brandLogoImg} alt="Task Holidays" width={220} />
+    </Link>
+  ),
+}: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleScroll = (id: string) => {
-    setIsOpen(false);
+  // Default navigation items (used when no navItems prop is provided)
+  const defaultNavItems: HeaderNavItem[] = [
+    { text: "Destinations", id: "featuredDestinations" },
+    { text: "Packages", id: "packagesSection" },
+  ];
 
+  const items = navItems ?? defaultNavItems;
+
+  // Smooth scroll to element by ID
+  const handleScrollTo = (id: string) => {
+    setIsOpen(false);
     const el = document.getElementById(id);
     if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
-    el.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+  // Renders a single navigation item
+  const renderNavItem = (
+    item: HeaderNavItem,
+    variant: ButtonVariant = "darkLine",
+  ) => {
+    const { text, href, id } = item;
+    const buttonVariant = item.variant ?? variant;
+
+    // 1. If ID is provided → scroll action
+    if (id) {
+      return (
+        <Button
+          key={text}
+          variant={buttonVariant}
+          text={text}
+          onClick={() => handleScrollTo(id)}
+        />
+      );
+    }
+
+    // 2. If href is provided → Next.js Link
+    if (href) {
+      return (
+        <Link key={text} href={href} passHref legacyBehavior>
+          <Button variant={buttonVariant} text={text} />
+        </Link>
+      );
+    }
+
+    // 3. Fallback (should never happen) – render a disabled-looking button
+    return <Button key={text} variant={buttonVariant} text={text} disabled />;
   };
 
   const handleFormSubmit = (data: EnquiryFormValues) => {
@@ -37,27 +100,14 @@ const Header = () => {
       <header className={styles.header}>
         <div className={styles.header__container}>
           {/* Logo */}
-          <div className={styles.header__logo}>
-            <Link href="/" aria-label="Go to homepage">
-              <AppImage src={brandLogoImg} alt="Task Holidays" width={220} />
-            </Link>
-          </div>
+          <div className={styles.header__logo}>{logo}</div>
 
-          {/* Desktop Nav */}
+          {/* Desktop Navigation */}
           <nav className={styles.header__nav}>
-            <Button
-              variant="darkLine"
-              text="Destinations"
-              onClick={() => handleScroll("featuredDestinations")}
-            />
-            <Button
-              variant="darkLine"
-              text="Packages"
-              onClick={() => handleScroll("packagesSection")}
-            />
+            {items.map((item) => renderNavItem(item, "darkLine"))}
           </nav>
 
-          {/* CTA */}
+          {/* Desktop CTA – Plan Your Trip */}
           <PlanTripModal
             onFormSubmit={handleFormSubmit}
             modalTitle="Plan Your Perfect Trip"
@@ -72,6 +122,7 @@ const Header = () => {
                 size={24}
               />
             }
+            // No onFormSubmit prop – modal handles its own submission
           />
 
           {/* Mobile Menu Button */}
@@ -120,30 +171,14 @@ const Header = () => {
         />
 
         <nav className={styles.header__drawerNav}>
-          <Button
-            variant="darkLine"
-            text="Home"
-            onClick={() => handleScroll("home")}
-          />
-          <Button
-            variant="darkLine"
-            text="Destination"
-            onClick={() => handleScroll("destination")}
-          />
-          <Button
-            variant="darkLine"
-            text="Packages"
-            onClick={() => handleScroll("packages")}
-          />
-          <Button
-            variant="darkLine"
-            text="Contact"
-            onClick={() => handleScroll("contact")}
-          />
+          {/* All navigation items (reuse same render logic) */}
+          {items.map((item) => renderNavItem(item, "darkLine"))}
+
+          {/* Dedicated CTA inside drawer */}
           <Button
             variant="dark"
             text="Plan Your Trip"
-            onClick={() => handleScroll("plan-trip")}
+            onClick={() => handleScrollTo("plan-trip")}
             className={styles.header__drawerCta}
             icon={<span>→</span>}
           />

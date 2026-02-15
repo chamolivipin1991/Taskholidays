@@ -14,7 +14,14 @@ import EnquiryForm from "@/components/form/EnquiryForm";
 export default function Home() {
   return (
     <>
-      <Header />
+      <Header
+        navItems={[
+          { text: "Destinations", id: "featuredDestinations" },
+          { text: "Packages", id: "packagesSection" },
+          // { text: "Tours", href: "/tours" },
+          // { text: "Blog", href: "/blog", variant: "darkBordered" },
+        ]}
+      />
       <Banner />
       <div id="featuredDestinations">
         <FeaturedDestinations />
@@ -79,7 +86,6 @@ export default function Home() {
           },
         ]}
       />
-
       <Footer />
     </>
   );
