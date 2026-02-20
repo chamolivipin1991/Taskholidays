@@ -13,3 +13,11 @@ export interface UIPackage {
   shortItinerary?: any[];
   imagePublicId: string | null;
 }
+
+export interface ShortItineraryDay {
+  day: string;
+  title: string;
+  location: string;
+  stay?: string;
+  breakfastNextDay?: boolean;
+}

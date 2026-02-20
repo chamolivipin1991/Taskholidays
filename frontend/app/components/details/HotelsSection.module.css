@@ -1,0 +1,32 @@
+.hotels {
+  margin-bottom: 40px;
+}
+
+.hotels__title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.hotels__card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.hotels__name {
+  font-weight: 600;
+}
+
+.hotels__location,
+.hotels__meta {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.hotels__stars {
+  color: #f59e0b;
+}
