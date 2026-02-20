@@ -93,6 +93,7 @@ export interface Destination {
   title: string;
   description: string;
   heroImage: DestinationImage;
+  bannerImages?: string[];
   bestSeason: string[];
   tags: string[];
   packages: TravelPackage[];

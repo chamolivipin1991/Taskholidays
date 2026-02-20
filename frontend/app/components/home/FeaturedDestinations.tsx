@@ -29,7 +29,8 @@ function stableSortDestinations<T extends Destination>(items: T[]): T[] {
 function getDestinationImage(slug: string, index: number): string | null {
   const images = destinationImages[slug];
   if (!images?.length) return null;
-  return images[index % images.length];
+  const filename = images[index % images.length]; // assume filename without extension
+  return `${slug}/${filename}`;
 }
 
 export default function FeaturedDestinationsServer() {
@@ -60,7 +61,7 @@ export default function FeaturedDestinationsServer() {
               `}
             >
               {/* 👇 CLIENT IMAGE */}
-              <FeaturedDestinationImage
+              <AppImagesClient
                 publicId={imagePublicId}
                 alt={destination.heroImage.alt}
                 priority={index < 2}
@@ -89,4 +90,4 @@ export default function FeaturedDestinationsServer() {
 /**
  * Import CLIENT component lazily
  */
-import FeaturedDestinationImage from "./FeaturedDestinations.client";
+import AppImagesClient from "./AppImagesClient.client";

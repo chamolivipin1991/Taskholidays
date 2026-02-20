@@ -1,14 +1,15 @@
 // types/package.ts
 export interface UIPackage {
-  id: string; // ✅ must be string
+  id: string;
   title: string;
   location: string;
-  destinationSlug: string;
   description: string;
   duration: string;
-  durationSlug: string;
-  includes: string[]; // ✅ must be string[]
+  includes: string[];
   price?: number;
   popular?: boolean;
-  tags?: string[];
+  destinationSlug: string;
+  packageId: string;
+  shortItinerary?: any[];
+  imagePublicId: string | null;
 }

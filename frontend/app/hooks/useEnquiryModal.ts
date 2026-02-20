@@ -1,30 +1,25 @@
+// hooks/useEnquiryModal.ts
 import { useState } from "react";
 import { EnquiryFormValues } from "@/components/form/EnquiryForm";
 
-export default function useEnquiryModal(
-  initialValues?: Partial<EnquiryFormValues>,
-) {
+export const useEnquiryModal = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [formData, setFormData] = useState<
-    Partial<EnquiryFormValues> | undefined
-  >(initialValues);
+  const [initialValues, setInitialValues] =
+    useState<Partial<EnquiryFormValues>>();
 
-  const open = (data?: Partial<EnquiryFormValues>) => {
-    if (data) {
-      setFormData(data);
-    }
+  const openEnquiry = (values: Partial<EnquiryFormValues>) => {
+    setInitialValues(values);
     setIsOpen(true);
   };
 
-  const close = () => {
+  const closeEnquiry = () => {
     setIsOpen(false);
   };
 
   return {
     isOpen,
-    open,
-    close,
-    formData,
-    setFormData,
+    initialValues,
+    openEnquiry,
+    closeEnquiry,
   };
-}
+};

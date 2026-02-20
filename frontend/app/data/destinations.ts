@@ -235,7 +235,7 @@ export const destinations: Destination[] = [
         packageId: "andaman-5n-6d",
         title: "Andaman Tour Package – 6 Days / 5 Nights",
         duration: "6 Days / 5 Nights",
-        // No popular key (5 nights)
+        popular: false, // ✅ Added
         shortItinerary: [
           {
             day: "1",
@@ -706,7 +706,7 @@ export const destinations: Destination[] = [
         packageId: "bali-5n-6d-east-bali-nusa-penida",
         title: "Bali Tour Package – 6 Days / 5 Nights",
         duration: "6 Days / 5 Nights",
-        // No popular key (5 nights)
+        popular: false, // ✅ Added
         shortItinerary: [
           {
             day: "1",
@@ -1113,7 +1113,7 @@ export const destinations: Destination[] = [
         packageId: "ladakh-5n-6d",
         title: "Leh Ladakh Tour Package – 6 Days / 5 Nights",
         duration: "6 Days / 5 Nights",
-        // No popular key (5 nights)
+        popular: false, // ✅ Added
         shortItinerary: [
           {
             day: "1",
@@ -1645,7 +1645,7 @@ export const destinations: Destination[] = [
         packageId: "rajasthan-5n-6d",
         title: "6 Days/5 Nights Plan for Rajasthan",
         duration: "6 Days / 5 Nights",
-        // No popular key (5 nights)
+        popular: false, // ✅ Added
         shortItinerary: [
           {
             day: "1",
@@ -2083,7 +2083,7 @@ export const destinations: Destination[] = [
         packageId: "kerala-5n-6d",
         title: "Kerala Tour Package – 6 Days / 5 Nights",
         duration: "6 Days / 5 Nights",
-        // No popular key (5 nights)
+        popular: false, // ✅ Added
         shortItinerary: [
           {
             day: "1",
@@ -2631,7 +2631,7 @@ export const destinations: Destination[] = [
         packageId: "dubai-5n-6d",
         title: "6 Days/5 Nights Plan for Dubai",
         duration: "6 Days / 5 Nights",
-        // No popular key (5 nights)
+        popular: false, // ✅ Added
         shortItinerary: [
           {
             day: "1",
@@ -3263,7 +3263,7 @@ export const destinations: Destination[] = [
         packageId: "dubai-5n-6d-romantic-honeymoon",
         title: "6 Days/5 Nights Plan for Dubai",
         duration: "6 Days / 5 Nights",
-        // No popular key (5 nights)
+        popular: false, // ✅ Added
         shortItinerary: [
           {
             day: "1",

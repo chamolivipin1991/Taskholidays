@@ -1,0 +1,30 @@
+.listingBanner_wrapper {
+  position: relative;
+  min-height: 300px;
+  height: 50vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: var(--space-2xl) var(--space-md);
+  background-color: var(--color-bg-muted);
+  overflow: hidden;
+}
+.listingBanner_wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.listingBanner_headingWrapper {
+  margin: 0 auto;
+}
+.listingBanner_heading {
+  text-shadow: 1px 1px 1px var(--color-text-inverse);
+}
+.listingBanner_headingBg {
+  opacity: 0.5;
+}

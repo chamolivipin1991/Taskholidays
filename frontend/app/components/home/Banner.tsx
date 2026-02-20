@@ -1,31 +1,37 @@
-import Image from "next/image";
 import TypewriterText from "../shared/TypewriterText";
 import styles from "./Banner.module.css";
 import TwoStepEnquiryForm from "@/components/form/TwoStepEnquiryForm";
+import AppImagesClient from "@/components/home/AppImagesClient.client";
+import { destinationImages } from "@/assets/images";
 
-const bannerImages = [
-  "/images/destinations/bali/bali_taskholidays_1.jpg",
-  "/images/destinations/kerala/kerala_taskholidays_1.jpg",
-  "/images/destinations/andaman/andaman_taskholidays_1.jpg",
-  "/images/destinations/rajasthan/rajasthan_taskholidays_1.jpg",
-];
+// Slugs of destinations to feature in the banner
+const DESTINATION_SLUGS = ["bali", "kerala", "andaman", "rajasthan"];
 
-function getRandomBannerImage(images: string[]) {
-  return images[Math.floor(Math.random() * images.length)];
-}
+// Build an array of publicIds (e.g., "bali/bali_taskholidays_1_siucth")
+const bannerPublicIds = DESTINATION_SLUGS.map((slug) => {
+  const images = destinationImages[slug];
+  if (!images?.length) return null;
+  // Use the first image from each destination's list
+  return `${slug}/${images[0]}`;
+}).filter(Boolean) as string[];
 
 const Banner = () => {
-  const bannerImage = getRandomBannerImage(bannerImages);
+  // Pick a random publicId from the list
+  const randomIndex = Math.floor(Math.random() * bannerPublicIds.length);
+  const randomPublicId = bannerPublicIds[randomIndex] ?? null;
+
+  // Fallback if no images are available (should not happen)
+  if (!randomPublicId) {
+    return null;
+  }
 
   return (
     <section className={styles.banner__wrapper}>
-      <Image
-        src={bannerImage}
+      {/* Image component that handles dev vs. prod */}
+      <AppImagesClient
+        publicId={randomPublicId}
         alt="Discover breathtaking travel destinations"
-        fill
         priority
-        sizes="100vw"
-        className={styles.banner__image}
       />
 
       <div className={styles.banner__overlay}></div>
@@ -46,6 +52,7 @@ const Banner = () => {
           destinations with our custom-designed travel packages.
         </p>
       </div>
+
       <div className={styles.banner__searchFormWrapper}>
         <div className={styles.banner__searchFormContainer}>
           <TwoStepEnquiryForm />

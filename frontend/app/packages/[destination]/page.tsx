@@ -2,9 +2,11 @@
 import { destinations } from "@/data/destinations";
 import { adaptDestinationsToPackages } from "@/utils/adapters/packageAdapter";
 import { UIPackage } from "@/types/package";
-import SectionTitle from "@/components/shared/SectionTitle";
+
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/layout/Header";
+import ListingBanner from "@/components/listing/ListingBanner";
+import PackageList from "@/components/listing/PackageList";
 
 interface PackageListPageProps {
   params: Promise<{
@@ -44,13 +46,8 @@ export default async function PackageListPage({
   return (
     <>
       <Header navItems={[]} />
-      <section style={{ padding: "80px" }}>
-        <SectionTitle
-          heading={`${dest.title} Packages`}
-          subheading={`Handpicked travel experiences for ${dest.title}`}
-          backgroundText="Packages"
-        />
-
+      <ListingBanner dest={dest} />
+      <section className={`container section_white__spacing`}>
         {/* Destination Info */}
         <div style={{ marginBottom: "40px" }}>
           <p>
@@ -67,69 +64,7 @@ export default async function PackageListPage({
             </p>
           )}
         </div>
-
-        {/* Packages List */}
-        <div style={{ display: "grid", gap: "20px" }}>
-          {packages.length > 0 ? (
-            packages.map((pkg) => (
-              <div
-                key={pkg.id}
-                style={{
-                  border: "1px solid #ddd",
-                  padding: "20px",
-                  borderRadius: "8px",
-                  backgroundColor: pkg.popular ? "#f9f9ff" : "white",
-                }}
-              >
-                <h2>{pkg.title}</h2>
-                <p>{pkg.description}</p>
-                <p>
-                  <strong>Duration:</strong> {pkg.duration}
-                </p>
-                <p>
-                  <strong>Location:</strong> {pkg.location}
-                </p>
-                <p>
-                  <strong>Price:</strong>{" "}
-                  {pkg.price ? `₹${pkg.price.toLocaleString()}` : "On Request"}
-                </p>
-
-                {pkg.includes && pkg.includes.length > 0 && (
-                  <div>
-                    <strong>Includes:</strong>
-                    <ul>
-                      {pkg.includes.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {pkg.popular && (
-                  <span
-                    style={{
-                      display: "inline-block",
-                      backgroundColor: "#ffd700",
-                      color: "#333",
-                      padding: "4px 8px",
-                      borderRadius: "4px",
-                      fontSize: "12px",
-                      fontWeight: "bold",
-                      marginTop: "10px",
-                    }}
-                  >
-                    POPULAR
-                  </span>
-                )}
-              </div>
-            ))
-          ) : (
-            <div style={{ textAlign: "center", padding: "40px" }}>
-              <h3>No packages available for {dest.title}</h3>
-              <p>Check back soon or contact us for custom packages.</p>
-            </div>
-          )}
-        </div>
+        <PackageList packages={packages} destinationTitle={dest.title} />
       </section>
       <Footer />
     </>
