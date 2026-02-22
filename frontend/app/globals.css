@@ -209,3 +209,8 @@ select {
 .flex_1 {
   flex: 1;
 }
+
+.isRelative__header {
+  position: relative !important;
+  border-bottom: 2px solid var(--color-bg-muted);
+}

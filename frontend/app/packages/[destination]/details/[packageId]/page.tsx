@@ -79,17 +79,19 @@ export default async function PackageDetailsPage({
 
   return (
     <>
-      <Header navItems={[]} />
+      <Header navItems={[]} supportClassName="isRelative__header" />
+      <div className="container">
+        <PackageHero
+          title={pkg.title}
+          destination={destination.title}
+          duration={pkg.duration}
+          showPopular={false}
+        />
+      </div>
       <PackageGallery publicIds={packagePublicIds} alt={destination.title} />
+
       <section className={`container section_white__spacing`}>
         <div className={styles.package_layout}>
-          <PackageHero
-            title={pkg.title}
-            destination={destination.title}
-            duration={pkg.duration}
-            showPopular={false}
-          />
-
           <div className={styles.package_layout__grid}>
             <div>
               <PackageOverview description={destination.description} />

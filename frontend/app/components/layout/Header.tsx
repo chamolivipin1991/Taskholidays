@@ -13,21 +13,16 @@ import { EnquiryFormValues } from "@/components/form/EnquiryForm";
 
 /* ---------- TYPES (Serializable only) ---------- */
 export interface HeaderNavItem {
-  /** Display text */
   text: string;
-  /** Optional href – renders as Next.js Link */
   href?: string;
-  /** Optional element ID to scroll to (overrides href if both are present) */
   id?: string;
-  /** Button variant – defaults to "darkLine" */
   variant?: ButtonVariant;
 }
 
 export interface HeaderProps {
-  /** Navigation items for desktop & mobile drawer */
   navItems?: HeaderNavItem[];
-  /** Optional custom logo component/element */
   logo?: React.ReactNode;
+  supportClassName?: string; // 👈 new optional prop
 }
 
 /* ---------- COMPONENT ---------- */
@@ -38,6 +33,7 @@ const Header = ({
       <AppImage src={brandLogoImg} alt="Task Holidays" width={220} />
     </Link>
   ),
+  supportClassName = "", // 👈 default to empty string
 }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -97,7 +93,7 @@ const Header = ({
 
   return (
     <>
-      <header className={styles.header}>
+      <header className={`${styles.header} ${supportClassName}`.trim()}>
         <div className={styles.header__container}>
           {/* Logo */}
           <div className={styles.header__logo}>{logo}</div>
