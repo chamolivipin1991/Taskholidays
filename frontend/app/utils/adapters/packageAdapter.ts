@@ -36,7 +36,7 @@ export function adaptDestinationsToPackages(
         description: destination.description,
         duration: pkg.duration,
         includes,
-        price: 25000, // TODO: make dynamic
+        price: 0, // TODO: make dynamic
         popular: pkg.popular ?? false,
         destinationSlug: destSlug,
         packageId: pkg.packageId, // ✅ crucial!
