@@ -1,9 +1,7 @@
 .tnc__hero {
   margin-bottom: var(--space-2xl);
 }
-.tnc__block {
-  margin-bottom: var(--space-xl);
-}
+
 .tnc__heading {
   font-size: var(--font-size-lg);
   position: relative;
@@ -19,11 +17,4 @@
   left: 0;
   display: block;
   background-color: var(--color-brand-primary);
-}
-.tnc__text {
-  font-size: var(--font-size-sm);
-}
-.tnc__list {
-  list-style-type: circle;
-  padding-left: var(--space-sm);
 }

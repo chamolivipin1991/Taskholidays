@@ -24,6 +24,10 @@
 .sidebar__item {
   margin-bottom: 8px;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-sm);
 }
 
 .sidebar__btn {

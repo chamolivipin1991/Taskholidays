@@ -214,3 +214,11 @@ select {
   position: relative !important;
   border-bottom: 2px solid var(--color-bg-muted);
 }
+.common__title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+.common__container {
+  margin-bottom: var(--space-lg);
+}

@@ -2,8 +2,8 @@ import styles from "./HotelsSection.module.css";
 
 export default function HotelsSection({ hotels }: { hotels: any[] }) {
   return (
-    <div className={styles.hotels}>
-      <h3 className={styles.hotels__title}>Hotels</h3>
+    <div className="common__container">
+      <h3 className="common__title">Hotels</h3>
 
       {hotels.map((hotel, index) => (
         <div key={index} className={styles.hotels__card}>

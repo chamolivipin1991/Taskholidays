@@ -1,11 +1,11 @@
 .package_hero {
-  margin: 1rem auto;
+  margin: var(--space-sm) auto var(--space-xs);
 }
 
 .package_hero__title {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 16px;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
   color: #1f2937;
 }
 

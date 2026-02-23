@@ -14,6 +14,10 @@ import HotelsSection from "@/components/details//HotelsSection";
 import PackageSidebar from "@/components/details//PackageSidebar";
 
 import { destinationImages } from "@/assets/images";
+import CruiseIncluded from "@/components/details/CruiseIncluded";
+import DetailedItinerary from "@/components/details/DetailedItinerary";
+import SlidingModalPanel from "@/components/shared/SlidingModalPanel";
+import TermsConditionsData from "@/components/tnc/TermsConditionsData";
 
 interface PackageDetailsPageProps {
   params: Promise<{
@@ -76,7 +80,7 @@ export default async function PackageDetailsPage({
   const packagePublicIds = imageBaseNames.map(
     (baseName) => `${destSlug}/${baseName}`,
   );
-
+  console.log("-------", pkg);
   return (
     <>
       <Header navItems={[]} supportClassName="isRelative__header" />
@@ -85,12 +89,12 @@ export default async function PackageDetailsPage({
           title={pkg.title}
           destination={destination.title}
           duration={pkg.duration}
-          showPopular={false}
+          showPopular={pkg.popular}
         />
       </div>
       <PackageGallery publicIds={packagePublicIds} alt={destination.title} />
 
-      <section className={`container section_white__spacing`}>
+      <section className={`container`}>
         <div className={styles.package_layout}>
           <div className={styles.package_layout__grid}>
             <div>
@@ -104,10 +108,22 @@ export default async function PackageDetailsPage({
               seasons={destination.bestSeason}
               tags={destination.tags}
             />
+            {pkg?.cruise?.length ? (
+              <CruiseIncluded cruise={pkg.cruise || []} />
+            ) : null}
+
+            <DetailedItinerary detailedItinerary={pkg.detailedItinerary} />
           </div>
         </div>
       </section>
       <Footer />
+      <SlidingModalPanel
+        buttonAriaLabel="Terms and Conditions"
+        panelTitle="Terms and Conditions"
+        scrollThreshold={40}
+      >
+        <TermsConditionsData />
+      </SlidingModalPanel>
     </>
   );
 }

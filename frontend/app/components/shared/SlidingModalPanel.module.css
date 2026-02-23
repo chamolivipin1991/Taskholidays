@@ -1,0 +1,100 @@
+.floating_button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--color-brand-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.floating_button:hover {
+  background-color: var(--color-brand-secondary);
+}
+
+.floating_button svg {
+  width: 30px;
+  height: 30px;
+}
+
+.panel_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.panel_overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 40%;
+  height: 100vh;
+  background-color: var(--color-bg-primary);
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1002;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.panel.open {
+  transform: translateX(0);
+}
+
+.close_button {
+  position: sticky;
+  top: 15px;
+  left: calc(100% - 40px);
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  background-color: var(--color-bg-secondary);
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.close_button:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-muted);
+}
+
+@media (max-width: 768px) {
+  .panel {
+    max-width: 100%;
+  }
+}

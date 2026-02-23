@@ -131,3 +131,66 @@ export const AppDotsIcon = ({
     </svg>
   );
 };
+
+export const LocationIcon = ({
+  className,
+  fill = "#e3e3e3",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={typeof size === "number" ? `${size}px` : size}
+      width={typeof size === "number" ? `${size}px` : size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="M521.75-512.5Q539-529.5 539-554t-17.25-41.75Q504.5-613 480-613t-41.5 17.25q-17 17.25-17 41.75t17 41.5q17 17 41.5 17t41.75-17ZM480-170.5q109-94 175.75-197.75T722.5-546.5q0-109-68.5-180.5t-174-71.5q-105.5 0-174 71.5t-68.5 180.5q0 74.5 66.75 178.25T480-170.5Zm0 34.5Q347-256.5 279.5-359.75T212-546.5q0-117.5 77-197T480-823q114 0 191 79.5t77 197q0 83.5-67.5 186.75T480-136Zm0-418Z" />
+    </svg>
+  );
+};
+
+export const StayIcon = ({
+  className,
+  fill = "#e3e3e3",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={typeof size === "number" ? `${size}px` : size}
+      width={typeof size === "number" ? `${size}px` : size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="M97-256v-488h25.5v343h345v-263.5h290.73q43.32 0 74.05 30.61Q863-603.29 863-559.5V-256h-25.5v-119.5h-715V-256H97Zm133.75-252.9Q210-529.79 210-559.65q0-29.85 20.9-50.6Q251.79-631 281.65-631q29.85 0 50.6 20.9Q353-589.21 353-559.35q0 29.85-20.9 50.6Q311.21-488 281.35-488q-29.85 0-50.6-20.9ZM493-401h344.5v-158.76q0-32.74-23.39-55.99T757.88-639H493v238ZM314-527q13.5-13.5 13.5-32.5T314-592q-13.5-13.5-32.5-13.5T249-592q-13.5 13.5-13.5 32.5T249-527q13.5 13.5 32.5 13.5T314-527Zm-32.5-32.5ZM493-639v238-238Z" />
+    </svg>
+  );
+};
+
+export const TermsIcon = ({
+  className,
+  fill = "#e3e3e3",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={typeof size === "number" ? `${size}px` : size}
+      width={typeof size === "number" ? `${size}px` : size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="M242.5-137q-27.54 0-46.52-18.63Q177-174.25 177-202v-108.5h115V-823h491v621q0 27.75-18.98 46.37Q745.04-137 717.5-137h-475Zm475-25.5q17 0 28.5-11.36 11.5-11.35 11.5-28.14v-595.5h-440v487H678v108.56q0 16.51 11.36 27.98 11.35 11.46 28.14 11.46ZM380-637v-25.5h315v25.5H380Zm0 108v-25.5h315v25.5H380ZM242.7-162.5h409.8V-285h-450v83q0 16.79 11.56 28.14 11.56 11.36 28.64 11.36Zm-.18 0H202.5h450-409.98Z" />
+    </svg>
+  );
+};

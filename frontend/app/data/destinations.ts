@@ -23,7 +23,7 @@ export const destinations: Destination[] = [
         shortItinerary: [
           {
             day: "1",
-            title: "Airport Pick up, Post Rest, Port Blair City T our",
+            title: "Airport Pick up, Post Rest, Port Blair City Tour",
             location: "Port Blair",
             stay: "Horizon Hues",
             breakfastNextDay: true,

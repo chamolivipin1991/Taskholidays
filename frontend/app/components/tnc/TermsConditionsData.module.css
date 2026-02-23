@@ -1,0 +1,10 @@
+.tnc__block {
+  margin-bottom: var(--space-xl);
+}
+.tnc__text {
+  font-size: var(--font-size-sm);
+}
+.tnc__list {
+  list-style-type: circle;
+  padding-left: var(--space-sm);
+}
