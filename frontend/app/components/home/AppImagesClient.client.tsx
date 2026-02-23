@@ -10,31 +10,30 @@ type Props = {
 };
 
 /**
- * Remove the Cloudinary suffix (last underscore‑separated part) from the publicId.
- * Example: "bali/bali_taskholidays_2_tlfcoa" → "bali/bali_taskholidays_2"
+ * Remove the Cloudinary suffix (last underscore‑separated part of 6+ alphanumeric chars)
+ * from the publicId. Example: "bali/bali_taskholidays_2_tlfcoa" → "bali/bali_taskholidays_2"
  */
-// function cleanPublicIdForLocal(publicId: string): string {
-//   return publicId.replace(/_[^_/]+$/, "");
-// }
-function cleanPublicIdForLocal(publicId: string): string {
-  // Only remove Cloudinary hash (6+ random chars at end)
+function cleanPublicId(publicId: string): string {
   return publicId.replace(/_[a-z0-9]{6,}$/, "");
 }
 
 export default function AppImagesClient({ publicId, alt, priority }: Props) {
   const isDev = process.env.NODE_ENV === "development";
 
-  const localSrc = useMemo(() => {
+  const basePublicId = useMemo(() => {
     if (!publicId) return null;
-    const cleanId = cleanPublicIdForLocal(publicId);
-    // Assume all local images are .jpg – adjust if you have mixed extensions
-    return `/images/destinations/${cleanId}.jpg`;
+    return cleanPublicId(publicId);
   }, [publicId]);
+
+  const localSrc = useMemo(() => {
+    if (!basePublicId) return null;
+    return `/images/destinations/${basePublicId}.jpg`;
+  }, [basePublicId]);
 
   if (!publicId) return null;
 
   if (isDev) {
-    // Local development: use a standard img tag with fill behaviour
+    // Local development: use local file
     return (
       <img
         src={localSrc!}
@@ -50,10 +49,10 @@ export default function AppImagesClient({ publicId, alt, priority }: Props) {
     );
   }
 
-  // Production / staging: use Cloudinary (original publicId with suffix)
+  // Production: use Cloudinary with the cleaned publicId
   return (
     <CldImage
-      src={publicId}
+      src={basePublicId!} // stripped suffix
       fill
       sizes="(max-width: 768px) 100vw, 33vw"
       alt={alt}
