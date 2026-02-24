@@ -81,7 +81,6 @@ export default async function PackageDetailsPage({
     (baseName) => `destinations/${destSlug}/${baseName}`,
   );
 
-  console.log("-------", pkg);
   return (
     <>
       <Header navItems={[]} supportClassName="isRelative__header" />

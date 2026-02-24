@@ -30,7 +30,7 @@ const ListingBanner = ({ dest }: Props) => {
       <SectionTitle
         heading={`${dest.title} Packages`}
         subheading={`Handpicked travel experiences for ${dest.title}`}
-        backgroundText="Packages"
+        backgroundText=""
         className={styles.listingBanner_headingWrapper}
         headingClassName={styles.listingBanner_heading}
         bgTextClassName={styles.listingBanner_headingBg}

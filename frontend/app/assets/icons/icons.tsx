@@ -194,3 +194,24 @@ export const TermsIcon = ({
     </svg>
   );
 };
+
+export const QuoteIcon = ({
+  className,
+  fill = "currentColor",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={typeof size === "number" ? `${size}px` : size}
+      width={typeof size === "number" ? `${size}px` : size}
+      viewBox="0 0 24 24"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="M6 17h3l2-4V7H5v6h3l-2 4zm8 0h3l2-4V7h-6v6h3l-2 4z" />
+    </svg>
+  );
+};

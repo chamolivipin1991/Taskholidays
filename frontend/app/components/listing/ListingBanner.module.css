@@ -23,7 +23,8 @@
   margin: 0 auto;
 }
 .listingBanner_heading {
-  text-shadow: 1px 1px 1px var(--color-text-inverse);
+  text-shadow: 0px 0 10px var(--color-text-inverse);
+  font-size: 4rem;
 }
 .listingBanner_headingBg {
   opacity: 0.5;

@@ -43,7 +43,6 @@ export default function PackageList({ packages, destinationTitle }: Props) {
   const handleViewDetails = (pkg: UIPackage) => {
     router.push(`/packages/${pkg.destinationSlug}/details/${pkg.packageId}`);
   };
-  console.log("packageImages------>", packageImages);
 
   return (
     <>

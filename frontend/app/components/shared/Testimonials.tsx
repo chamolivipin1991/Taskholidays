@@ -4,6 +4,7 @@ import AppImage from "@/components/shared/AppImage";
 
 import type { StaticImageData } from "next/image";
 import SectionTitle from "@/components/shared/SectionTitle";
+import { QuoteIcon } from "@/assets/icons/icons";
 
 export interface Testimonial {
   id: number;
@@ -33,35 +34,33 @@ export default function Testimonials({ items }: TestimonialsProps) {
           {items.map((item) => (
             <article key={item.id} className={styles["testimonials__card"]}>
               {/* Rating */}
-              <div className={styles["testimonials__rating"]}>
+              {/* <div className={styles["testimonials__rating"]}>
                 {Array.from({ length: item.rating }).map((_, index) => (
                   <span key={index} className={styles["testimonials__star"]}>
                     ★
                   </span>
                 ))}
-              </div>
+              </div> */}
 
-              {/* Message */}
-              <p className={styles["testimonials__message"]}>{item.message}</p>
-
-              {/* User */}
               <div className={styles["testimonials__user"]}>
                 <AppImage
                   src={item.avatar}
                   alt={item.name}
-                  width={44}
-                  height={44}
+                  width={80}
+                  height={80}
                   className={styles["testimonials__avatar"]}
                 />
-
+                {/* Message */}
                 <div className={styles["testimonials__meta"]}>
                   <span className={styles["testimonials__name"]}>
                     {item.name}
                   </span>
-                  <span className={styles["testimonials__role"]}>
-                    {item.role}
-                  </span>
+
+                  <QuoteIcon fill="var(--color-success)" size={70} />
                 </div>
+                <p className={styles["testimonials__message"]}>
+                  {item.message}
+                </p>
               </div>
             </article>
           ))}

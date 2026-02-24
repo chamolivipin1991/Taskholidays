@@ -84,6 +84,24 @@ export default function Home() {
             role: "Family Traveler, Australia",
             avatar: bannerImg,
           },
+          {
+            id: 3,
+            rating: 5,
+            message:
+              "Unforgettable trip! Excellent service and amazing destinations!",
+            name: "Sophia L",
+            role: "Adventure Enthusiast, London",
+            avatar: bannerImg,
+          },
+          {
+            id: 4,
+            rating: 5,
+            message:
+              "Fantastic service, seamless travel, unforgettable family adventure!",
+            name: "Anna P",
+            role: "Family Traveler, Australia",
+            avatar: bannerImg,
+          },
         ]}
       />
       <Footer />
