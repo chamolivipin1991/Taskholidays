@@ -7,29 +7,32 @@ import { destinationImages } from "@/assets/images";
 // Slugs of destinations to feature in the banner
 const DESTINATION_SLUGS = ["bali", "kerala", "andaman", "rajasthan"];
 
-// Build an array of publicIds (e.g., "bali/bali_taskholidays_1_siucth")
-const bannerPublicIds = DESTINATION_SLUGS.map((slug) => {
-  const images = destinationImages[slug];
+/**
+ * Pick a random image from a random destination.
+ * Returns a path like "destinations/bali/bali_taskholidays_3.jpg"
+ */
+function getRandomHeroImage(): string | null {
+  // Pick a random destination from the list
+  const randomSlug =
+    DESTINATION_SLUGS[Math.floor(Math.random() * DESTINATION_SLUGS.length)];
+  const images = destinationImages[randomSlug];
   if (!images?.length) return null;
-  // Use the first image from each destination's list
-  return `${slug}/${images[0]}`;
-}).filter(Boolean) as string[];
+
+  // Pick a random image from that destination
+  const randomImage = images[Math.floor(Math.random() * images.length)];
+  return `destinations/${randomSlug}/${randomImage}`;
+}
 
 const Banner = () => {
-  // Pick a random publicId from the list
-  const randomIndex = Math.floor(Math.random() * bannerPublicIds.length);
-  const randomPublicId = bannerPublicIds[randomIndex] ?? null;
+  const imagePath = getRandomHeroImage();
 
-  // Fallback if no images are available (should not happen)
-  if (!randomPublicId) {
-    return null;
-  }
+  // Fallback (should never happen with valid data)
+  if (!imagePath) return null;
 
   return (
     <section className={styles.banner__wrapper}>
-      {/* Image component that handles dev vs. prod */}
       <AppImagesClient
-        publicId={randomPublicId}
+        imagePath={imagePath}
         alt="Discover breathtaking travel destinations"
         priority
       />

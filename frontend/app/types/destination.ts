@@ -3,7 +3,6 @@
 =========================== */
 export interface DestinationImage {
   folder: string;
-  file: string;
   alt: string;
 }
 
@@ -87,7 +86,7 @@ export interface TravelPackage {
 /* ===========================
    DESTINATION
 =========================== */
-export interface Destination {
+export interface PackagesData {
   id: number;
   slug: string;
   title: string;

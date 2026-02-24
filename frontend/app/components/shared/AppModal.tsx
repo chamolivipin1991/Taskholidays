@@ -1,4 +1,7 @@
-import React, { useEffect } from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import styles from "./AppModal.module.css";
 
 interface AppModalProps {
@@ -22,19 +25,25 @@ const AppModal: React.FC<AppModalProps> = ({
   size = "medium",
   className = "",
 }) => {
-  // Handle ESC key press to close modal
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent SSR issues
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Handle ESC key + body scroll lock
+  useEffect(() => {
+    if (!isOpen) return;
+
     const handleEscapeKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && isOpen) {
+      if (event.key === "Escape") {
         onClose();
       }
     };
 
-    // Prevent body scroll when modal is open
-    if (isOpen) {
-      document.addEventListener("keydown", handleEscapeKey);
-      document.body.style.overflow = "hidden";
-    }
+    document.addEventListener("keydown", handleEscapeKey);
+    document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", handleEscapeKey);
@@ -42,8 +51,7 @@ const AppModal: React.FC<AppModalProps> = ({
     };
   }, [isOpen, onClose]);
 
-  // Don't render anything if modal is not open
-  if (!isOpen) return null;
+  if (!mounted || !isOpen) return null;
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (closeOnBackdropClick && e.target === e.currentTarget) {
@@ -51,27 +59,22 @@ const AppModal: React.FC<AppModalProps> = ({
     }
   };
 
-  return (
+  const modalContent = (
     <>
-      {/* Backdrop/Overlay */}
-      <div
-        className={styles.modal__backdrop}
-        onClick={handleBackdropClick}
-        aria-hidden="true"
-      />
+      {/* Backdrop */}
+      <div className={styles.modal__backdrop} onClick={handleBackdropClick} />
 
-      {/* Modal Container */}
+      {/* Modal Wrapper */}
       <div className={styles.modal} role="dialog" aria-modal="true">
         <div
-          className={`${styles.modal__container} ${styles[`modal__container--${size}`]} ${className}`}
-          onClick={handleBackdropClick}
+          className={`${styles.modal__container} ${
+            styles[`modal__container--${size}`]
+          } ${className}`}
         >
-          {/* Modal Content */}
           <div
             className={styles.modal__content}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Header */}
             {(title || showCloseButton) && (
               <div className={styles.modal__header}>
                 {title && <h2 className={styles.modal__title}>{title}</h2>}
@@ -83,26 +86,18 @@ const AppModal: React.FC<AppModalProps> = ({
                     onClick={onClose}
                     aria-label="Close modal"
                   >
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path
                         d="M18 6L6 18"
                         stroke="currentColor"
                         strokeWidth="2"
                         strokeLinecap="round"
-                        strokeLinejoin="round"
                       />
                       <path
                         d="M6 6L18 18"
                         stroke="currentColor"
                         strokeWidth="2"
                         strokeLinecap="round"
-                        strokeLinejoin="round"
                       />
                     </svg>
                   </button>
@@ -110,13 +105,14 @@ const AppModal: React.FC<AppModalProps> = ({
               </div>
             )}
 
-            {/* Modal Body */}
             <div className={styles.modal__body}>{children}</div>
           </div>
         </div>
       </div>
     </>
   );
+
+  return createPortal(modalContent, document.body);
 };
 
 export default AppModal;

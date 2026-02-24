@@ -1,6 +1,6 @@
-import { Destination } from "@/types/destination";
+import { PackagesData } from "@/types/destination";
 
-export const destinations: Destination[] = [
+export const packagesdata: PackagesData[] = [
   {
     id: 1,
     slug: "andaman",
@@ -9,7 +9,6 @@ export const destinations: Destination[] = [
       "Pristine beaches, crystal-clear waters, and serene island vibes.",
     heroImage: {
       folder: "andaman",
-      file: "andaman_taskholidays_1.jpg",
       alt: "Pristine beaches and blue waters of Andaman Islands",
     },
     bestSeason: ["October", "November", "December", "January"],
@@ -519,7 +518,6 @@ export const destinations: Destination[] = [
       "Pristine beaches, crystal-clear waters, and serene island vibes.",
     heroImage: {
       folder: "bali",
-      file: "bali_taskholidays_1.jpg",
       alt: "Pristine beaches and blue waters of Bali",
     },
     bestSeason: ["October", "November", "December", "January"],
@@ -929,7 +927,6 @@ export const destinations: Destination[] = [
       "Pristine beaches, crystal-clear waters, and serene island vibes.",
     heroImage: {
       folder: "ladakh",
-      file: "ladakh_taskholidays_1.jpg",
       alt: "Pristine beaches and blue waters of Ladakh",
     },
     bestSeason: ["October", "November", "December", "January"],
@@ -1396,7 +1393,6 @@ export const destinations: Destination[] = [
       "Pristine beaches, crystal-clear waters, and serene island vibes.",
     heroImage: {
       folder: "rajasthan",
-      file: "rajasthan_taskholidays_1.jpg",
       alt: "Pristine beaches and blue waters of rajasthan",
     },
     bestSeason: ["October", "November", "December", "January"],
@@ -1865,7 +1861,6 @@ export const destinations: Destination[] = [
       "Pristine beaches, crystal-clear waters, and serene island vibes.",
     heroImage: {
       folder: "kerala",
-      file: "kerala_taskholidays_1.jpg",
       alt: "Pristine beaches and blue waters of kerala",
     },
     bestSeason: ["October", "November", "December", "January"],
@@ -2621,7 +2616,6 @@ export const destinations: Destination[] = [
       "Pristine beaches, crystal-clear waters, and serene island vibes.",
     heroImage: {
       folder: "dubai",
-      file: "dubai_taskholidays_1.jpg",
       alt: "Pristine beaches and blue waters of dubai",
     },
     bestSeason: ["October", "November", "December", "January"],

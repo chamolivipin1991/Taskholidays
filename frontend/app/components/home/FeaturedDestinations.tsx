@@ -1,40 +1,34 @@
 import Link from "next/link";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { ArrowIcon } from "@/assets/icons/icons";
-
-import { destinations } from "@/data/destinations";
-import type { Destination } from "@/types/destination";
+import { packagesdata } from "@/data/packages-data";
+import type { PackagesData } from "@/types/destination";
 import { destinationImages } from "@/assets/images";
-
 import styles from "./FeaturedDestinations.module.css";
 
-/**
- * Slot-based layout config
- */
+// Lazy load client component
+import AppImagesClient from "./AppImagesClient.client";
+
 const layoutByIndex: Record<number, { tall?: boolean; small?: boolean }> = {
   1: { tall: true },
   5: { small: true },
 };
 
-/**
- * Stable sort
- */
-function stableSortDestinations<T extends Destination>(items: T[]): T[] {
+function stableSortDestinations<T extends PackagesData>(items: T[]): T[] {
   return [...items].sort((a, b) => a.title.localeCompare(b.title));
 }
 
-/**
- * Deterministic image rotation
- */
-function getDestinationImage(slug: string, index: number): string | null {
+// 🔁 Random image picker
+function getDestinationImage(slug: string): string | null {
   const images = destinationImages[slug];
   if (!images?.length) return null;
-  const filename = images[index % images.length]; // assume filename without extension
-  return `${slug}/${filename}`;
+  const randomIndex = Math.floor(Math.random() * images.length);
+  const filename = images[randomIndex];
+  return `destinations/${slug}/${filename}`;
 }
 
 export default function FeaturedDestinationsServer() {
-  const sortedDestinations = stableSortDestinations(destinations);
+  const sortedDestinations = stableSortDestinations(packagesdata);
 
   return (
     <section
@@ -49,7 +43,7 @@ export default function FeaturedDestinationsServer() {
       <div className={styles.destinations__grid}>
         {sortedDestinations.map((destination, index) => {
           const layout = layoutByIndex[index] || {};
-          const imagePublicId = getDestinationImage(destination.slug, index);
+          const imagePath = getDestinationImage(destination.slug);
 
           return (
             <Link
@@ -60,9 +54,8 @@ export default function FeaturedDestinationsServer() {
                 ${layout.small ? styles.destination_card__small : ""}
               `}
             >
-              {/* 👇 CLIENT IMAGE */}
               <AppImagesClient
-                publicId={imagePublicId}
+                imagePath={imagePath!}
                 alt={destination.heroImage.alt}
                 priority={index < 2}
               />
@@ -86,8 +79,3 @@ export default function FeaturedDestinationsServer() {
     </section>
   );
 }
-
-/**
- * Import CLIENT component lazily
- */
-import AppImagesClient from "./AppImagesClient.client";

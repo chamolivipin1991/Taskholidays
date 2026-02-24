@@ -1,30 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Destination } from "@/types/destination";
+import type { PackagesData } from "@/types/destination";
 
 import SectionTitle from "@/components/shared/SectionTitle";
 import AppImagesClient from "../home/AppImagesClient.client";
+import { destinationImages } from "@/assets/images";
 import styles from "./ListingBanner.module.css";
 
 type Props = {
-  dest: Destination;
+  dest: PackagesData;
 };
 
-const TOTAL_IMAGES = 7; // update when you add more images
-
 const ListingBanner = ({ dest }: Props) => {
-  const [publicId, setPublicId] = useState<string | null>(null);
+  const [imagePath, setImagePath] = useState<string | null>(null);
 
   useEffect(() => {
-    const randomNumber = Math.floor(Math.random() * TOTAL_IMAGES) + 1;
-
-    // 👇 Cloudinary-style publicId
-    // Example: bali/bali_taskholidays_2_tlfcoa
-    const generatedPublicId = `${dest.slug}/${dest.slug}_taskholidays_${randomNumber}`;
-
-    setPublicId(generatedPublicId);
+    const images = destinationImages[dest.slug];
+    if (!images?.length) return;
+    const randomIndex = Math.floor(Math.random() * images.length);
+    const filename = images[randomIndex];
+    setImagePath(`destinations/${dest.slug}/${filename}`);
   }, [dest.slug]);
+
+  if (!imagePath) return null; // or a placeholder
 
   return (
     <div className={styles.listingBanner_wrapper}>
@@ -37,9 +36,7 @@ const ListingBanner = ({ dest }: Props) => {
         bgTextClassName={styles.listingBanner_headingBg}
       />
 
-      {publicId && (
-        <AppImagesClient publicId={publicId} alt={dest.title} priority />
-      )}
+      <AppImagesClient imagePath={imagePath} alt={dest.title} priority />
     </div>
   );
 };

@@ -1,10 +1,10 @@
 // utils/adapters/packageAdapter.ts
-import { Destination } from "@/types/destination";
+import { PackagesData } from "@/types/destination"; // correct import
 import { UIPackage } from "@/types/package";
 import { destinationImages } from "@/assets/images"; // adjust path as needed
 
 export function adaptDestinationsToPackages(
-  destinations: Destination[],
+  destinations: PackagesData[], // use PackagesData
 ): UIPackage[] {
   const packages: UIPackage[] = [];
 
@@ -13,7 +13,7 @@ export function adaptDestinationsToPackages(
     const images = destinationImages[destSlug] || [];
 
     destination.packages.forEach((pkg, index) => {
-      // Build includes list (similar to PackagesSection)
+      // Build includes list
       const includes = [];
       if (pkg.hotels?.length) includes.push("Accommodation");
       if (pkg.shortItinerary?.some((day) => day.breakfastNextDay))
@@ -22,11 +22,12 @@ export function adaptDestinationsToPackages(
       if (pkg.detailedItinerary?.length) includes.push("Sightseeing");
       includes.push("Transport");
 
-      // Determine image public ID
-      let imagePublicId = null;
+      // Determine image path (with destinations/ prefix)
+      let imagePath: string | null = null;
       if (images.length) {
         const imageIndex = index % images.length;
-        imagePublicId = `${destSlug}/${images[imageIndex]}`;
+        const filename = images[imageIndex];
+        imagePath = `destinations/${destSlug}/${filename}`; // full path
       }
 
       packages.push({
@@ -39,9 +40,9 @@ export function adaptDestinationsToPackages(
         price: 0, // TODO: make dynamic
         popular: pkg.popular ?? false,
         destinationSlug: destSlug,
-        packageId: pkg.packageId, // ✅ crucial!
+        packageId: pkg.packageId,
         shortItinerary: pkg.shortItinerary,
-        imagePublicId,
+        imagePath, // ✅ use imagePath, not imagePublicId
       });
     });
   });

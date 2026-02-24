@@ -1,5 +1,5 @@
 // app/packages/[destination]/page.tsx
-import { destinations } from "@/data/destinations";
+import { packagesdata } from "@/data/packages-data";
 import { adaptDestinationsToPackages } from "@/utils/adapters/packageAdapter";
 import { UIPackage } from "@/types/package";
 
@@ -24,7 +24,7 @@ export default async function PackageListPage({
   const decodedDestination = decodeURIComponent(destination);
 
   // Find destination data - use lowercase for case-insensitive matching
-  const dest = destinations.find(
+  const dest = packagesdata.find(
     (d) => d.slug.toLowerCase() === decodedDestination.toLowerCase(),
   );
 
@@ -34,7 +34,7 @@ export default async function PackageListPage({
         <h1>Destination not found</h1>
         <p>The destination "{decodedDestination}" does not exist.</p>
         <p>
-          Available destinations: {destinations.map((d) => d.slug).join(", ")}
+          Available destinations: {packagesdata.map((d) => d.slug).join(", ")}
         </p>
       </div>
     );
@@ -73,7 +73,7 @@ export default async function PackageListPage({
 
 // Optional: Generate static params for SSG
 export async function generateStaticParams() {
-  return destinations.map((destination) => ({
+  return packagesdata.map((destination) => ({
     destination: destination.slug,
   }));
 }
@@ -86,7 +86,7 @@ export async function generateMetadata({
 }) {
   const { destination } = await params;
   const decodedDestination = decodeURIComponent(destination);
-  const dest = destinations.find(
+  const dest = packagesdata.find(
     (d) => d.slug.toLowerCase() === decodedDestination.toLowerCase(),
   );
 

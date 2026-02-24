@@ -1,7 +1,7 @@
 // app/packages/[destination]/details/[packageId]/page.tsx
 import Header from "@/components/layout/Header";
 import Footer from "@/components/shared/Footer";
-import { destinations } from "@/data/destinations";
+import { packagesdata } from "@/data/packages-data";
 import { notFound } from "next/navigation";
 
 import styles from "./package-details.module.css";
@@ -32,7 +32,7 @@ export default async function PackageDetailsPage({
   const { destination: destinationSlug, packageId } = await params;
 
   // Find the destination
-  const destination = destinations.find((d) => d.slug === destinationSlug);
+  const destination = packagesdata.find((d) => d.slug === destinationSlug);
 
   if (!destination) {
     notFound();
@@ -77,9 +77,10 @@ export default async function PackageDetailsPage({
   // Generate a list of public IDs for the destination
   const destSlug = destination.slug;
   const imageBaseNames = destinationImages[destSlug] || [];
-  const packagePublicIds = imageBaseNames.map(
-    (baseName) => `${destSlug}/${baseName}`,
+  const packageImagePaths = imageBaseNames.map(
+    (baseName) => `destinations/${destSlug}/${baseName}`,
   );
+
   console.log("-------", pkg);
   return (
     <>
@@ -92,7 +93,7 @@ export default async function PackageDetailsPage({
           showPopular={pkg.popular}
         />
       </div>
-      <PackageGallery publicIds={packagePublicIds} alt={destination.title} />
+      <PackageGallery imagePaths={packageImagePaths} alt={destination.title} />
 
       <section className={`container`}>
         <div className={styles.package_layout}>

@@ -1,25 +1,17 @@
-/* AppModal.module.css */
-
-/* Backdrop/Overlay */
+/* Backdrop */
 .modal__backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background-color: var(--color-bg-overlay);
-  z-index: 1000;
+  z-index: 100;
   animation: fadeIn 0.2s ease-out;
 }
 
-/* Modal Container - Centers the modal */
+/* Modal wrapper */
 .modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1001;
+  inset: 0;
+  z-index: 101;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,14 +20,14 @@
   animation: fadeIn 0.2s ease-out;
 }
 
-/* Modal Container Inner */
+/* Container */
 .modal__container {
   width: 100%;
   max-height: calc(100vh - var(--space-2xl));
   animation: slideUp 0.3s ease-out;
 }
 
-/* Modal Content */
+/* Content */
 .modal__content {
   background-color: var(--color-bg-primary);
   border-radius: var(--space-sm);
@@ -49,7 +41,7 @@
   border: 1px solid var(--color-border-primary);
 }
 
-/* Modal Header */
+/* Header */
 .modal__header {
   display: flex;
   align-items: center;
@@ -60,25 +52,21 @@
 }
 
 .modal__title {
-  font-family: var(--font-primary);
+  margin: 0;
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
-  line-height: var(--line-height-tight);
   color: var(--color-text-primary);
-  margin: 0;
 }
 
-/* Modal Body */
+/* Body */
 .modal__body {
   padding: var(--space-xl);
   overflow-y: auto;
   flex-grow: 1;
   color: var(--color-text-secondary);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-relaxed);
 }
 
-/* Modal Close Button */
+/* Close button */
 .modal__close {
   width: var(--space-xl);
   height: var(--space-xl);
@@ -91,9 +79,6 @@
   justify-content: center;
   color: var(--color-text-muted);
   transition: all 0.2s ease;
-  flex-shrink: 0;
-  margin-left: var(--space-md);
-  font-family: var(--font-primary);
 }
 
 .modal__close:hover {
@@ -101,16 +86,7 @@
   background-color: var(--color-bg-muted);
 }
 
-.modal__close:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--color-brand-accent);
-}
-
-.modal__close svg {
-  stroke: currentColor;
-}
-
-/* Modal Sizes */
+/* Sizes */
 .modal__container--small {
   max-width: 400px;
 }
@@ -136,104 +112,10 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(var(--space-md));
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-/* Responsive Styles */
-@media (max-width: 640px) {
-  .modal {
-    padding: var(--space-md);
-  }
-
-  .modal__container {
-    max-height: calc(100vh - var(--space-lg));
-  }
-
-  .modal__container--small,
-  .modal__container--medium,
-  .modal__container--large {
-    max-width: 100%;
-  }
-
-  .modal__header {
-    padding: var(--space-md) var(--space-lg);
-  }
-
-  .modal__title {
-    font-size: var(--font-size-lg);
-  }
-
-  .modal__body {
-    padding: var(--space-lg);
-  }
-
-  .modal__close {
-    width: var(--space-xl);
-    height: var(--space-xl);
-  }
-}
-
-/* Extra Small Screens */
-@media (max-width: 375px) {
-  .modal__header {
-    padding: var(--space-sm) var(--space-md);
-  }
-
-  .modal__body {
-    padding: var(--space-md);
-  }
-
-  .modal__title {
-    font-size: var(--font-size-md);
-  }
-}
-
-/* Tablet Styles */
-@media (min-width: 641px) and (max-width: 1024px) {
-  .modal__container--small {
-    max-width: 500px;
-  }
-
-  .modal__container--medium {
-    max-width: 700px;
-  }
-
-  .modal__container--large {
-    max-width: 900px;
-  }
-}
-
-/* Scrollbar Styling for Modal Body */
-.modal__body::-webkit-scrollbar {
-  width: var(--space-xs);
-}
-
-.modal__body::-webkit-scrollbar-track {
-  background: var(--color-bg-muted);
-  border-radius: var(--space-2xs);
-}
-
-.modal__body::-webkit-scrollbar-thumb {
-  background: var(--color-text-muted);
-  border-radius: var(--space-2xs);
-}
-
-.modal__body::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-secondary);
-}
-
-/* Prevent horizontal overflow on very small screens */
-@media (max-width: 320px) {
-  .modal {
-    padding: var(--space-sm);
-  }
-
-  .modal__container {
-    max-height: calc(100vh - var(--space-sm));
   }
 }

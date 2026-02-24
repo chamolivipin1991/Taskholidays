@@ -11,7 +11,7 @@ export interface UIPackage {
   destinationSlug: string;
   packageId: string;
   shortItinerary?: any[];
-  imagePublicId: string | null;
+  imagePath: string | null; // changed from imagePublicId
 }
 
 export interface ShortItineraryDay {

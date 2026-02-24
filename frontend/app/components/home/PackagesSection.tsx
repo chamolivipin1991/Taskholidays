@@ -8,7 +8,7 @@ import SectionTitle from "@/components/shared/SectionTitle";
 import EnquiryModal from "@/components/form/EnquiryModal";
 import Button from "@/components/form/Button";
 
-import { destinations } from "@/data/destinations";
+import { packagesdata } from "@/data/packages-data";
 import { EnquiryFormValues } from "@/components/form/EnquiryForm";
 import { Filter } from "@/types/filter";
 import AppImagesClient from "@/components/home/AppImagesClient.client";
@@ -19,7 +19,7 @@ import { formatPrice } from "@/utils/formatPrice";
 
 export const filters: Filter[] = [
   { id: "all", label: "All Locations" },
-  ...destinations.map((destination) => ({
+  ...packagesdata.map((destination) => ({
     id: destination.slug,
     label: destination.title,
   })),
@@ -32,7 +32,7 @@ export default function PackagesSection() {
 
   const allPackages: UIPackage[] = useMemo(() => {
     const packages: UIPackage[] = [];
-    destinations.forEach((destination) => {
+    packagesdata.forEach((destination) => {
       if (!destination.packages?.length) return;
       const destSlug = destination.slug;
       const images = destinationImages[destSlug] || [];
@@ -45,10 +45,11 @@ export default function PackagesSection() {
         if (pkg.detailedItinerary?.length) includes.push("Sightseeing");
         includes.push("Transport");
 
-        let imagePublicId = null;
+        let imagePath: string | null = null;
         if (images.length) {
           const imageIndex = pkgIndex % images.length;
-          imagePublicId = `${destSlug}/${images[imageIndex]}`;
+          const filename = images[imageIndex];
+          imagePath = `destinations/${destSlug}/${filename}`;
         }
 
         packages.push({
@@ -63,7 +64,7 @@ export default function PackagesSection() {
           destinationSlug: destSlug,
           packageId: pkg.packageId,
           shortItinerary: pkg.shortItinerary,
-          imagePublicId,
+          imagePath, // renamed and prefixed
         });
       });
     });
@@ -149,11 +150,15 @@ export default function PackagesSection() {
                     <div className={styles.popularBadge}>Popular</div>
                   )}
                   <div className={styles.packageHeader}>
-                    <AppImagesClient
-                      publicId={pkg.imagePublicId}
-                      alt={pkg.location}
-                      priority={false}
-                    />
+                    {pkg.imagePath ? (
+                      <AppImagesClient
+                        imagePath={pkg.imagePath}
+                        alt={pkg.location}
+                        priority={false}
+                      />
+                    ) : (
+                      <div className={styles.placeholderImage}>No Image</div>
+                    )}
                   </div>
                   <div className={styles.packageDetails}>
                     <h3 className={styles.packageTitle}>

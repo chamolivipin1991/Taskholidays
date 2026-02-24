@@ -6,12 +6,12 @@ import AppImagesClient from "@/components/home/AppImagesClient.client";
 import { AppDotsIcon, ArrowIcon, CloseIcon } from "@/assets/icons/icons";
 
 interface Props {
-  publicIds: string[];
+  imagePaths: string[]; // e.g. ["destinations/andaman/andaman_taskholidays_1.jpg", ...]
   alt?: string;
 }
 
 export default function PackageGallery({
-  publicIds,
+  imagePaths,
   alt = "Package image",
 }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,12 +29,14 @@ export default function PackageGallery({
   };
 
   const goToNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % publicIds.length);
-  }, [publicIds.length]);
+    setCurrentIndex((prev) => (prev + 1) % imagePaths.length);
+  }, [imagePaths.length]);
 
   const goToPrev = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + publicIds.length) % publicIds.length);
-  }, [publicIds.length]);
+    setCurrentIndex(
+      (prev) => (prev - 1 + imagePaths.length) % imagePaths.length,
+    );
+  }, [imagePaths.length]);
 
   useEffect(() => {
     if (!isModalOpen) return;
@@ -53,15 +55,15 @@ export default function PackageGallery({
     };
   }, []);
 
-  if (!publicIds || publicIds.length === 0) return null;
+  if (!imagePaths || imagePaths.length === 0) return null;
 
-  const sideImages = publicIds.slice(0, 5);
+  const sideImages = imagePaths.slice(0, 5);
 
   return (
     <>
       <div className={styles.gallery}>
         <div className={styles.gallery__grid}>
-          {sideImages.map((publicId, index) => (
+          {sideImages.map((imagePath, index) => (
             <div
               key={index}
               className={`${styles.gallery__item} ${styles[`gallery__item___position${index}`]}`}
@@ -69,20 +71,19 @@ export default function PackageGallery({
               onClick={() => openModal(index)}
             >
               <AppImagesClient
-                publicId={publicId}
+                imagePath={imagePath}
                 alt={`${alt} ${index + 1}`}
                 priority={index === 0}
               />
             </div>
           ))}
 
-          {publicIds.length > 5 && (
+          {imagePaths.length > 5 && (
             <button
               className={styles.gallery__overlay}
               onClick={() => openModal(5)}
             >
-              <AppDotsIcon fill="var( --color-text-primary)" size={26} />
-              {/* {publicIds.length - 5} */}
+              <AppDotsIcon fill="var(--color-text-primary)" size={26} />
               Show All Photos
             </button>
           )}
@@ -118,13 +119,13 @@ export default function PackageGallery({
             </button>
             <div className={styles.gallery__modalImageWrapper}>
               <AppImagesClient
-                publicId={publicIds[currentIndex]}
+                imagePath={imagePaths[currentIndex]}
                 alt={`${alt} ${currentIndex + 1}`}
                 priority
               />
             </div>
             <div className={styles.gallery__modalCounter}>
-              {currentIndex + 1} / {publicIds.length}
+              {currentIndex + 1} / {imagePaths.length}
             </div>
           </div>
         </div>
