@@ -121,9 +121,9 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .footer__linksWrapper {
-    grid-template-columns: 1fr;
+    grid-template-columns: 0;
   }
 
   .footer__bottom {

@@ -13,21 +13,21 @@ export interface TrustItem {
   id: number;
   title: string;
   description: string;
-  icon: TrustIcon;
+  icon: string;
 }
 
 export interface TrustSectionProps {
-  leftItems: TrustItem[];
-  rightItems: TrustItem[];
+  trustItems: TrustItem[];
+
   centerImage: {
-    src: StaticImageData;
+    src: string;
     alt: string;
   };
 }
 
 export default function TrustSection({
-  leftItems,
-  rightItems,
+  trustItems,
+
   centerImage,
 }: TrustSectionProps) {
   return (
@@ -41,60 +41,32 @@ export default function TrustSection({
           backgroundText="Trust"
         />
         <div className={styles["trust__grid"]}>
-          {/* LEFT COLUMN */}
-          <div className={styles["trust__column"]}>
-            {leftItems.map((item) => (
-              <div key={item.id} className={styles["trust__card"]}>
-                <div className={styles["trust__icon"]}>
-                  {typeof item.icon === "function" ? (
-                    <item.icon width={20} height={20} />
-                  ) : (
-                    <AppImage
-                      src={item.icon as StaticImageData}
-                      alt={item.title}
-                      width={20}
-                      height={20}
-                    />
-                  )}
-                </div>
-
-                <h4 className={styles["trust__title"]}>{item.title}</h4>
-                <p className={styles["trust__desc"]}>{item.description}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* CENTER IMAGE */}
-          <div className={styles["trust__image-wrapper"]}>
+          <div className={styles["trust_image__wrapper"]}>
             <AppImage
               src={centerImage.src}
               alt={centerImage.alt}
               fill
-              // wrapperClassName={styles["trust__image-container"]}
               className={styles["trust__image"]}
               priority
             />
           </div>
 
-          {/* RIGHT COLUMN */}
           <div className={styles["trust__column"]}>
-            {rightItems.map((item) => (
+            {trustItems.map((item) => (
               <div key={item.id} className={styles["trust__card"]}>
                 <div className={styles["trust__icon"]}>
-                  {typeof item.icon === "function" ? (
-                    <item.icon width={20} height={20} />
-                  ) : (
-                    <AppImage
-                      src={item.icon as StaticImageData}
-                      alt={item.title}
-                      width={20}
-                      height={20}
-                    />
-                  )}
+                  <AppImage
+                    src={item.icon}
+                    alt={item.title}
+                    fill
+                    className={styles["trust__icons"]}
+                    priority
+                  />
                 </div>
-
-                <h4 className={styles["trust__title"]}>{item.title}</h4>
-                <p className={styles["trust__desc"]}>{item.description}</p>
+                <div className={styles["trust__content"]}>
+                  <h4 className={styles["trust__title"]}>{item.title}</h4>
+                  <p className={styles["trust__desc"]}>{item.description}</p>
+                </div>
               </div>
             ))}
           </div>

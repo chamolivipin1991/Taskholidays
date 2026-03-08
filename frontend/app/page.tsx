@@ -5,11 +5,15 @@ import PackagesSection from "@/components/home/PackagesSection";
 import TrustSection from "@/components/home/TrustSection";
 import Footer from "@/components/shared/Footer";
 
-import bannerImg from "@/assets/images/home_banner.jpg";
 import { CalendarIcon } from "@/assets/icons/icons";
 import Testimonials from "@/components/shared/Testimonials";
-import PlanYourTrip from "@/components/home/PlanYourTrip";
-import EnquiryForm from "@/components/form/EnquiryForm";
+import bannerImg from "@/assets/images/home_banner.jpg";
+
+const travelInsurance = "/icons/travel_insurance.png";
+const customeSupport = "/icons/customer_support.png";
+const easyBooking = "/icons/easy_booking.png";
+const travelPackage = "/icons/travel_package.png";
+const trustUsImg = "/images/tourist-presenting-trust.png";
 
 export default function Home() {
   return (
@@ -30,37 +34,35 @@ export default function Home() {
         <PackagesSection />
       </div>
       <TrustSection
-        leftItems={[
+        trustItems={[
           {
             id: 1,
             title: "Expertly Curated Packages",
             description:
               "Carefully designed itineraries tailored to your preferences.",
-            icon: CalendarIcon,
+            icon: travelPackage,
           },
           {
             id: 2,
             title: "24/7 Customer Support",
             description: "We’re here to assist you anytime, anywhere.",
-            icon: CalendarIcon,
+            icon: customeSupport,
           },
-        ]}
-        rightItems={[
           {
             id: 3,
             title: "Hassle-Free Booking",
             description: "Easy and secure booking process.",
-            icon: CalendarIcon,
+            icon: easyBooking,
           },
           {
             id: 4,
             title: "Travel Insurance Included",
             description: "Comprehensive coverage for peace of mind.",
-            icon: CalendarIcon,
+            icon: travelInsurance,
           },
         ]}
         centerImage={{
-          src: bannerImg,
+          src: trustUsImg,
           alt: "Traveler exploring destination",
         }}
       />

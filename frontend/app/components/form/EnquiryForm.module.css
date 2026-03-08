@@ -55,7 +55,7 @@
 
 .enquiryForm__submit {
   background-color: var(--color-brand-primary);
-  color: white;
+  color: var(--color-text-inverse);
   border: none;
   border-radius: var(--space-xs);
   padding: var(--space-md) var(--space-xl);
@@ -80,7 +80,6 @@
   justify-content: center;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .enquiryForm__dateFields {
     grid-template-columns: 1fr;

@@ -30,7 +30,7 @@ const Footer = () => {
           {/* Links */}
           <div className={styles.footer__linksWrapper}>
             <div className={styles.footer__linksColumn}>
-              <h4 className={styles.footer__heading}>Quick Links</h4>
+              {/* <h4 className={styles.footer__heading}>Quick Links</h4> */}
               <ul className={styles.footer__list}>
                 <li>
                   <Link href="/packages/andaman">Andaman</Link>
@@ -42,7 +42,7 @@ const Footer = () => {
             </div>
 
             <div className={styles.footer__linksColumn}>
-              <h4 className={styles.footer__heading}>Destinations</h4>
+              {/* <h4 className={styles.footer__heading}>Destinations</h4> */}
               <ul className={styles.footer__list}>
                 <li>
                   <Link href="/packages/bali">Bali</Link>
@@ -54,7 +54,7 @@ const Footer = () => {
             </div>
 
             <div className={styles.footer__linksColumn}>
-              <h4 className={styles.footer__heading}>Support</h4>
+              {/* <h4 className={styles.footer__heading}>Support</h4> */}
               <ul className={styles.footer__list}>
                 <li>
                   <Link href="/packages/rajasthan">Rajasthan</Link>

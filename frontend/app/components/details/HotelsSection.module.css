@@ -1,32 +1,32 @@
 .hotels {
-  margin-bottom: 40px;
+  margin-bottom: var(--space-2xl);
 }
 
 .hotels__title {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 20px;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-lg);
 }
 
 .hotels__card {
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border-primary);
   border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 14px;
+  padding: var(--space-lg);
+  margin-bottom: var(--space-sm);
   display: flex;
   justify-content: space-between;
 }
 
 .hotels__name {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 }
 
 .hotels__location,
 .hotels__meta {
-  font-size: 14px;
-  color: #6b7280;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
 }
 
 .hotels__stars {
-  color: #f59e0b;
+  color: var(--color-warning);
 }

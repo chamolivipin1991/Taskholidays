@@ -11,17 +11,17 @@
   grid-template-rows: 1fr;
 }
 .sectionTitle__heading {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--text-primary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
   grid-area: 1 / 1;
   z-index: 2;
 }
 .sectionTitle__bgText {
-  font-size: 7rem;
+  font-size: var(--font-size-hero);
   line-height: 1;
   letter-spacing: -5px;
-  font-weight: 900;
+  font-weight: var(--font-weight-extrabold);
   opacity: 0.8;
   text-transform: uppercase;
   color: var(--color-bg-muted);

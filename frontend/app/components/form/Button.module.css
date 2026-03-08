@@ -74,17 +74,15 @@
   background-color: var(--color-brand-secondary);
 }
 
-/* Accent / Action */
 .darkRed {
   background-color: var(--color-error);
   color: var(--color-text-inverse);
 }
 
 .darkRed:hover {
-  background-color: #b91c1c; /* slightly darker error */
+  background-color: var(--color-error-dark);
 }
 
-/* Accent outline */
 .darkRedEmpty {
   background-color: transparent;
   color: var(--color-error);

@@ -4,7 +4,7 @@ import AppImage from "@/components/shared/AppImage";
 
 import type { StaticImageData } from "next/image";
 import SectionTitle from "@/components/shared/SectionTitle";
-import { QuoteIcon } from "@/assets/icons/icons";
+import { QuoteIcon, ProfileIcon } from "@/assets/icons/icons";
 
 export interface Testimonial {
   id: number;
@@ -43,13 +43,17 @@ export default function Testimonials({ items }: TestimonialsProps) {
               </div> */}
 
               <div className={styles["testimonials__user"]}>
-                <AppImage
+                {/* <AppImage
                   src={item.avatar}
                   alt={item.name}
                   width={80}
                   height={80}
                   className={styles["testimonials__avatar"]}
-                />
+                /> */}
+                <div className={styles["testimonials__avatar"]}>
+                  <ProfileIcon fill="var( --color-border-primary)" size={40} />
+                </div>
+
                 {/* Message */}
                 <div className={styles["testimonials__meta"]}>
                   <span className={styles["testimonials__name"]}>

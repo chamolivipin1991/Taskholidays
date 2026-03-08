@@ -1,18 +1,13 @@
 .destinations__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 10px; /* magic number */
+  grid-auto-rows: 10px;
   gap: 1rem;
 }
-
-/* ===============================
-   Card
-   =============================== */
 
 .destination_card {
   width: 100%;
   position: relative;
-  /* height: 280px; */
   border-radius: 18px;
   overflow: hidden;
   cursor: pointer;
@@ -21,7 +16,6 @@
 }
 
 .destination_card__tall {
-  /* height: 360px; */
   grid-row: span 16;
 }
 .destination_card__small {
@@ -44,32 +38,34 @@
   object-fit: cover;
 }
 
-/* OVERLAY */
 .destination_card__overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 1.25rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.05));
-  color: #fff;
+  padding: var(--space-lg);
+  background: linear-gradient(
+    to top,
+    var(--color-bg-overlay),
+    rgba(0, 0, 0, 0.05)
+  );
+  color: var(--color-text-inverse);
 }
 
 .destination_card__title {
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
   margin-bottom: 0.25rem;
   color: var(--color-bg-primary);
 }
 
 .destination_card__description {
-  font-size: 0.85rem;
+  font-size: var(--font-size-sm);
   line-height: 1.5;
   opacity: 0.9;
   color: var(--color-bg-primary);
 }
 
-/* ICON */
 .destination_card__icon {
   position: absolute;
   top: 14px;
@@ -77,19 +73,15 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: #ffffff;
-  color: #000;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
   transform: rotate(-45deg);
 }
-
-/* ===============================
-   Responsive
-   =============================== */
 
 @media (max-width: 1024px) {
   .destinations__grid {

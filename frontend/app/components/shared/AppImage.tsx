@@ -1,7 +1,6 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import { CldImage } from "next-cloudinary";
 
 type Props = {
   src: string | StaticImageData;
@@ -24,25 +23,8 @@ export default function AppImage({
   className,
   priority,
 }: Props) {
-  // Local image → Next Image
-  if (typeof src !== "string") {
-    return (
-      <Image
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        fill={fill}
-        sizes={sizes}
-        className={className}
-        priority={priority}
-      />
-    );
-  }
-
-  // Cloudinary image → CldImage
   return (
-    <CldImage
+    <Image
       src={src}
       alt={alt}
       width={width}
@@ -51,8 +33,6 @@ export default function AppImage({
       sizes={sizes}
       className={className}
       priority={priority}
-      quality="auto"
-      format="auto"
     />
   );
 }

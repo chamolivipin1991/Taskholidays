@@ -3,6 +3,6 @@
 }
 
 .field__label {
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   opacity: 0.6;
 }

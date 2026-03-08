@@ -3,7 +3,7 @@
 }
 
 .detailed_itinerary__title {
-  font-size: 20px; /* if recurring, consider adding to :root */
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
   margin-bottom: calc(var(--space-md) + var(--space-2xs)); /* 20px */
 }
@@ -98,11 +98,11 @@
 }
 
 .detailed_itinerary__note {
-  background: #fff3cd; /* warning light – consider adding variable */
+  background: var(--color-bg-secondary);
   padding: var(--space-sm);
   border-radius: 4px;
   margin: var(--space-sm) 0;
-  color: #856404; /* consider adding variable */
+  color: var(--color-warning);
   font-size: var(--font-size-xs);
 }
 
@@ -116,7 +116,7 @@
 }
 
 .detailed_itinerary__badge {
-  background: #dcfce7; /* light green – consider adding variable */
+  background: var(--color-bg-secondary);
   color: var(--color-success);
   padding: var(--space-2xs) var(--space-sm);
   border-radius: 20px;

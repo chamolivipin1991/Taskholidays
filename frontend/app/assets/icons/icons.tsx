@@ -197,7 +197,7 @@ export const TermsIcon = ({
 
 export const QuoteIcon = ({
   className,
-  fill = "currentColor",
+  fill = "#e3e3e3",
   size = 24,
   ...props
 }: IconProps) => {
@@ -212,6 +212,27 @@ export const QuoteIcon = ({
       {...props}
     >
       <path d="M6 17h3l2-4V7H5v6h3l-2 4zm8 0h3l2-4V7h-6v6h3l-2 4z" />
+    </svg>
+  );
+};
+
+export const ProfileIcon = ({
+  className,
+  fill = "#e3e3e3",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={typeof size === "number" ? `${size}px` : size}
+      width={typeof size === "number" ? `${size}px` : size}
+      viewBox="0 0 24 24"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
     </svg>
   );
 };

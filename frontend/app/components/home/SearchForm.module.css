@@ -1,17 +1,16 @@
 .search {
-  background: #fff;
+  background: var(--color-bg-primary);
   border-radius: 50px;
-  padding: 15px;
+  padding: var(--space-sm);
 
   display: grid;
   grid-template-columns: repeat(3, 1fr) auto;
-  gap: 15px;
+  gap: var(--space-sm);
   align-items: center;
 
-  color: #333;
+  color: var(--color-text-primary);
 }
 
-/* Responsive */
 @media (max-width: 900px) {
   .search {
     grid-template-columns: 1fr;

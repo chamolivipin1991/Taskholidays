@@ -4,9 +4,9 @@
 
 .package_hero__title {
   font-size: var(--font-size-xl);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   margin-bottom: var(--space-xs);
-  color: #1f2937;
+  color: var(--color-text-primary);
 }
 
 .package_hero__tags {
@@ -16,23 +16,23 @@
 }
 
 .package_hero__tag {
-  padding: 6px 14px;
+  padding: var(--space-2xs) var(--space-sm);
   border-radius: 20px;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
 }
 
 .package_hero__tag__destination {
-  background: #e0f2fe;
-  color: #0369a1;
+  background: var(--color-bg-secondary);
+  color: var(--color-brand-secondary);
 }
 
 .package_hero__tag__duration {
-  background: #dcfce7;
-  color: #166534;
+  background: var(--color-bg-secondary);
+  color: var(--color-success);
 }
 
 .package_hero__tag__popular {
-  background: #fee2e2;
-  color: #991b1b;
+  background: var(--color-bg-secondary);
+  color: var(--color-error);
 }

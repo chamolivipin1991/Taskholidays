@@ -24,16 +24,15 @@
   line-height: var(--line-height-base);
 }
 
-/* Filter Navigation */
 .filterNav {
   margin-bottom: var(--space-2xl);
   overflow-x: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .filterNav::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
 }
 
 .filterList {
@@ -72,7 +71,6 @@
   border-color: var(--color-brand-secondary);
 }
 
-/* Packages Grid */
 .packagesGrid {
   display: grid;
   grid-template-columns: 1fr;
@@ -100,7 +98,6 @@
   }
 }
 
-/* Package Card */
 .packageCard {
   background-color: var(--color-bg-secondary);
   border-radius: 4px;

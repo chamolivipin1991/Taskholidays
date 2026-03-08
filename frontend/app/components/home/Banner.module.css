@@ -32,8 +32,8 @@
   text-align: center;
   max-width: 900px;
   width: 94%;
-  padding: 0 20px;
-  color: #fff;
+  padding: 0 var(--space-md);
+  color: var(--color-text-inverse);
 }
 
 .banner__subtitle {
@@ -44,7 +44,7 @@
 
 .banner__title {
   font-size: clamp(48px, 8vw, 100px);
-  font-weight: 800;
+  font-weight: var(--font-weight-extrabold);
   line-height: 1.2;
   color: var(--color-bg-primary);
 }

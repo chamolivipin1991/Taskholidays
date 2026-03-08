@@ -31,18 +31,10 @@
   opacity: 1;
 }
 
-/* ===============================
-   EXIT (current word goes UP)
-   =============================== */
-
 .footer__char--exit {
   animation: footerCharExit 0.8s ease-in forwards;
   animation-delay: var(--char-delay);
 }
-
-/* ===============================
-   ENTER (next word comes FROM BOTTOM)
-   =============================== */
 
 .footer__char--enter {
   transform: translateY(100%);
@@ -50,10 +42,6 @@
   animation: footerCharEnter 0.8s ease-out forwards;
   animation-delay: var(--char-delay);
 }
-
-/* ===============================
-   Keyframes
-   =============================== */
 
 @keyframes footerCharExit {
   from {
