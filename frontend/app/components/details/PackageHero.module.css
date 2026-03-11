@@ -1,17 +1,20 @@
 .package_hero {
   margin: var(--space-sm) auto var(--space-xs);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
 }
 
 .package_hero__title {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
-  margin-bottom: var(--space-xs);
   color: var(--color-text-primary);
 }
 
 .package_hero__tags {
   display: flex;
-  gap: 12px;
+  gap: var(--space-sm);
   flex-wrap: wrap;
 }
 
@@ -25,14 +28,17 @@
 .package_hero__tag__destination {
   background: var(--color-bg-secondary);
   color: var(--color-brand-secondary);
+  border: 1px solid var(--color-brand-secondary);
 }
 
 .package_hero__tag__duration {
   background: var(--color-bg-secondary);
   color: var(--color-success);
+  border: 1px solid var(--color-success);
 }
 
 .package_hero__tag__popular {
   background: var(--color-bg-secondary);
   color: var(--color-error);
+  border: 1px solid var(--color-error);
 }

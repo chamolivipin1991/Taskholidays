@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const TermsConditionsPage = () => {
   return (
     <>
-      <Header navItems={[]} supportClassName="isRelative__header" />
+      <Header navItems={[]} isRelative={true} />
       <main className={`${styles.tnc} section_white__spacing`}>
         <section className={`${styles.tnc__hero}`}>
           <div className={`${styles.tnc__container} container `}>

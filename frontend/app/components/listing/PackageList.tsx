@@ -4,7 +4,14 @@ import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { UIPackage } from "@/types/package";
 import styles from "./PackageList.module.css";
-import { CheckIcon } from "@/assets/icons/icons";
+import {
+  CheckIcon,
+  HotelIcon,
+  MealIcon,
+  CruiseIcon,
+  SightseeingIcon,
+  TransportIcon,
+} from "@/assets/icons/icons";
 import Button from "@/components/form/Button";
 import EnquiryModal from "@/components/form/EnquiryModal";
 import AppImagesClient from "@/components/home/AppImagesClient.client";
@@ -15,6 +22,18 @@ import { destinationImages } from "@/assets/images";
 type Props = {
   packages: UIPackage[];
   destinationTitle: string;
+};
+
+// Icon mapping – match inclusion strings exactly as they appear in pkg.includes
+const inclusionIconMap: Record<
+  string,
+  React.ComponentType<{ size?: number; fill?: string }>
+> = {
+  Accommodation: HotelIcon,
+  Breakfast: MealIcon,
+  "Cruise Tickets": CruiseIcon,
+  Sightseeing: SightseeingIcon,
+  Transport: TransportIcon,
 };
 
 export default function PackageList({ packages, destinationTitle }: Props) {
@@ -54,7 +73,7 @@ export default function PackageList({ packages, destinationTitle }: Props) {
             return (
               <article
                 key={pkg.id}
-                className={`${styles.packageList__card} ${pkg.popular ? styles["packageList__card--popular"] : ""}`}
+                className={`${styles.packageList__card} ${pkg.popular ? styles["packageList_card__popular"] : ""}`}
               >
                 <div className={styles.packageList__imageWrapper}>
                   {imagePath ? (
@@ -67,28 +86,44 @@ export default function PackageList({ packages, destinationTitle }: Props) {
                     // Optional: a placeholder div or image
                     <div className={styles.placeholderImage}>No Image</div>
                   )}
+                  <p
+                    className={`${pkg.popular ? styles["packageList_popular__package"] : "packageList_simple__package"}`}
+                  >
+                    Popular
+                  </p>
                 </div>
                 <div className={styles.packageList__content}>
                   <div>
                     <div className={styles.packageList__header}>
                       <h3 className={styles.packageList__title}>{pkg.title}</h3>
-                      <span className={styles.packageList__duration}>
+                      {/* <span className={styles.packageList__duration}>
                         {pkg.duration}
-                      </span>
+                      </span> */}
                     </div>
                     <p className={styles.packageList__description}>
                       {pkg.description}
                     </p>
                     <ul className={styles.packageList__includes}>
-                      {pkg.includes.slice(0, 4).map((item, i) => (
-                        <li
-                          key={i}
-                          className={styles.packageList__includesItem}
-                        >
-                          <CheckIcon size={16} />
-                          <span>{item}</span>
-                        </li>
-                      ))}
+                      {pkg.includes.map((item, i) => {
+                        const IconComponent =
+                          inclusionIconMap[item] || CheckIcon;
+                        return (
+                          <li
+                            key={i}
+                            className={styles.packageList__includesItem}
+                          >
+                            <IconComponent
+                              fill="var(--color-brand-primary)"
+                              size={22}
+                            />
+                            <span
+                              className={styles.packageList__includesItemText}
+                            >
+                              {item}
+                            </span>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                   <div className={styles.packageList__footer}>

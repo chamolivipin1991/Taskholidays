@@ -23,9 +23,23 @@
   margin: 0 auto;
 }
 .listingBanner_heading {
-  text-shadow: 0px 0 10px var(--color-text-inverse);
-  font-size: 4rem;
+  font-size: 3rem;
 }
 .listingBanner_headingBg {
   opacity: 0.5;
+}
+.listingBanner_text__bg {
+  position: absolute;
+  bottom: 0;
+  padding-bottom: var(--space-lg);
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.6) 40%,
+    rgba(255, 255, 255, 0.2) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }

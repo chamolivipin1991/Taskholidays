@@ -6,10 +6,10 @@ export const packagesdata: PackagesData[] = [
     slug: "andaman",
     title: "Andaman",
     description:
-      "Pristine beaches, crystal-clear waters, and serene island vibes.",
+      "Turquoise waters, white sandy beaches, and tropical island paradise.",
     heroImage: {
       folder: "andaman",
-      alt: "Pristine beaches and blue waters of Andaman Islands",
+      alt: "Turquoise waters, white sandy beaches, and tropical island paradise.",
     },
     bestSeason: ["October", "November", "December", "January"],
     tags: ["beach", "honeymoon", "family"],
@@ -515,10 +515,10 @@ export const packagesdata: PackagesData[] = [
     slug: "bali",
     title: "Bali",
     description:
-      "Pristine beaches, crystal-clear waters, and serene island vibes.",
+      "Sacred temples, lush landscapes, and unforgettable island culture.",
     heroImage: {
       folder: "bali",
-      alt: "Pristine beaches and blue waters of Bali",
+      alt: "Sacred temples, lush landscapes, and unforgettable island culture.",
     },
     bestSeason: ["October", "November", "December", "January"],
     tags: ["beach", "honeymoon", "family"],
@@ -924,10 +924,10 @@ export const packagesdata: PackagesData[] = [
     slug: "ladakh",
     title: "Leh Ladakh",
     description:
-      "Pristine beaches, crystal-clear waters, and serene island vibes.",
+      "Snow-capped mountains, high-altitude adventures, and breathtaking landscapes.",
     heroImage: {
       folder: "ladakh",
-      alt: "Pristine beaches and blue waters of Ladakh",
+      alt: "Snow-capped mountains, high-altitude adventures, and breathtaking landscapes.",
     },
     bestSeason: ["October", "November", "December", "January"],
     tags: ["beach", "honeymoon", "family"],
@@ -1390,10 +1390,10 @@ export const packagesdata: PackagesData[] = [
     slug: "rajasthan",
     title: "Rajasthan",
     description:
-      "Pristine beaches, crystal-clear waters, and serene island vibes.",
+      "Royal palaces, vibrant culture, and timeless desert heritage.",
     heroImage: {
       folder: "rajasthan",
-      alt: "Pristine beaches and blue waters of rajasthan",
+      alt: "Royal palaces, vibrant culture, and timeless desert heritage.",
     },
     bestSeason: ["October", "November", "December", "January"],
     tags: ["beach", "honeymoon", "family"],
@@ -1858,10 +1858,10 @@ export const packagesdata: PackagesData[] = [
     slug: "kerala",
     title: "Kerala",
     description:
-      "Pristine beaches, crystal-clear waters, and serene island vibes.",
+      "Lush greenery, tranquil backwaters, and nature’s perfect escape.",
     heroImage: {
       folder: "kerala",
-      alt: "Pristine beaches and blue waters of kerala",
+      alt: "Lush greenery, tranquil backwaters, and nature’s perfect escape.",
     },
     bestSeason: ["October", "November", "December", "January"],
     tags: ["beach", "honeymoon", "family"],
@@ -2613,10 +2613,10 @@ export const packagesdata: PackagesData[] = [
     slug: "dubai",
     title: "Dubai",
     description:
-      "Pristine beaches, crystal-clear waters, and serene island vibes.",
+      "Luxury skyline, desert adventures, and world-class experiences.",
     heroImage: {
       folder: "dubai",
-      alt: "Pristine beaches and blue waters of dubai",
+      alt: "Luxury skyline, desert adventures, and world-class experiences.",
     },
     bestSeason: ["October", "November", "December", "January"],
     tags: ["beach", "honeymoon", "family"],
@@ -2680,7 +2680,7 @@ export const packagesdata: PackagesData[] = [
             facilities: ["Free Service", "Restaurant", "Pool", "Gym", "AC"],
             checkInTime: "2 p.m.",
             checkoutTime: "noon",
-            stayLink: "https://maps.google.com/",
+            stayLink: "https://www.admiralplazadubai.com/",
           },
         ],
         cruise: [

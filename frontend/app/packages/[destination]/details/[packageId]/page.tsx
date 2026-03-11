@@ -18,6 +18,7 @@ import CruiseIncluded from "@/components/details/CruiseIncluded";
 import DetailedItinerary from "@/components/details/DetailedItinerary";
 import SlidingModalPanel from "@/components/shared/SlidingModalPanel";
 import TermsConditionsData from "@/components/tnc/TermsConditionsData";
+import FloatingWhatsAppButton from "@/components/shared/FloatingWhatsAppButton";
 
 interface PackageDetailsPageProps {
   params: Promise<{
@@ -83,7 +84,7 @@ export default async function PackageDetailsPage({
 
   return (
     <>
-      <Header navItems={[]} supportClassName="isRelative__header" />
+      <Header navItems={[]} isRelative={true} />
       <div className="container">
         <PackageHero
           title={pkg.title}
@@ -124,6 +125,7 @@ export default async function PackageDetailsPage({
       >
         <TermsConditionsData />
       </SlidingModalPanel>
+      <FloatingWhatsAppButton />
     </>
   );
 }

@@ -34,8 +34,9 @@
 }
 
 .short_itinerary__badge {
-  background: var(--color-success-light);
+  border: 2px solid var(--color-success-light);
   color: var(--color-success);
+  background-color: var(--color-bg-primary);
   padding: var(--space-2xs) var(--space-md);
   border-radius: var(--space-md);
   font-size: var(--font-size-xs);

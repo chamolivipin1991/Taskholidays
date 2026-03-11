@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowIcon, BurgerMenuIcon, CloseIcon } from "@/assets/icons/icons";
 import brandLogoImg from "@/assets/images/taskholiday_logo.png";
@@ -22,7 +22,7 @@ export interface HeaderNavItem {
 export interface HeaderProps {
   navItems?: HeaderNavItem[];
   logo?: React.ReactNode;
-  supportClassName?: string; // 👈 new optional prop
+  isRelative?: boolean;
 }
 
 /* ---------- COMPONENT ---------- */
@@ -33,9 +33,32 @@ const Header = ({
       <AppImage src={brandLogoImg} alt="Task Holidays" width={220} />
     </Link>
   ),
-  supportClassName = "", // 👈 default to empty string
+  isRelative = false,
 }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+
+  // Scroll detection – becomes sticky after scrolling past viewport height
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window !== "undefined") {
+        const scrollY = window.scrollY;
+        const viewportHeight = window.innerHeight;
+        setIsSticky(scrollY > viewportHeight);
+      }
+    };
+
+    // Initial check
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
 
   // Default navigation items (used when no navItems prop is provided)
   const defaultNavItems: HeaderNavItem[] = [
@@ -93,7 +116,11 @@ const Header = ({
 
   return (
     <>
-      <header className={`${styles.header} ${supportClassName}`.trim()}>
+      <header
+        className={`${styles.header} ${isRelative ? `${styles.isRelative__header}` : ""} ${
+          isSticky ? styles["header__sticky"] : ""
+        }`.trim()}
+      >
         <div className={styles.header__container}>
           {/* Logo */}
           <div className={styles.header__logo}>{logo}</div>
@@ -118,7 +145,6 @@ const Header = ({
                 size={24}
               />
             }
-            // No onFormSubmit prop – modal handles its own submission
           />
 
           {/* Mobile Menu Button */}

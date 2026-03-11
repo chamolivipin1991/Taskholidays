@@ -5,8 +5,22 @@
   z-index: 10;
   padding: var(--space-lg) 0;
   background-color: rgba(255, 255, 255, 0.8);
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
-
+.isRelative__header {
+  position: relative;
+  border-bottom: 2px solid var(--color-bg-muted);
+}
+.header__sticky {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: var(--space-md) 0; /* slightly smaller padding when sticky */
+  backdrop-filter: blur(10px);
+}
 .header__container {
   max-width: 1200px;
   margin: auto;

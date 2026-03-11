@@ -30,3 +30,8 @@
 .hotels__stars {
   color: var(--color-warning);
 }
+.hotels__link {
+  font-size: var(--font-size-sm);
+  color: var(--color-brand-accent);
+  text-decoration: underline;
+}

@@ -4,7 +4,9 @@
 }
 .packageList__includes {
   margin-top: 16px;
-  display: grid;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
@@ -14,6 +16,14 @@
   gap: 8px;
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
+  padding: var(--space-xs) var(--space-xl) var(--space-xs) var(--space-md);
+  border: 1px solid var(--color-brand-primary);
+  border-radius: 20px;
+}
+.packageList__includesItemText {
+  white-space: nowrap;
+  min-width: 0;
+  color: var(--color-brand-primary);
 }
 
 .packageList__actions {
@@ -23,7 +33,7 @@
 .packageList__card {
   display: flex;
   background: var(--color-bg-primary);
-  border-radius: 14px;
+  border-radius: var(--space-2xs);
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
   transition: all 0.25s ease;
@@ -34,8 +44,21 @@
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
 }
 
-.packageList__card--popular {
-  border: 2px solid var(--color-success);
+.packageList_card__popular {
+}
+.packageList_simple__package {
+  display: none;
+}
+.packageList_popular__package {
+  background: var(--color-success);
+  color: var(--color-bg-primary);
+  font-size: var(--font-size-xs);
+  position: absolute;
+  left: 0;
+  top: var(--space-md);
+  padding: var(--space-2xs) var(--space-md);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
 }
 
 .packageList__imageWrapper {
@@ -64,19 +87,19 @@
 }
 
 .packageList__title {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
 }
 
 .packageList__duration {
-  color: var(--color-success);
+  color: var(--color-text-primary);
   font-weight: var(--font-weight-semibold);
 }
 
 .packageList__description {
-  margin-top: var(--space-md);
   color: var(--color-text-secondary);
   line-height: 1.6;
+  font-size: var(--font-size-sm);
 }
 
 .packageList__footer {
@@ -100,7 +123,6 @@
 .packageList__taxNote {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
-  margin-top: var(--space-2xs);
 }
 
 .packageList__cta {

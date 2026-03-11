@@ -28,11 +28,11 @@ const SectionTitle = ({
         >
           {heading}
         </h2>
-        <p
+        {/* <p
           className={`${styles.sectionTitle__bgText} ${bgTextClassName}`.trim()}
         >
           {backgroundText}
-        </p>
+        </p> */}
       </div>
       <p
         className={`${styles.sectionTitle__subheading} ${subheadingClassName}`.trim()}

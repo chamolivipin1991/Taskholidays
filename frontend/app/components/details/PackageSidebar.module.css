@@ -53,15 +53,17 @@
 
 .sidebar__tag {
   display: inline-block;
-  background: var(--color-bg-muted);
+  background: var(--color-bg-primary);
   color: var(--color-warning);
-  padding: var(--space-2xs) var(--space-xs);
+  padding: var(--space-2xs) var(--space-md);
   border-radius: 16px;
   font-size: var(--font-size-xs);
   margin: 4px 6px 0 0;
+  border: 1px solid var(--color-warning);
+  text-transform: capitalize;
 }
 
 .sidebar__tag_purple {
-  background: var(--color-bg-muted);
   color: var(--color-brand-accent);
+  border: 1px solid var(--color-brand-accent);
 }

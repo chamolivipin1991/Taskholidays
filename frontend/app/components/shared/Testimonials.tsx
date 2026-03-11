@@ -1,25 +1,13 @@
 import styles from "./Testimonials.module.css";
 
 import AppImage from "@/components/shared/AppImage";
-
-import type { StaticImageData } from "next/image";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { QuoteIcon, ProfileIcon } from "@/assets/icons/icons";
 
-export interface Testimonial {
-  id: number;
-  rating: number; // 1–5
-  message: string;
-  name: string;
-  role: string;
-  avatar: StaticImageData;
-}
+// Import the data and type
+import { testimonialsData } from "@/data/testimonialsData"; // adjust path if needed
 
-export interface TestimonialsProps {
-  items: Testimonial[];
-}
-
-export default function Testimonials({ items }: TestimonialsProps) {
+export default function Testimonials() {
   return (
     <section className={`section_white__spacing ${styles["testimonials"]}`}>
       <div className="container">
@@ -31,28 +19,23 @@ export default function Testimonials({ items }: TestimonialsProps) {
           backgroundText="Reviews"
         />
         <div className={styles["testimonials__grid"]}>
-          {items.map((item) => (
-            <article key={item.id} className={styles["testimonials__card"]}>
-              {/* Rating */}
-              {/* <div className={styles["testimonials__rating"]}>
-                {Array.from({ length: item.rating }).map((_, index) => (
-                  <span key={index} className={styles["testimonials__star"]}>
-                    ★
-                  </span>
-                ))}
-              </div> */}
-
+          {testimonialsData.map((item, i) => (
+            <article key={i} className={styles["testimonials__card"]}>
               <div className={styles["testimonials__user"]}>
-                {/* <AppImage
-                  src={item.avatar}
-                  alt={item.name}
-                  width={80}
-                  height={80}
-                  className={styles["testimonials__avatar"]}
-                /> */}
-                <div className={styles["testimonials__avatar"]}>
-                  <ProfileIcon fill="var( --color-border-primary)" size={40} />
-                </div>
+                {/* Avatar (commented out, using ProfileIcon) */}
+                {item.avatar ? (
+                  <AppImage
+                    src={item.avatar}
+                    alt={item.name}
+                    width={80}
+                    height={80}
+                    className={styles["testimonials__avatar"]}
+                  />
+                ) : (
+                  <div className={styles["testimonials__avatar"]}>
+                    {item.name.slice(0, 1)}
+                  </div>
+                )}
 
                 {/* Message */}
                 <div className={styles["testimonials__meta"]}>

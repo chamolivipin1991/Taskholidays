@@ -62,7 +62,7 @@
      STATES
      ============================== */
 
-  --color-success: #16a34a;
+  --color-success: #25d366;
   --color-success-light: #dcfce7;
   --color-success-soft: rgba(22, 163, 74, 0.4);
   --color-warning: #f59e0b;
@@ -208,18 +208,14 @@ select {
 }
 
 .section_white__spacing {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .flex_1 {
   flex: 1;
 }
 
-.isRelative__header {
-  position: relative !important;
-  border-bottom: 2px solid var(--color-bg-muted);
-}
 .common__title {
   font-size: var(--font-size-lg);
   font-weight: 600;
@@ -228,10 +224,16 @@ select {
 .common__container {
   margin-bottom: var(--space-lg);
 }
+.empty_space {
+  height: var(--space-2xl);
+}
 
 @media (max-width: 768px) {
   .section_white__spacing {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .empty_space {
+    height: var(--space-lg);
   }
 }

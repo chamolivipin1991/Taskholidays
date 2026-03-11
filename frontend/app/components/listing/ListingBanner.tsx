@@ -27,14 +27,16 @@ const ListingBanner = ({ dest }: Props) => {
 
   return (
     <div className={styles.listingBanner_wrapper}>
-      <SectionTitle
-        heading={`${dest.title} Packages`}
-        subheading={`Handpicked travel experiences for ${dest.title}`}
-        backgroundText=""
-        className={styles.listingBanner_headingWrapper}
-        headingClassName={styles.listingBanner_heading}
-        bgTextClassName={styles.listingBanner_headingBg}
-      />
+      <div className={styles.listingBanner_text__bg}>
+        <SectionTitle
+          heading={`${dest.title} Packages`}
+          subheading={`Handpicked travel experiences for ${dest.title}`}
+          backgroundText=""
+          className={styles.listingBanner_headingWrapper}
+          headingClassName={styles.listingBanner_heading}
+          bgTextClassName={styles.listingBanner_headingBg}
+        />
+      </div>
 
       <AppImagesClient imagePath={imagePath} alt={dest.title} priority />
     </div>

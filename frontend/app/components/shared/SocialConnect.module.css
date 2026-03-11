@@ -1,0 +1,28 @@
+.title {
+  color: var(--color-bg-primary);
+  font-size: var(--font-size-lg);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.icon:hover {
+  transform: scale(1.15);
+  opacity: 0.85;
+}

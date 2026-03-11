@@ -14,8 +14,17 @@ export default function HotelsSection({ hotels }: { hotels: any[] }) {
               {hotel.duration} • {hotel.category}
             </p>
           </div>
-
-          <div className={styles.hotels__stars}>{"★".repeat(hotel.star)}</div>
+          <div className={styles.hotels__stars__container}>
+            <div className={styles.hotels__stars}>{"★".repeat(hotel.star)}</div>
+            <a
+              href={hotel.stayLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.hotels__link}
+            >
+              View Hotel
+            </a>
+          </div>
         </div>
       ))}
     </div>

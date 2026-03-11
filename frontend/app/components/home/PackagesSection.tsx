@@ -3,7 +3,6 @@
 import React, { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./PackagesSection.module.css";
-import { CalendarIcon, CheckIcon } from "@/assets/icons/icons";
 import SectionTitle from "@/components/shared/SectionTitle";
 import EnquiryModal from "@/components/form/EnquiryModal";
 import Button from "@/components/form/Button";
@@ -16,6 +15,15 @@ import { destinationImages } from "@/assets/images";
 import { UIPackage } from "@/types/package";
 import { useEnquiryModal } from "@/hooks/useEnquiryModal";
 import { formatPrice } from "@/utils/formatPrice";
+
+import {
+  CheckIcon,
+  HotelIcon, // for Accommodation
+  MealIcon, // for Breakfast
+  CruiseIcon, // for Cruise Tickets
+  SightseeingIcon, // for Sightseeing
+  TransportIcon, // for Transport
+} from "@/assets/icons/icons";
 
 export const filters: Filter[] = [
   { id: "all", label: "All Locations" },
@@ -114,6 +122,17 @@ export default function PackagesSection() {
     router.push(`/packages/${pkg.destinationSlug}/details/${pkg.packageId}`);
   };
 
+  const inclusionIconMap: Record<
+    string,
+    React.ComponentType<{ size?: number; fill?: string }>
+  > = {
+    Accommodation: HotelIcon,
+    Breakfast: MealIcon,
+    "Cruise Tickets": CruiseIcon,
+    Sightseeing: SightseeingIcon,
+    Transport: TransportIcon,
+  };
+
   return (
     <>
       <section className={`${styles.packagesSection} section_white__spacing`}>
@@ -159,31 +178,38 @@ export default function PackagesSection() {
                     ) : (
                       <div className={styles.placeholderImage}>No Image</div>
                     )}
+                    <p className={styles.packageDescription}>
+                      {pkg.description}
+                    </p>
                   </div>
                   <div className={styles.packageDetails}>
                     <h3 className={styles.packageTitle}>
-                      {pkg.title},{" "}
+                      {pkg.duration} |{" "}
                       <span className={styles.packageLocation}>
                         {pkg.location}
                       </span>
                     </h3>
-                    <p className={styles.packageDescription}>
-                      {pkg.description}
-                    </p>
-                    <div className={styles.duration}>
-                      <CalendarIcon className={styles.icon} />
-                      <span>{pkg.duration}</span>
-                    </div>
+
                     <ul className={styles.includesList}>
-                      {pkg.includes.slice(0, 4).map((item, index) => (
-                        <li key={index} className={styles.includesItem}>
-                          <CheckIcon size={16} />
-                          <span>{item}</span>
-                        </li>
-                      ))}
+                      {pkg.includes.slice(0, 4).map((item, index) => {
+                        const IconComponent =
+                          inclusionIconMap[item] || CheckIcon;
+                        return (
+                          <li key={index} className={styles.includesItem}>
+                            <IconComponent
+                              fill="var(--color-text-primary)"
+                              size={24}
+                            />
+                            <span>{item}</span>
+                          </li>
+                        );
+                      })}
                       {pkg.includes.length > 4 && (
                         <li className={styles.includesItem}>
-                          <CheckIcon size={16} />
+                          <CheckIcon
+                            fill="var(--color-text-primary)"
+                            size={24}
+                          />
                           <span>+{pkg.includes.length - 4} more</span>
                         </li>
                       )}

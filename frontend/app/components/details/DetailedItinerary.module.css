@@ -19,7 +19,7 @@
 .detailed_itinerary__day_header {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   gap: var(--space-sm);
   margin-bottom: var(--space-sm);
 }

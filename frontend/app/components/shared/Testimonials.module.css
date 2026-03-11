@@ -38,7 +38,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-
+  border: 6px solid var(--color-bg-primary);
   position: relative;
   border-radius: 12px;
   padding: var(--space-md) var(--space-md) var(--space-md) 60px;
@@ -58,6 +58,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-extrabold);
 }
 
 .testimonials__meta {

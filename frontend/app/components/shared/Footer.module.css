@@ -37,7 +37,7 @@
 
 .footer__linksWrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-xl);
 }
 
@@ -103,14 +103,26 @@
   color: var(--color-text-inverse);
 }
 
-/* ===============================
-   BACKGROUND TEXT
-   =============================== */
-
-/* ===============================
-   RESPONSIVE
-   =============================== */
-
+.getintouch_heading {
+  color: var(--color-bg-primary);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-sm);
+  font-weight: var(--font-weight-medium);
+}
+.getintouch_values {
+  font-size: var(--font-size-lg);
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s ease;
+  margin-bottom: var(--space-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+.getintouch_valuesIcon {
+  min-width: 34px;
+  max-width: 34px;
+  height: 34px;
+}
 @media (max-width: 1024px) {
   .footer__top {
     grid-template-columns: 1fr;

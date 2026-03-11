@@ -1,35 +1,11 @@
-import type { StaticImageData } from "next/image";
 import styles from "./TrustSection.module.css";
 import AppImage from "@/components/shared/AppImage";
 import SectionTitle from "../shared/SectionTitle";
 
-import { ComponentType, SVGProps } from "react";
+// Import internal data
+import { trustItems, centerImage } from "@/data/trustData";
 
-export type TrustIcon =
-  | StaticImageData
-  | ComponentType<SVGProps<SVGSVGElement>>;
-
-export interface TrustItem {
-  id: number;
-  title: string;
-  description: string;
-  icon: string;
-}
-
-export interface TrustSectionProps {
-  trustItems: TrustItem[];
-
-  centerImage: {
-    src: string;
-    alt: string;
-  };
-}
-
-export default function TrustSection({
-  trustItems,
-
-  centerImage,
-}: TrustSectionProps) {
+export default function TrustSection() {
   return (
     <section className={styles["trust"]}>
       <div className="container">

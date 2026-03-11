@@ -236,3 +236,280 @@ export const ProfileIcon = ({
     </svg>
   );
 };
+
+export const MailIcon = ({
+  className,
+  fill = "#fff",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={typeof size === "number" ? `${size}px` : size}
+      width={typeof size === "number" ? `${size}px` : size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="M260-292q-26 0-43-17t-17-43v-388q0-26 17-43t43-17h548q26 0 43 17t17 43v388q0 26-17 43t-43 17H260Zm274-216L228-740v388q0 14 9 23t23 9h548q14 0 23-9t9-23v-388L534-508Zm0-34 296-224q-3-3-6.5-4.5T814-772H254q-5 0-10 2.5t-8 5.5l298 222ZM152-184q-26 0-43-17t-17-43v-344h28v344q0 14 9 23t23 9h570v28H152Zm688-556q0-6-3.5-14.5T830-766q-3-3-6.5-4.5T814-772H254q-5 0-10 2.5t-8 5.5q-3 3-5.5 11t-2.5 13v-32h612v32Z" />
+    </svg>
+  );
+};
+
+export const CallIcon = ({
+  className,
+  fill = "#fff",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={typeof size === "number" ? `${size}px` : size}
+      width={typeof size === "number" ? `${size}px` : size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="M764-508q-9-112-87.5-190.5T486-786v-28q62 4 116 29t95 66q41 41 66 95t29 116h-28Zm-160 0q-9-45-41-77.5T486-626v-28q57 8 97 48.5t49 97.5h-28Zm141 336q-94 0-195.5-49.5T359-360q-88-89-137.5-190T172-745q0-18 12-30.5t30-12.5h80q17 0 29.5 10.5T341-750l18 82q3 17-1 30t-14 21l-85 77q26 47 56.5 86.5T380-379q36 36 78 67t93 59l83-85q10-11 21.5-14t26.5-1l68 14q17 4 27.5 17t10.5 30v78q0 18-12.5 30T745-172ZM246-566l80-72q5-4 6.5-11t-.5-13l-18-82q-2-8-7-12t-13-4h-80q-6 0-10 4t-4 10q0 41 12.5 87t33.5 93Zm332 326q41 21 88.5 30.5T746-200q6 0 10-4t4-10v-78q0-8-4-13t-12-7l-68-14q-6-2-10.5-.5T656-320l-78 80ZM246-566Zm332 326Z" />
+    </svg>
+  );
+};
+
+export const ChatIcon = ({
+  className,
+  fill = "#fff",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={typeof size === "number" ? `${size}px` : size}
+      width={typeof size === "number" ? `${size}px` : size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="M266-426h268v-28H266v28Zm0-120h428v-28H266v28Zm0-120h428v-28H266v28ZM132-180v-588q0-26 17-43t43-17h576q26 0 43 17t17 43v416q0 26-17 43t-43 17H244L132-180Zm100-140h536q12 0 22-10t10-22v-416q0-12-10-22t-22-10H192q-12 0-22 10t-10 22v520l72-72Zm-72 0v-480 480Z" />
+    </svg>
+  );
+};
+
+export const FacebookIcon = ({
+  className,
+  fill = "currentColor",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={fill}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      {...props}
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M16 8h-2a2 2 0 0 0-2 2v10" />
+      <line x1="10" y1="14" x2="16" y2="14" />
+    </svg>
+  );
+};
+
+export const XIcon = ({
+  className,
+  fill = "currentColor",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={fill}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      {...props}
+    >
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+};
+
+export const LinkedInIcon = ({
+  className,
+  fill = "currentColor",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={fill}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      {...props}
+    >
+      <rect x="2" y="2" width="20" height="20" rx="4" ry="4" />
+      <path d="M8 11v5" />
+      <path d="M8 8v0" />
+      <circle cx="8" cy="8" r="0.5" fill="currentColor" />
+      <path d="M12 16v-5" />
+      <path d="M16 16v-3a2 2 0 0 0-2-2 2 2 0 0 0-2 2" />
+    </svg>
+  );
+};
+
+export const InstagramIcon = ({
+  className,
+  fill = "currentColor",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={fill}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      {...props}
+    >
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="18" cy="6" r="0.5" fill="currentColor" />
+    </svg>
+  );
+};
+
+export const HotelIcon = ({
+  className,
+  fill = "currentColor",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="M92-252v-496h28v348h346v-268h294q44.55 0 76.28 31.72Q868-604.55 868-560v308h-28v-120H120v120H92Z" />
+    </svg>
+  );
+};
+
+export const MealIcon = ({
+  className,
+  fill = "currentColor",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="M282-132v-334q-54-14-82-45.5T172-591v-237h28v223h82v-223h28v223h82v-223h28v237q0 48-28 79.5T310-466v334h-28Zm367 0v-347q-54-19-82-63.5T539-653q0-72 36.5-123.5T663-828q52 0 88.5 51.5T788-653q0 67-28.5 111.5T677-479v347h-28Z" />
+    </svg>
+  );
+};
+
+export const CruiseIcon = ({
+  className,
+  fill = "currentColor",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="m170-446 244-351v351H170Zm53-28h163v-234L223-474Zm313 28q10-30 20-91.5T566-660q0-69-10-127.5T537-883q56 30 104 75t84 101.5Q761-650 784-584t29 138H536Zm37-28h208q-14-105-67.5-196.5T579-824q7 40 11 83t4 81q0 45-6 93t-15 93ZM360-194q-30 0-61-10t-59-36q-8 8-18 16.5T203-211q-31-24-53-55.5T114-334h732q-14 36-36 67.5T757-211q-9-4-19-12.5T720-240q-28 26-59 36t-61 10q-30 0-61.5-10T480-241q-27 27-58.5 37T360-194Z" />
+    </svg>
+  );
+};
+
+export const SightseeingIcon = ({
+  className,
+  fill = "currentColor",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="M480-300q59 0 99.5-40.5T620-440q0-59-40.5-99.5T480-580q-59 0-99.5 40.5T340-440q0 59 40.5 99.5T480-300Zm0-28q-48 0-80-32t-32-80q0-48 32-80t80-32q48 0 80 32t32 80q0 48-32 80t-80 32ZM192-172q-26 0-43-17t-17-43v-416q0-26 17-43t43-17h116l74-80h196l74 80h116q26 0 43 17t17 43v416q0 26-17 43t-43 17H192Z" />
+    </svg>
+  );
+};
+
+export const TransportIcon = ({
+  className,
+  fill = "currentColor",
+  size = 24,
+  ...props
+}: IconProps) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 -960 960 960"
+      fill={fill}
+      className={className}
+      {...props}
+    >
+      <path d="M204-316.75Q181-339.5 181-372h-76v-308q0-11.55 8.22-19.78Q121.45-708 133-708h512l210 194v142h-60q0 32.5-22.75 55.25T717-294q-32.5 0-55.25-22.75T639-372H337q0 32-23 55t-55 23q-32 0-55-22.75ZM561-530h236L635-680h-74v150Zm-214 0h186v-150H347v150Zm-214 0h186v-150H133v150Z" />
+    </svg>
+  );
+};
