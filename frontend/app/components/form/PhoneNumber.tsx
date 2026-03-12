@@ -1,76 +1,55 @@
+// PhoneNumber.tsx
+"use client";
+
 import React from "react";
+import { UseFormRegister, FieldError } from "react-hook-form";
+import Input from "@/components/form/Input";
 import CountryCode from "@/components/form/CountryCode";
-import Input from "@/components/form/Input"; // Changed from TextInput to Input
-import { useForm } from "react-hook-form";
-import styles from "./PhoneNumber.module.css"; // Create this CSS module
+import styles from "./PhoneNumber.module.css";
 
-interface SelectedOption {
-  value: string;
+interface PhoneNumberProps {
   label: string;
+  register: UseFormRegister<any>;
+  isdError?: FieldError;
+  phoneError?: FieldError;
+  onCountryCodeChange: (option: any) => void;
+  isdValue?: any;
 }
 
-interface PhoneNumberInputProps {
-  label: string;
-  onCountryCodeChange: (selectedOption: any) => void;
-  register: any;
-  error: any;
-  numberRegName?: string;
-  hideError?: boolean;
-}
-
-const PhoneNumber: React.FC<PhoneNumberInputProps> = ({
+const PhoneNumber: React.FC<PhoneNumberProps> = ({
   label,
-  onCountryCodeChange,
   register,
-  error,
-  numberRegName = "phone_number",
-  hideError = false,
+  isdError,
+  phoneError,
+  onCountryCodeChange,
+  isdValue,
 }) => {
   return (
-    <div
-      className={`${styles.phoneNumber} ${
-        error?.message ? styles["phoneNumber--error"] : ""
-      }`}
-    >
-      <label className={styles.phoneNumber__label}>{label}</label>
-
-      <div className={styles.phoneNumber__wrapper}>
+    <>
+      <label className="form_label__shared">
+        {label} <span className="required_mark">*</span>
+      </label>
+      <div className={styles.phoneNumber}>
         <div className={styles.phoneNumber__countryCode}>
           <CountryCode
-            label=""
-            register={register("isd", { required: true })}
-            isMulti={false}
-            name="countryCode"
-            placeholder="Country Code"
-            onChange={(selectedOption) => onCountryCodeChange(selectedOption)}
+            value={isdValue}
+            onChange={onCountryCodeChange}
+            placeholder="Code"
           />
+          {isdError && <span className="input_error">{isdError.message}</span>}
         </div>
-
-        <div className={styles.phoneNumber__input}>
+        <div className={styles.phoneNumber__number}>
           <Input
+            {...register("phoneNumber")}
             type="tel"
             placeholder="Phone number"
-            wrapperClass={styles["phoneNumber__input-field"]}
-            {...register(numberRegName, {
-              required: "Phone number is required",
-              pattern: {
-                value: /^[6-9]\d{9}$/,
-                message:
-                  "Please enter a valid 10-digit phone number starting with 6-9",
-              },
-              maxLength: {
-                value: 10,
-                message: "Phone number cannot exceed 10 digits",
-              },
-            })}
           />
+          {phoneError && (
+            <span className="input_error">{phoneError.message}</span>
+          )}
         </div>
       </div>
-
-      {!hideError && error?.message && (
-        <p className={styles.phoneNumber__error}>{error.message}</p>
-      )}
-    </div>
+    </>
   );
 };
 

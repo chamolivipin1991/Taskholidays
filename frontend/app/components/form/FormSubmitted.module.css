@@ -1,0 +1,30 @@
+.form_submitted {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.form_submitted__icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  margin-bottom: var(--space-lg);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-success);
+}
+
+.form_submitted__heading {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-xs);
+  color: var(--color-success);
+}
+
+.form_submitted__subheading {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+}

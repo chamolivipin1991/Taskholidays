@@ -1,65 +1,91 @@
+// CountryCode.tsx
+"use client";
+
 import React from "react";
 import Select from "react-select";
-import { useForm, UseFormRegister, FieldValues } from "react-hook-form";
-
-import { defaultCountry, countryCodes } from "@/utils/countrycode";
+import { countryCodes, defaultCountry } from "@/utils/countrycode";
 import styles from "./CountryCode.module.css";
 
-interface CountryCodeDropdownProps {
+interface CountryCodeProps {
+  value?: any;
+  onChange: (option: any) => void;
+  placeholder?: string;
   label?: string;
-  register: any;
-  name: string;
-  isMulti: boolean;
-  onChange: (selectedOption: any) => void;
-  placeholder: string;
-  [key: string]: any; // For any additional props
 }
 
-const CountryCode: React.FC<CountryCodeDropdownProps> = ({
-  label,
-  register,
-  name,
-  isMulti,
+const CountryCode: React.FC<CountryCodeProps> = ({
+  value,
   onChange,
-  placeholder,
-  ...rest
+  placeholder = "Code",
+  label,
 }) => {
-  const formatOptionLabel = ({
-    value,
-    name,
-    emoji,
-  }: {
-    value: string;
-    name: string;
-    emoji: any;
-  }) => (
-    <div className={styles.countryCode__option}>
-      <span className={styles["countryCode__option-img"]}>{emoji}</span>
-      <div className={styles["countryCode__option-isd"]}>{value}</div>
-      <div className={styles["countryCode__option-name"]}>{name}</div>
+  const formatOptionLabel = ({ value, name, emoji }: any) => (
+    <div className={styles.option}>
+      <span className={styles.option__flag}>{emoji}</span>
+      <span className={styles.option__isd}>{value}</span>
+      <span className={styles.option__name}>{name}</span>
     </div>
   );
+
+  const customStyles = {
+    control: (base: any) => ({
+      ...base,
+      minHeight: 40,
+      borderColor: "#d1d5db",
+    }),
+
+    valueContainer: (base: any) => ({
+      ...base,
+      padding: "0 8px",
+      display: "flex",
+      alignItems: "center",
+    }),
+
+    menu: (base: any) => ({
+      ...base,
+      width: 260, // increase dropdown width
+    }),
+
+    input: () => ({
+      display: "none",
+    }),
+
+    singleValue: (base: any) => ({
+      ...base,
+      margin: 0,
+      display: "flex",
+      alignItems: "center",
+    }),
+
+    menuPortal: (base: any) => ({
+      ...base,
+      zIndex: 9999,
+    }),
+  };
 
   return (
     <div className={styles.countryCode}>
       {label && <label className={styles.countryCode__label}>{label}</label>}
       <Select
-        classNamePrefix="taskholidays"
-        formatOptionLabel={formatOptionLabel}
+        classNamePrefix="select"
         options={countryCodes}
         defaultValue={defaultCountry}
-        isMulti={isMulti}
-        name={name}
-        isSearchable={true}
+        value={value}
         onChange={onChange}
+        isSearchable={false}
         placeholder={placeholder}
-        styles={{ menuPortal: (base) => ({ ...base, zIndex: 111 }) }}
-        id="long-value-select"
-        instanceId="long-value-select"
-        menuPortalTarget={
-          typeof document !== "undefined" ? document.body : undefined
-        }
-        {...rest}
+        formatOptionLabel={formatOptionLabel}
+        menuPortalTarget={typeof window !== "undefined" ? document.body : null}
+        menuPosition="fixed"
+        styles={customStyles}
+        components={{
+          SingleValue: ({ data }: any) => (
+            <div className={styles.singleValue}>
+              <span className={styles.singleValue__flag}>{data.emoji}</span>
+              <span className={styles.singleValue__isd}>{data.value}</span>
+            </div>
+          ),
+        }}
       />
     </div>
   );

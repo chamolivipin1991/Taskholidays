@@ -36,6 +36,9 @@
 }
 
 @media screen and (max-width: 768px) {
+  .sectionTitle {
+    margin: 0 auto 1rem;
+  }
   .sectionTitle__bgText {
     font-size: 3.5rem;
   }

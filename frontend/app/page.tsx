@@ -10,9 +10,12 @@ import { CalendarIcon } from "@/assets/icons/icons";
 import Testimonials from "@/components/shared/Testimonials";
 import bannerImg from "@/assets/images/home_banner.jpg";
 
+import RequestCallbackModal from "./components/form/RequestCallbackModal";
+
 export default function Home() {
   return (
     <>
+      <RequestCallbackModal />
       <Header
         navItems={[
           { text: "Destinations", id: "featuredDestinations" },

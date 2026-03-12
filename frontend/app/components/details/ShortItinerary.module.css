@@ -41,3 +41,12 @@
   border-radius: var(--space-md);
   font-size: var(--font-size-xs);
 }
+
+@media screen and (max-width: 768px) {
+  .short_itinerary__item {
+    flex-direction: column;
+  }
+  .short_itinerary__badge {
+    margin-top: var(--space-xs);
+  }
+}

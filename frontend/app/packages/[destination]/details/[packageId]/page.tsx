@@ -108,6 +108,8 @@ export default async function PackageDetailsPage({
               includes={packageIncludes}
               seasons={destination.bestSeason}
               tags={destination.tags}
+              destination={destination.title}
+              duration={pkg.duration}
             />
             {pkg?.cruise?.length ? (
               <CruiseIncluded cruise={pkg.cruise || []} />

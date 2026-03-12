@@ -1,0 +1,17 @@
+.requestCallback {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.requestCallback__field {
+  width: 100%;
+}
+
+.requestCallback__actions {
+  margin-top: 8px;
+}
+
+.requestCallback__actions button {
+  width: 100%;
+}

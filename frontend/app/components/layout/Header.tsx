@@ -148,19 +148,21 @@ const Header = ({
           />
 
           {/* Mobile Menu Button */}
-          <Button
-            variant="simple"
-            text=""
-            onClick={() => setIsOpen(true)}
-            className={styles.header__menuButton}
-            icon={
-              <BurgerMenuIcon
-                className={styles.header__ctaIcon}
-                fill="var(--color-brand-primary)"
-                size={48}
-              />
-            }
-          />
+          {navItems?.length ? (
+            <Button
+              variant="simple"
+              text=""
+              onClick={() => setIsOpen(true)}
+              className={styles.header__menuButton}
+              icon={
+                <BurgerMenuIcon
+                  className={styles.header__ctaIcon}
+                  fill="var(--color-brand-primary)"
+                  size={48}
+                />
+              }
+            />
+          ) : null}
         </div>
       </header>
 

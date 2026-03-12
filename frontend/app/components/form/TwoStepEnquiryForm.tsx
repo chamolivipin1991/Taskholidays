@@ -44,8 +44,9 @@ export default function TwoStepEnquiryForm() {
       >
         <div className={styles.modalContent}>
           {selectedDates && (
-            <p className={styles.modalContent__dates}>
-              Travel month:{" "}
+            <p className="modal_notification">
+              We will get back to you with the best handpicked travel packages
+              for:{" "}
               <strong>
                 {selectedDates.month.label} {selectedDates.year.label}
               </strong>

@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AppModal from "@/components/shared/AppModal";
 import EnquiryForm, {
   type EnquiryFormValues,
 } from "@/components/form/EnquiryForm";
+import FormSubmitted from "@/components/form/FormSubmitted";
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -14,6 +15,8 @@ interface EnquiryModalProps {
   onSubmit: (data: EnquiryFormValues) => void;
   showDateFields?: boolean;
   size?: "small" | "medium" | "large";
+  successHeading?: string;
+  successSubheading?: string;
 }
 
 const EnquiryModal: React.FC<EnquiryModalProps> = ({
@@ -24,23 +27,45 @@ const EnquiryModal: React.FC<EnquiryModalProps> = ({
   onSubmit,
   showDateFields = true,
   size = "medium",
+  successHeading,
+  successSubheading,
 }) => {
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  // Reset success state when modal closes
+  useEffect(() => {
+    if (!isOpen) {
+      setShowSuccess(false);
+    }
+  }, [isOpen]);
+
   const handleFormSubmit = (data: EnquiryFormValues) => {
     onSubmit(data);
-    onClose(); // Close modal after submission
+    setShowSuccess(true); // switch to success view
+  };
+
+  const handleSuccessClose = () => {
+    onClose(); // close the modal
   };
 
   return (
     <AppModal isOpen={isOpen} onClose={onClose} title={title} size={size}>
-      <EnquiryForm
-        initialValues={initialValues}
-        onSubmit={handleFormSubmit}
-        showDateFields={showDateFields}
-        showPersonalFields={true}
-        submitButtonText="Find My Perfect Trip →"
-        hidePrivacyText={false}
-        isPackageEnquiry={!!initialValues?.packageDuration}
-      />
+      {showSuccess ? (
+        <FormSubmitted
+          heading={successHeading}
+          subheading={successSubheading}
+        />
+      ) : (
+        <EnquiryForm
+          initialValues={initialValues}
+          onSubmit={handleFormSubmit}
+          showDateFields={showDateFields}
+          showPersonalFields={true}
+          submitButtonText="Find My Perfect Trip →"
+          hidePrivacyText={false}
+          isPackageEnquiry={!!initialValues?.packageDuration}
+        />
+      )}
     </AppModal>
   );
 };

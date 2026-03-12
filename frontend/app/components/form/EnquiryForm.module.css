@@ -11,16 +11,15 @@
 }
 
 .enquiryForm__dateFields {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-md);
-  margin-bottom: var(--space-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .enquiryForm__fields {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
 }
 
 .enquiryForm__grid {
@@ -31,15 +30,17 @@
 
 .enquiryForm__field {
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-2xs);
+  margin-bottom: var(--space-md);
 }
 
 .enquiryForm__label {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-secondary);
+  margin-bottom: var(--space-2xs);
 }
 
 .enquiryForm__error {
@@ -49,7 +50,7 @@
 }
 
 .enquiryForm__actions {
-  margin-top: var(--space-xl);
+  margin-top: var(--space-xs);
   text-align: center;
 }
 

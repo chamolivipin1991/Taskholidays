@@ -135,7 +135,7 @@
 
 @media (max-width: 768px) {
   .footer__linksWrapper {
-    grid-template-columns: 0;
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .footer__bottom {

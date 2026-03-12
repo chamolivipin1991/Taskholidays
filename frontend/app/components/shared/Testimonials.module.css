@@ -87,8 +87,11 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .testimonials__grid {
     grid-template-columns: 1fr;
+  }
+  .testimonials__card {
+    padding: 0 0 0 35px;
   }
 }

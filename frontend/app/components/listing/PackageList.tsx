@@ -55,7 +55,7 @@ export default function PackageList({ packages, destinationTitle }: Props) {
   const handleEnquiry = (pkg: UIPackage) => {
     openEnquiry({
       destination: { value: pkg.destinationSlug, label: pkg.location },
-      packageDuration: pkg.duration,
+      packageDuration: { value: pkg.duration, label: pkg.duration },
     });
   };
 
@@ -103,28 +103,30 @@ export default function PackageList({ packages, destinationTitle }: Props) {
                     <p className={styles.packageList__description}>
                       {pkg.description}
                     </p>
-                    <ul className={styles.packageList__includes}>
-                      {pkg.includes.map((item, i) => {
-                        const IconComponent =
-                          inclusionIconMap[item] || CheckIcon;
-                        return (
-                          <li
-                            key={i}
-                            className={styles.packageList__includesItem}
-                          >
-                            <IconComponent
-                              fill="var(--color-brand-primary)"
-                              size={22}
-                            />
-                            <span
-                              className={styles.packageList__includesItemText}
+                    <div className={styles.packageList__includesWrapper}>
+                      <ul className={styles.packageList__includes}>
+                        {pkg.includes.map((item, i) => {
+                          const IconComponent =
+                            inclusionIconMap[item] || CheckIcon;
+                          return (
+                            <li
+                              key={i}
+                              className={styles.packageList__includesItem}
                             >
-                              {item}
-                            </span>
-                          </li>
-                        );
-                      })}
-                    </ul>
+                              <IconComponent
+                                fill="var(--color-brand-primary)"
+                                size={22}
+                              />
+                              <span
+                                className={styles.packageList__includesItemText}
+                              >
+                                {item}
+                              </span>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
                   </div>
                   <div className={styles.packageList__footer}>
                     <div>

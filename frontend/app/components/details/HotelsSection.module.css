@@ -34,4 +34,5 @@
   font-size: var(--font-size-sm);
   color: var(--color-brand-accent);
   text-decoration: underline;
+  white-space: nowrap;
 }

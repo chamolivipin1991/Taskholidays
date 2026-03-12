@@ -42,3 +42,13 @@
   color: var(--color-error);
   border: 1px solid var(--color-error);
 }
+
+@media screen and (max-width: 768px) {
+  .package_hero__title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+  }
+  .package_hero {
+    margin: var(--space-lg) auto var(--space-xs);
+  }
+}

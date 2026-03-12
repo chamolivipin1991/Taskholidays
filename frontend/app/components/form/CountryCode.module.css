@@ -1,119 +1,51 @@
 .countryCode {
-  min-width: 125px;
-  flex: 0.3;
+  min-width: 120px;
 }
 
 .countryCode__label {
-  color: var(--color-text-primary);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-medium);
-  line-height: 100%;
-  margin-bottom: 12px;
   display: block;
-}
-
-/* React-Select Overrides */
-.countryCode :global(.taskholidays__control) {
-  border: 1px solid var(--color-border-primary);
-  border-radius: 8px;
-  min-height: 50.8px;
-}
-
-.countryCode :global(.taskholidays__control:hover) {
-  border-color: var(--color-border-primary);
-}
-
-.countryCode :global(.taskholidays__control--is-focused) {
-  border-color: var(--color-brand-primary);
-  box-shadow: 0 0 0 1px var(--color-brand-primary);
-}
-
-.countryCode
-  :global(.taskholidays__indicator.taskholidays__dropdown-indicator) {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
   color: var(--color-text-primary);
 }
 
-.countryCode :global(.taskholidays__single-value) {
+.countryCode__control {
+  /* react-select overrides if needed */
+}
+
+/* Custom option with flag, ISD, country name */
+.option {
   display: flex;
   align-items: center;
+  gap: 8px;
 }
 
-.countryCode :global(.taskholidays__single-value .option_name) {
-  display: none;
-}
-
-.countryCode :global(.taskholidays__menu) {
-  min-width: 240px;
-  z-index: 111;
-}
-
-.countryCode :global(.taskholidays__menu-list) {
-  padding: var(--space-2xs);
-}
-
-.countryCode :global(.taskholidays__option) {
-  padding: var(--space-2xs) var(--space-xs);
-  cursor: pointer;
-}
-
-.countryCode :global(.taskholidays__option--is-focused) {
-  background-color: var(--color-bg-muted);
-}
-
-.countryCode :global(.taskholidays__option--is-selected) {
-  background-color: var(--color-bg-secondary);
-}
-
-/* Custom Option Styling */
-.countryCode__option {
-  display: flex;
-  align-items: center;
-}
-
-.countryCode__option-img {
-  width: 20px;
+.option__flag {
   font-size: 20px;
-  margin-right: 8px;
 }
 
-.countryCode__option-isd {
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-md);
-  line-height: 155.3%;
-  color: rgba(22, 22, 22, 0.5);
-  margin-right: 10px;
+.option__isd {
+  font-weight: 500;
+  color: #666;
 }
 
-.countryCode__option-name {
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-md);
-  line-height: 155.3%;
-  color: rgba(22, 22, 22, 0.5);
+.option__name {
+  color: #333;
+  font-size: 14px;
 }
 
-@media screen and (max-width: 767px) {
-  .countryCode {
-    min-width: auto;
-  }
+/* For the selected value display */
+.singleValue {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 
-  .countryCode :global(.taskholidays__control) {
-    min-height: 44px;
-  }
+.singleValue__flag {
+  font-size: 18px;
+}
 
-  .countryCode__option-img {
-    width: 16px;
-    font-size: 16px;
-  }
-
-  .countryCode__option-isd {
-    font-size: var(--font-size-md);
-    line-height: 24px;
-    color: var(--color-text-primary);
-  }
-
-  .countryCode__option-name {
-    font-size: var(--font-size-md);
-    line-height: 24px;
-    color: var(--color-text-primary);
-  }
+.singleValue__isd {
+  font-weight: 500;
 }

@@ -114,7 +114,7 @@ export default function PackagesSection() {
   const handleBookNow = (pkg: UIPackage) => {
     openEnquiry({
       destination: { value: pkg.destinationSlug, label: pkg.location },
-      packageDuration: pkg.duration,
+      packageDuration: { value: pkg.duration, label: pkg.duration },
     });
   };
 

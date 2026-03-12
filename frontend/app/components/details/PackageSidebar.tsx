@@ -11,7 +11,13 @@ import {
 
 import Button from "@/components/form/Button";
 
-export default function PackageSidebar({ includes, seasons, tags }: any) {
+export default function PackageSidebar({
+  includes,
+  seasons,
+  tags,
+  destination,
+  duration,
+}: any) {
   const handleFormSubmit = (data: EnquiryFormValues) => {
     console.log("Form submitted from header:", data);
     // Handle API submission
@@ -37,6 +43,16 @@ export default function PackageSidebar({ includes, seasons, tags }: any) {
           variant="dark"
           text="Plan Your Trip"
           className={styles.header__cta}
+          initialValues={{
+            destination: {
+              label: destination,
+              value: destination.toLowerCase(),
+            },
+            packageDuration: {
+              label: duration,
+              value: duration,
+            },
+          }}
           icon={
             <ArrowIcon
               className={styles.header__ctaIcon}

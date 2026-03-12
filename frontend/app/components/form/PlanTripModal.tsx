@@ -17,7 +17,7 @@ interface PlanTripModalProps extends Omit<ButtonProps, "onClick"> {
 
 const PlanTripModal: React.FC<PlanTripModalProps> = ({
   modalTitle = "Plan Your Trip",
-  initialValues = {}, // 👈 default to empty object
+  initialValues = {},
   onFormSubmit,
   showDateFields = true,
   modalSize = "medium",
@@ -27,12 +27,12 @@ const PlanTripModal: React.FC<PlanTripModalProps> = ({
   const modal = useEnquiryModal();
 
   const handleOpen = () => {
-    modal.openEnquiry(initialValues); // now always an object
+    modal.openEnquiry(initialValues);
   };
 
   const handleSubmit = (data: EnquiryFormValues) => {
     onFormSubmit(data);
-    modal.closeEnquiry();
+    // Do NOT close the modal here – EnquiryModal will show success message
   };
 
   return (
