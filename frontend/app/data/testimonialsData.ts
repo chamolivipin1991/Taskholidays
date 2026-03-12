@@ -27,7 +27,7 @@ export const testimonialsData: Testimonial[] = [
     message: "Best tour planner highly recommend @thank team Task Holidays",
     name: "Mahesh Lamba",
     role: "Travel Enthusiast, India",
-    avatar: "/images/reviews/maheshlamba.png",
+    avatar: "",
   },
   {
     rating: 5,

@@ -22,15 +22,15 @@ export const destinationOptions = [
 ];
 
 const GOOGLE_FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLScoom94uvndvGCcBHqN27XAmh4zJDJedvlD9A0XPX6TQ1ZObA/formResponse";
+  "https://docs.google.com/forms/d/1_UivsMGURIhbN18Y-s59VN6r6ZbvOKF7DGISLUVqFXg/formResponse";
 const FIELD_IDS = {
-  month: "entry.2062927004",
-  year: "entry.620996789",
-  fullName: "entry.1481996221",
-  phoneNumber: "entry.1544969566",
-  email: "entry.664913777",
-  destination: "entry.1460319458",
-  packageDuration: "entry.2061665803",
+  month: "entry.1155163316",
+  year: "entry.1704462527",
+  fullName: "entry.1759770571",
+  phoneNumber: "entry.84340847",
+  email: "entry.1708539533",
+  destination: "entry.2138259213",
+  packageDuration: "entry.1229537463",
 };
 
 export const enquiryFormSchema = z.object({

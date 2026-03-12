@@ -29,10 +29,10 @@ const requestCallbackSchema = z.object({
 type RequestCallBackValues = z.infer<typeof requestCallbackSchema>;
 
 const GOOGLE_FORM_URL =
-  "https://docs.google.com/forms/d/1JW6iy9K2h3n3hdgmDwPTPnL9i97ANR7ndyKEweZ4-hI/formResponse";
+  "https://docs.google.com/forms/d/1ogl4X6QNH4LBxGRFSk8c3laFvFf--us-5D2FEmqMabA/formResponse";
 const FIELD_IDS = {
-  phoneNumber: "entry.650046756",
-  destination: "entry.902063439",
+  phoneNumber: "entry.1689638714",
+  destination: "entry.341479327",
 };
 
 interface RequestCallBackProps {

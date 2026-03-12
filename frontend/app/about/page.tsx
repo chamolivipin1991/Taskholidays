@@ -23,7 +23,7 @@ const AboutUs = () => {
     <>
       <Header navItems={[]} isRelative={true} />
       <main className={` section_white__spacing`}>
-        <section>
+        <section className={styles.about_us__section}>
           <div className={` container `}>
             <h1 className={styles.aboutus_heading}>About Us</h1>
             <p className={styles.aboutus_content}>

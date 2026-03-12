@@ -35,7 +35,6 @@
   position: relative;
 }
 .whatsapp_button__icon:hover {
-  background-color: var(--color-success);
   transform: scale(1.1);
 }
 .whatsapp_button__text {
