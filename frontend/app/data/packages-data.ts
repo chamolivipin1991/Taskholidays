@@ -11,8 +11,22 @@ export const packagesdata: PackagesData[] = [
       folder: "andaman",
       alt: "Turquoise waters, white sandy beaches, and tropical island paradise.",
     },
-    bestSeason: ["October", "November", "December", "January"],
-    tags: ["beach", "honeymoon", "family"],
+    bestSeason: [
+      "November",
+      "December",
+      "January",
+      "February",
+      "March",
+      "April",
+    ],
+    tags: [
+      "beach",
+      "honeymoon",
+      "scuba diving",
+      "island",
+      "romantic",
+      "adventure",
+    ],
     packages: [
       {
         packageId: "andaman-4n-5d",
@@ -520,8 +534,16 @@ export const packagesdata: PackagesData[] = [
       folder: "bali",
       alt: "Sacred temples, lush landscapes, and unforgettable island culture.",
     },
-    bestSeason: ["October", "November", "December", "January"],
-    tags: ["beach", "honeymoon", "family"],
+    bestSeason: [
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+    ],
+    tags: ["beach", "honeymoon", "temples", "island", "nightlife", "adventure"],
     packages: [
       {
         packageId: "bali-4n-5d-east-bali",
@@ -929,8 +951,15 @@ export const packagesdata: PackagesData[] = [
       folder: "ladakh",
       alt: "Snow-capped mountains, high-altitude adventures, and breathtaking landscapes.",
     },
-    bestSeason: ["October", "November", "December", "January"],
-    tags: ["beach", "honeymoon", "family"],
+    bestSeason: ["May", "June", "July", "August", "September"],
+    tags: [
+      "adventure",
+      "bike trip",
+      "mountains",
+      "road trip",
+      "trekking",
+      "photography",
+    ],
     packages: [
       {
         packageId: "ladakh-4n-5d",
@@ -1395,8 +1424,15 @@ export const packagesdata: PackagesData[] = [
       folder: "rajasthan",
       alt: "Royal palaces, vibrant culture, and timeless desert heritage.",
     },
-    bestSeason: ["October", "November", "December", "January"],
-    tags: ["beach", "honeymoon", "family"],
+    bestSeason: [
+      "October",
+      "November",
+      "December",
+      "January",
+      "February",
+      "March",
+    ],
+    tags: ["heritage", "forts", "desert safari", "culture", "royal", "family"],
     packages: [
       {
         packageId: "rajasthan-4n-5d",
@@ -1863,8 +1899,22 @@ export const packagesdata: PackagesData[] = [
       folder: "kerala",
       alt: "Lush greenery, tranquil backwaters, and nature’s perfect escape.",
     },
-    bestSeason: ["October", "November", "December", "January"],
-    tags: ["beach", "honeymoon", "family"],
+    bestSeason: [
+      "October",
+      "November",
+      "December",
+      "January",
+      "February",
+      "March",
+    ],
+    tags: [
+      "backwaters",
+      "nature",
+      "honeymoon",
+      "family",
+      "houseboat",
+      "hill station",
+    ],
     packages: [
       {
         packageId: "kerala-4n-5d",
@@ -2618,8 +2668,15 @@ export const packagesdata: PackagesData[] = [
       folder: "dubai",
       alt: "Luxury skyline, desert adventures, and world-class experiences.",
     },
-    bestSeason: ["October", "November", "December", "January"],
-    tags: ["beach", "honeymoon", "family"],
+    bestSeason: ["November", "December", "January", "February", "March"],
+    tags: [
+      "luxury",
+      "shopping",
+      "desert safari",
+      "family",
+      "nightlife",
+      "modern city",
+    ],
     packages: [
       {
         packageId: "dubai-5n-6d",

@@ -71,14 +71,14 @@ const Footer = () => {
                 <span className={styles.getintouch_valuesIcon}>
                   <MailIcon fill="var(--color-bg-primary)" size={34} />
                 </span>{" "}
-                example@gmail.com
+                contact@taskholidays.com
               </p>
-              <p className={styles.getintouch_values}>
+              {/* <p className={styles.getintouch_values}>
                 <span className={styles.getintouch_valuesIcon}>
                   <CallIcon fill="var(--color-bg-primary)" size={34} />
                 </span>{" "}
                 8888888888
-              </p>
+              </p> */}
 
               <SocialConnect />
             </div>

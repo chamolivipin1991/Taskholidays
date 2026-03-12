@@ -146,7 +146,7 @@
 
 .gallery__modalNav___prev {
   left: 20px;
-  transform: rotate(180deg);
+  transform: translateY(-50%) rotate(180deg);
 }
 
 .gallery__modalNav___next {
