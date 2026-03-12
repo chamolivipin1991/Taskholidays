@@ -77,9 +77,7 @@ export default function PlanYourTripForm() {
           type="text"
         />
         {errors.fullName && (
-          <span className={styles["trip-form__error"]}>
-            {errors.fullName.message}
-          </span>
+          <span className="form__error">{errors.fullName.message}</span>
         )}
       </div>
 
@@ -93,9 +91,7 @@ export default function PlanYourTripForm() {
             type="tel"
           />
           {errors.contactNumber && (
-            <span className={styles["trip-form__error"]}>
-              {errors.contactNumber.message}
-            </span>
+            <span className="form__error">{errors.contactNumber.message}</span>
           )}
         </div>
 
@@ -107,9 +103,7 @@ export default function PlanYourTripForm() {
             type="email"
           />
           {errors.email && (
-            <span className={styles["trip-form__error"]}>
-              {errors.email.message}
-            </span>
+            <span className="form__error">{errors.email.message}</span>
           )}
         </div>
       </div>
@@ -142,9 +136,7 @@ export default function PlanYourTripForm() {
           )}
         />
         {errors.destination && (
-          <span className={styles["trip-form__error"]}>
-            Please select a destination
-          </span>
+          <span className="form__error">Please select a destination</span>
         )}
       </div>
 

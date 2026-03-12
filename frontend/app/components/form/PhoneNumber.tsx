@@ -36,7 +36,7 @@ const PhoneNumber: React.FC<PhoneNumberProps> = ({
             onChange={onCountryCodeChange}
             placeholder="Code"
           />
-          {isdError && <span className="input_error">{isdError.message}</span>}
+          {isdError && <span className="form__error">{isdError.message}</span>}
         </div>
         <div className={styles.phoneNumber__number}>
           <Input
@@ -44,11 +44,9 @@ const PhoneNumber: React.FC<PhoneNumberProps> = ({
             type="tel"
             placeholder="Phone number"
           />
-          {phoneError && (
-            <span className="input_error">{phoneError.message}</span>
-          )}
         </div>
       </div>
+      {phoneError && <span className="form__error">{phoneError.message}</span>}
     </>
   );
 };

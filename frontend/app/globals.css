@@ -246,6 +246,11 @@ select {
   border-radius: var(--space-2xs);
 }
 
+.form__error {
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+  margin-top: var(--space-2xs);
+}
 @media (max-width: 768px) {
   .section_white__spacing {
     padding-top: 2rem;

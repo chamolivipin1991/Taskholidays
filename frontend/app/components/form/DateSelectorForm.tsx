@@ -4,10 +4,20 @@ import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Select from "react-select";
+import { useEffect, useMemo } from "react";
 import { getMonthOptions, getYearOptions } from "@/utils/dateOptions";
-import Button, { ButtonVariant } from "@/components/form/Button"; // Import Button component
+import Button, { ButtonVariant } from "@/components/form/Button";
 import styles from "./DateSelectorForm.module.css";
 import { CheckIcon } from "@/assets/icons/icons";
+
+// Define a type for select options with optional isDisabled
+type SelectOption = { label: string; value: number; isDisabled?: boolean };
+
+// Static list of all months (always enabled by default)
+const ALL_MONTHS: SelectOption[] = Array.from({ length: 12 }, (_, i) => ({
+  label: new Date(0, i).toLocaleString("default", { month: "long" }),
+  value: i + 1,
+}));
 
 // Schema for date selection only
 const dateSelectorSchema = z.object({
@@ -38,12 +48,91 @@ export default function DateSelectorForm({
     control,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<DateSelectorValues>({
     resolver: zodResolver(dateSelectorSchema),
+    mode: "onChange",
   });
 
-  const selectedYear = watch("year")?.value ?? null;
+  const selectedMonth = watch("month");
+  const selectedYear = watch("year");
+
+  // Current date for validation
+  const now = useMemo(() => new Date(), []);
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth() + 1; // months are 0-indexed in JS
+
+  // Generate month options based on selected year
+  const monthOptions = useMemo<SelectOption[]>(() => {
+    if (!selectedYear) {
+      // No year selected → show all months enabled
+      return ALL_MONTHS;
+    }
+
+    const year = selectedYear.value;
+    if (year > currentYear) {
+      // Future year – all months enabled
+      return ALL_MONTHS;
+    } else if (year === currentYear) {
+      // Current year – disable months before current month
+      return ALL_MONTHS.map((m) => ({
+        ...m,
+        isDisabled: m.value < currentMonth,
+      }));
+    } else {
+      // Past year – all months disabled (shouldn't happen if yearOptions are correct)
+      return ALL_MONTHS.map((m) => ({ ...m, isDisabled: true }));
+    }
+  }, [selectedYear, currentYear, currentMonth]);
+
+  // Generate year options based on selected month
+  const yearOptions = useMemo<SelectOption[]>(() => {
+    const baseYears = getYearOptions() as SelectOption[]; // returns current and future years
+    if (!selectedMonth) return baseYears;
+
+    const month = selectedMonth.value;
+    return baseYears.map((y) => {
+      const year = y.value;
+      if (year > currentYear) {
+        return { ...y, isDisabled: false }; // future years always enabled
+      } else if (year === currentYear) {
+        return { ...y, isDisabled: month < currentMonth }; // disable if month is past
+      } else {
+        return { ...y, isDisabled: true }; // past years disabled (shouldn't appear)
+      }
+    });
+  }, [selectedMonth, currentYear, currentMonth]);
+
+  // Reset month if it becomes invalid after year change
+  useEffect(() => {
+    if (selectedMonth && selectedYear) {
+      const year = selectedYear.value;
+      const month = selectedMonth.value;
+      if (
+        year < currentYear ||
+        (year === currentYear && month < currentMonth)
+      ) {
+        setValue("month", undefined as any, { shouldValidate: true });
+      }
+    }
+  }, [selectedMonth, selectedYear, currentYear, currentMonth, setValue]);
+
+  // Reset year if it becomes invalid after month change
+  useEffect(() => {
+    if (selectedMonth && selectedYear) {
+      const year = selectedYear.value;
+      const month = selectedMonth.value;
+      if (
+        year < currentYear ||
+        (year === currentYear && month < currentMonth)
+      ) {
+        setValue("year", undefined as any, { shouldValidate: true });
+      }
+    }
+  }, [selectedMonth, selectedYear, currentYear, currentMonth, setValue]);
+
+  const isSubmitDisabled = !selectedMonth || !selectedYear || isSubmitting;
 
   return (
     <form className={styles.dateSelector} onSubmit={handleSubmit(onSubmit)}>
@@ -56,13 +145,14 @@ export default function DateSelectorForm({
           render={({ field }) => (
             <Select
               {...field}
-              options={getMonthOptions(selectedYear)}
+              options={monthOptions}
               placeholder="Month"
               classNamePrefix="selectMonthYear"
               menuPortalTarget={
                 typeof window !== "undefined" ? document.body : null
               }
               menuPosition="fixed"
+              isOptionDisabled={(option: SelectOption) => !!option.isDisabled}
               styles={{
                 container: (base) => ({
                   ...base,
@@ -73,6 +163,7 @@ export default function DateSelectorForm({
                 control: (base) => ({
                   ...base,
                   width: "100%",
+                  borderColor: errors.month ? "#dc2626" : "#d1d5db",
                 }),
                 menuPortal: (base) => ({
                   ...base,
@@ -89,13 +180,14 @@ export default function DateSelectorForm({
           render={({ field }) => (
             <Select
               {...field}
-              options={getYearOptions()}
+              options={yearOptions}
               placeholder="Year"
               classNamePrefix="selectMonthYear"
               menuPortalTarget={
                 typeof window !== "undefined" ? document.body : null
               }
               menuPosition="fixed"
+              isOptionDisabled={(option: SelectOption) => !!option.isDisabled}
               styles={{
                 container: (base) => ({
                   ...base,
@@ -106,6 +198,7 @@ export default function DateSelectorForm({
                 control: (base) => ({
                   ...base,
                   width: "100%",
+                  borderColor: errors.year ? "#dc2626" : "#d1d5db",
                 }),
                 menuPortal: (base) => ({
                   ...base,
@@ -120,12 +213,9 @@ export default function DateSelectorForm({
           type="submit"
           variant={submitButtonVariant}
           text={submitButtonText}
-          disabled={isSubmitting}
+          disabled={isSubmitDisabled}
           small={true}
           className={styles.dateSelector__submit}
-          // Add icon if needed (example with right arrow)
-          // icon={<ArrowRight size={20} />}
-          // iconPosition="right"
         />
       </div>
 

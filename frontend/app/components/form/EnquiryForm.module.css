@@ -43,12 +43,6 @@
   margin-bottom: var(--space-2xs);
 }
 
-.enquiryForm__error {
-  font-size: var(--font-size-sm);
-  color: var(--color-error);
-  margin-top: var(--space-2xs);
-}
-
 .enquiryForm__actions {
   margin-top: var(--space-xs);
   text-align: center;

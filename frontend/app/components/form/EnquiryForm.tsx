@@ -165,9 +165,7 @@ export default function EnquiryForm({
               )}
             />
             {errors.month && (
-              <span className={styles.enquiryForm__error}>
-                Month is required
-              </span>
+              <span className="form__error">Month is required</span>
             )}
           </div>
 
@@ -204,9 +202,7 @@ export default function EnquiryForm({
               )}
             />
             {errors.year && (
-              <span className={styles.enquiryForm__error}>
-                Year is required
-              </span>
+              <span className="form__error">Year is required</span>
             )}
           </div>
         </div>
@@ -224,9 +220,7 @@ export default function EnquiryForm({
               type="text"
             />
             {errors.fullName && (
-              <span className={styles.enquiryForm__error}>
-                {errors.fullName.message}
-              </span>
+              <span className="form__error">{errors.fullName.message}</span>
             )}
           </div>
 
@@ -251,9 +245,7 @@ export default function EnquiryForm({
               type="email"
             />
             {errors.email && (
-              <span className={styles.enquiryForm__error}>
-                {errors.email.message}
-              </span>
+              <span className="form__error">{errors.email.message}</span>
             )}
           </div>
 
@@ -315,7 +307,7 @@ export default function EnquiryForm({
                 />
 
                 {errors.destination && (
-                  <span className={styles.enquiryForm__error}>
+                  <span className="form__error">
                     Please select a destination
                   </span>
                 )}

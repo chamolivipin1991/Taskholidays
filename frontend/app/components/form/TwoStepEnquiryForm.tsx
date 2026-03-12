@@ -8,6 +8,7 @@ import DateSelectorForm, {
 import EnquiryForm, {
   type EnquiryFormValues,
 } from "@/components/form/EnquiryForm";
+import FormSubmitted from "@/components/form/FormSubmitted";
 import styles from "./TwoStepEnquiryForm.module.css";
 
 export default function TwoStepEnquiryForm() {
@@ -15,19 +16,25 @@ export default function TwoStepEnquiryForm() {
   const [selectedDates, setSelectedDates] = useState<DateSelectorValues | null>(
     null,
   );
+  const [showSuccess, setShowSuccess] = useState(false);
 
   // Handle date selection form submission
   const handleDateSubmit = (data: DateSelectorValues) => {
     setSelectedDates(data);
     setIsModalOpen(true);
+    setShowSuccess(false); // reset success when opening modal
   };
 
   // Handle full form submission
   const handleFullSubmit = (data: EnquiryFormValues) => {
     console.log("Complete form data:", data);
     // Here you can make API call
+    setShowSuccess(true); // switch to success view
+  };
+
+  const handleModalClose = () => {
     setIsModalOpen(false);
-    // Reset form if needed
+    setShowSuccess(false); // reset success state
   };
 
   return (
@@ -35,15 +42,15 @@ export default function TwoStepEnquiryForm() {
       {/* Step 1: Date Selection Form */}
       <DateSelectorForm onSubmit={handleDateSubmit} />
 
-      {/* Step 2: Modal with Full Form */}
+      {/* Step 2: Modal with Full Form or Success Message */}
       <AppModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        title="Tell us more about your trip"
+        onClose={handleModalClose}
+        title={showSuccess ? undefined : "Tell us more about your trip"} // hide title on success
         size="medium"
       >
         <div className={styles.modalContent}>
-          {selectedDates && (
+          {!showSuccess && selectedDates && (
             <p className="modal_notification">
               We will get back to you with the best handpicked travel packages
               for:{" "}
@@ -53,14 +60,21 @@ export default function TwoStepEnquiryForm() {
             </p>
           )}
 
-          <EnquiryForm
-            initialValues={selectedDates || undefined}
-            onSubmit={handleFullSubmit}
-            showDateFields={false}
-            showPersonalFields={true}
-            submitButtonText="Submit Enquiry"
-            hidePrivacyText={true}
-          />
+          {showSuccess ? (
+            <FormSubmitted
+              heading="Thank You!"
+              subheading="Your enquiry has been submitted successfully. We'll get back to you soon."
+            />
+          ) : (
+            <EnquiryForm
+              initialValues={selectedDates || undefined}
+              onSubmit={handleFullSubmit}
+              showDateFields={false}
+              showPersonalFields={true}
+              submitButtonText="Submit Enquiry"
+              hidePrivacyText={true}
+            />
+          )}
         </div>
       </AppModal>
     </>
