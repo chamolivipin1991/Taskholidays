@@ -3,6 +3,7 @@ import styles from "./TermsConditions.module.css";
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/layout/Header";
 import TermsConditionsData from "@/components/tnc/TermsConditionsData";
+import FixedCta from "@/components/layout/FixedCta";
 
 export const metadata: Metadata = {
   title: "TASK Holidays",
@@ -37,7 +38,7 @@ const TermsConditionsPage = () => {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer /> <FixedCta />
     </>
   );
 };

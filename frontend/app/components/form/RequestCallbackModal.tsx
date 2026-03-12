@@ -101,7 +101,8 @@ export default function RequestCallbackModal() {
         {step === "form" ? (
           <>
             <p className="modal_notification">
-              Leave your number and we'll call you back shortly.
+              Share your phone number and preferred destination, and our travel
+              expert will call you shortly.
             </p>
             <RequestCallBack onSuccess={handleFormSuccess} />
           </>

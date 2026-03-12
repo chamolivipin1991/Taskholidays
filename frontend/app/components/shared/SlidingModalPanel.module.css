@@ -1,6 +1,8 @@
 .floating_button {
   position: fixed;
-  bottom: calc(var(--space-2xl) + var(--space-2xl) + var(--space-2xl));
+  bottom: calc(
+    var(--space-2xl) + var(--space-2xl) + var(--space-2xl) + var(--space-md)
+  );
   right: var(--space-xl);
   transition:
     opacity 0.3s ease,
@@ -26,8 +28,9 @@
   width: var(--space-2xl);
   height: var(--space-2xl);
   background-color: var(--color-brand-secondary);
+
   border-radius: 50%;
-  border: 0 none;
+  border: 2px solid var(--color-bg-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,6 +42,7 @@
   line-height: 14px;
   text-align: center;
   margin-top: var(--space-xs);
+  font-weight: var(--font-weight-semibold);
 }
 
 .panel_overlay {

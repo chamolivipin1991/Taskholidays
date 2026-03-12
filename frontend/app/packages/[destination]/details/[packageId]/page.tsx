@@ -19,6 +19,7 @@ import DetailedItinerary from "@/components/details/DetailedItinerary";
 import SlidingModalPanel from "@/components/shared/SlidingModalPanel";
 import TermsConditionsData from "@/components/tnc/TermsConditionsData";
 import FloatingWhatsAppButton from "@/components/shared/FloatingWhatsAppButton";
+import FixedCta from "@/components/layout/FixedCta";
 
 interface PackageDetailsPageProps {
   params: Promise<{
@@ -128,6 +129,7 @@ export default async function PackageDetailsPage({
         <TermsConditionsData />
       </SlidingModalPanel>
       <FloatingWhatsAppButton />
+      <FixedCta />
     </>
   );
 }

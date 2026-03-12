@@ -136,7 +136,9 @@
   color: var(--color-text-inverse);
   font-weight: var(--font-weight-semibold);
 }
-
+.mobile_fixed__cta {
+  display: none;
+}
 /* Responsive */
 @media (max-width: 768px) {
   .header__nav {

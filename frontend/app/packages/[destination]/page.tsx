@@ -8,6 +8,7 @@ import Header from "@/components/layout/Header";
 import ListingBanner from "@/components/listing/ListingBanner";
 import PackageList from "@/components/listing/PackageList";
 import FloatingWhatsAppButton from "@/components/shared/FloatingWhatsAppButton";
+import FixedCta from "@/components/layout/FixedCta";
 
 interface PackageListPageProps {
   params: Promise<{
@@ -69,6 +70,7 @@ export default async function PackageListPage({
       </section>
       <Footer />
       <FloatingWhatsAppButton />
+      <FixedCta />
     </>
   );
 }

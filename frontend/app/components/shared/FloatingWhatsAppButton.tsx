@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import styles from "./FloatingWhatsAppButton.module.css";
 import { ChatIcon } from "@/assets/icons/icons";
+import AppImage from "./AppImage";
+
+const whatsappIcon = "/icons/whatsapp_icon.png";
 
 const FloatingWhatsAppButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -49,7 +52,13 @@ const FloatingWhatsAppButton = () => {
         className={`${styles.whatsapp_button__icon} `}
         aria-label="Chat with us on WhatsApp"
       >
-        <ChatIcon fill="var(--color-text-inverse)" size={24} />
+        <AppImage
+          src={whatsappIcon}
+          alt=""
+          fill
+          className={styles["whatsapp_button__image"]}
+          priority={false}
+        />
       </a>
       <p className={styles.whatsapp_button__text}>Plan Your Trip on WhatsApp</p>
     </div>

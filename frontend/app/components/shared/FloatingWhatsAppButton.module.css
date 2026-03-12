@@ -1,6 +1,6 @@
 .whatsapp_button {
   position: fixed;
-  bottom: var(--space-xl);
+  bottom: calc(var(--space-2xl) + var(--space-lg));
   right: var(--space-xl);
   transition:
     opacity 0.3s ease,
@@ -26,14 +26,13 @@
 .whatsapp_button__icon {
   width: var(--space-2xl);
   height: var(--space-2xl);
-  background-color: var(--color-success);
   color: var(--color-bg-primary);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  position: relative;
 }
 .whatsapp_button__icon:hover {
   background-color: var(--color-success);
@@ -43,5 +42,6 @@
   font-size: 10px;
   line-height: 14px;
   text-align: center;
+  font-weight: var(--font-weight-semibold);
   margin-top: var(--space-xs);
 }

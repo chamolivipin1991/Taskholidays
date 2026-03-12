@@ -6,6 +6,7 @@ import Testimonials from "@/components/shared/Testimonials";
 import TrustSection from "@/components/home/TrustSection";
 
 import styles from "./AboutUs.module.css";
+import FixedCta from "@/components/layout/FixedCta";
 
 export const metadata: Metadata = {
   title: "TASK Holidays",
@@ -93,6 +94,7 @@ const AboutUs = () => {
       <Testimonials />
       <TrustSection />
       <Footer />
+      <FixedCta />
     </>
   );
 };
