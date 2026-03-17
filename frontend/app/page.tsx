@@ -16,7 +16,6 @@ import FixedCta from "@/components/layout/FixedCta";
 export default function Home() {
   return (
     <>
-      <RequestCallbackModal />
       <Header
         navItems={[
           { text: "Destinations", id: "featuredDestinations" },
@@ -38,6 +37,7 @@ export default function Home() {
       <Footer />
       <FloatingWhatsAppButton />
       <FixedCta />
+      <RequestCallbackModal />
     </>
   );
 }

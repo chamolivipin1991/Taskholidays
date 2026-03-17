@@ -11,6 +11,7 @@ const DESTINATION_SLUGS = ["bali", "kerala", "andaman", "rajasthan"];
  * Pick a random image from a random destination.
  * Returns a path like "destinations/bali/bali_taskholidays_3.jpg"
  */
+
 function getRandomHeroImage(): string | null {
   // Pick a random destination from the list
   const randomSlug =
@@ -18,9 +19,9 @@ function getRandomHeroImage(): string | null {
   const images = destinationImages[randomSlug];
   if (!images?.length) return null;
 
-  // Pick a random image from that destination
-  const randomImage = images[Math.floor(Math.random() * images.length)];
-  return `destinations/${randomSlug}/${randomImage}`;
+  // Take the first image (primary image) from that destination
+  const firstImage = images[0];
+  return `destinations/${randomSlug}/${firstImage}`;
 }
 
 const Banner = () => {

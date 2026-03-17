@@ -25,12 +25,6 @@ export const countryCodes: CountryCodeProps[] = [
     emoji: "🇸🇩",
   },
   {
-    name: "Afghanistan",
-    value: "+93",
-    code: "AF",
-    emoji: "🇦🇫",
-  },
-  {
     name: "Aland Islands",
     value: "+358",
     code: "AX",
@@ -995,12 +989,6 @@ export const countryCodes: CountryCodeProps[] = [
     value: "+968",
     code: "OM",
     emoji: "🇴🇲",
-  },
-  {
-    name: "Pakistan",
-    value: "+92",
-    code: "PK",
-    emoji: "🇵🇰",
   },
   {
     name: "Palau",

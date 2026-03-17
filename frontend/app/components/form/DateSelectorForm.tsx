@@ -88,18 +88,25 @@ export default function DateSelectorForm({
 
   // Generate year options based on selected month
   const yearOptions = useMemo<SelectOption[]>(() => {
-    const baseYears = getYearOptions() as SelectOption[]; // returns current and future years
-    if (!selectedMonth) return baseYears;
+    // Generate only current and next year
+    const years: SelectOption[] = [
+      { label: currentYear.toString(), value: currentYear },
+      { label: (currentYear + 1).toString(), value: currentYear + 1 },
+    ];
+
+    if (!selectedMonth) {
+      // No month selected → both years are enabled
+      return years.map((y) => ({ ...y, isDisabled: false }));
+    }
 
     const month = selectedMonth.value;
-    return baseYears.map((y) => {
-      const year = y.value;
-      if (year > currentYear) {
-        return { ...y, isDisabled: false }; // future years always enabled
-      } else if (year === currentYear) {
-        return { ...y, isDisabled: month < currentMonth }; // disable if month is past
+    return years.map((y) => {
+      if (y.value === currentYear) {
+        // Current year: disabled if selected month is before current month
+        return { ...y, isDisabled: month < currentMonth };
       } else {
-        return { ...y, isDisabled: true }; // past years disabled (shouldn't appear)
+        // Next year: always enabled
+        return { ...y, isDisabled: false };
       }
     });
   }, [selectedMonth, currentYear, currentMonth]);

@@ -7,18 +7,20 @@ import FormSubmitted from "@/components/form/FormSubmitted";
 import styles from "./RequestCallbackModal.module.css";
 
 const COOLDOWN_KEY = "requestCallbackLastClosed";
-const COOLDOWN_MS = 60 * 60 * 1000; // 1 hour
-const SUCCESS_DISPLAY_MS = 4000; // 2 seconds
+const COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 hours
+const TRIGGER_DELAY_MS = 60 * 1000; // 1 minute
+const SUCCESS_DISPLAY_MS = 4000; // 4 seconds
 
 export default function RequestCallbackModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState<"form" | "success">("form");
   const [cooldownActive, setCooldownActive] = useState(false);
+  const openTimerRef = useRef<NodeJS.Timeout | null>(null);
   const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Check sessionStorage for last closed time on mount
+  // Check localStorage for last closed time on mount
   useEffect(() => {
-    const stored = sessionStorage.getItem(COOLDOWN_KEY);
+    const stored = localStorage.getItem(COOLDOWN_KEY);
     if (stored) {
       const lastClosed = parseInt(stored, 10);
       const now = Date.now();
@@ -30,42 +32,33 @@ export default function RequestCallbackModal() {
     setCooldownActive(false);
   }, []);
 
-  // Scroll listener – only active if cooldown is not active and modal not already open
+  // Timer to open modal after 1 minute if cooldown is inactive and modal not open
   useEffect(() => {
-    if (cooldownActive) return;
+    if (cooldownActive || isOpen) return;
 
-    const handleScroll = () => {
-      if (isOpen) return;
+    openTimerRef.current = setTimeout(() => {
+      setIsOpen(true);
+      setStep("form");
+    }, TRIGGER_DELAY_MS);
 
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const maxScroll = documentHeight - windowHeight;
-      if (maxScroll <= 0) return;
-
-      const scrolledPercent = (scrollY / maxScroll) * 100;
-      if (scrolledPercent >= 70) {
-        setIsOpen(true);
-        setStep("form"); // ensure we start with form
+    return () => {
+      if (openTimerRef.current) {
+        clearTimeout(openTimerRef.current);
+        openTimerRef.current = null;
       }
     };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // check initial scroll position
-
-    return () => window.removeEventListener("scroll", handleScroll);
   }, [cooldownActive, isOpen]);
 
-  // Cleanup timer on unmount
+  // Cleanup timers on unmount
   useEffect(() => {
     return () => {
+      if (openTimerRef.current) clearTimeout(openTimerRef.current);
       if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
     };
   }, []);
 
   const handleFormSuccess = () => {
     setStep("success");
-    // Auto-close after success delay
     closeTimerRef.current = setTimeout(() => {
       handleClose();
     }, SUCCESS_DISPLAY_MS);
@@ -73,18 +66,17 @@ export default function RequestCallbackModal() {
 
   const handleClose = () => {
     setIsOpen(false);
-    setStep("form"); // reset for next open
+    setStep("form");
     if (closeTimerRef.current) {
       clearTimeout(closeTimerRef.current);
       closeTimerRef.current = null;
     }
-    // Store close timestamp in sessionStorage
-    sessionStorage.setItem(COOLDOWN_KEY, Date.now().toString());
+    // Store close timestamp in localStorage
+    localStorage.setItem(COOLDOWN_KEY, Date.now().toString());
     setCooldownActive(true);
   };
 
   const handleManualClose = () => {
-    // Called when user clicks X or backdrop
     handleClose();
   };
 
@@ -92,10 +84,10 @@ export default function RequestCallbackModal() {
     <AppModal
       isOpen={isOpen}
       onClose={handleManualClose}
-      title={"Request a Callback"} // hide title on success
+      title="Request a Callback"
       size="small"
       closeOnBackdropClick
-      showCloseButton={true} // hide close button on success (user must wait or auto-close)
+      showCloseButton={true}
     >
       <div className={styles.modalContent}>
         {step === "form" ? (
