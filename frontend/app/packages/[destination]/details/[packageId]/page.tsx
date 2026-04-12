@@ -20,6 +20,7 @@ import SlidingModalPanel from "@/components/shared/SlidingModalPanel";
 import TermsConditionsData from "@/components/tnc/TermsConditionsData";
 import FloatingWhatsAppButton from "@/components/shared/FloatingWhatsAppButton";
 import FixedCta from "@/components/layout/FixedCta";
+import PackagePrice from "@/components/shared/PackagePrice";
 
 interface PackageDetailsPageProps {
   params: Promise<{
@@ -92,7 +93,6 @@ export default async function PackageDetailsPage({
           destination={destination.title}
           duration={pkg.duration}
           showPopular={pkg.popular}
-          price={pkg.price}
         />
       </div>
       <PackageGallery imagePaths={packageImagePaths} alt={destination.title} />
@@ -101,7 +101,15 @@ export default async function PackageDetailsPage({
         <div className={styles.package_layout}>
           <div className={styles.package_layout__grid}>
             <div>
-              <PackageOverview description={destination.description} />
+              <div className={styles.package_overviewPrice__wrapper}>
+                <PackageOverview description={destination.description} />
+                {pkg.price ? (
+                  <div className={styles.package_price__wrapper}>
+                    <PackagePrice price={pkg.price} />
+                  </div>
+                ) : null}
+              </div>
+
               <ShortItinerary days={pkg.shortItinerary || []} />
               <HotelsSection hotels={pkg.hotels || []} />
             </div>

@@ -24,6 +24,7 @@ import {
   SightseeingIcon, // for Sightseeing
   TransportIcon, // for Transport
 } from "@/assets/icons/icons";
+import PackagePrice from "@/components/shared/PackagePrice";
 
 export const filters: Filter[] = [
   { id: "all", label: "All Locations" },
@@ -183,16 +184,14 @@ export default function PackagesSection() {
                     </p>
                   </div>
                   <div className={styles.packageDetails}>
-                    <h3 className={styles.packageTitle}>
-                      {pkg.duration} |{" "}
-                      <span className={styles.packageLocation}>
-                        {pkg.location}{" "}
-                      </span>
-                      |{" "}
-                      <span className={styles.packagePrice}>
-                        {formatPrice(pkg.price)}
-                      </span>
-                    </h3>
+                    <div>
+                      <h3 className={styles.packageTitle}>
+                        {pkg.duration} |{" "}
+                        <span className={styles.packageLocation}>
+                          {pkg.location}{" "}
+                        </span>
+                      </h3>
+                    </div>
 
                     <ul className={styles.includesList}>
                       {pkg.includes.slice(0, 4).map((item, index) => {
@@ -219,16 +218,21 @@ export default function PackagesSection() {
                       )}
                     </ul>
                     <div className={styles.packageFooter}>
+                      <div className={styles.packageFooter_priceWrapper}>
+                        {pkg.price ? <PackagePrice price={pkg.price} /> : null}
+                      </div>
                       <div className={styles.actionButtons}>
                         <Button
                           variant="activeLine"
                           onClick={() => handleViewDetails(pkg)}
                           text="View Details"
+                          small
                         />
                         <Button
                           variant="dark"
                           onClick={() => handleBookNow(pkg)}
                           text="Book Now"
+                          small
                         />
                       </div>
                     </div>

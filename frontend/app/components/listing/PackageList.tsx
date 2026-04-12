@@ -18,6 +18,7 @@ import AppImagesClient from "@/components/home/AppImagesClient.client";
 import { useEnquiryModal } from "@/hooks/useEnquiryModal";
 import { formatPrice } from "@/utils/formatPrice";
 import { destinationImages } from "@/assets/images";
+import PackagePrice from "@/components/shared/PackagePrice";
 
 type Props = {
   packages: UIPackage[];
@@ -129,14 +130,11 @@ export default function PackageList({ packages, destinationTitle }: Props) {
                     </div>
                   </div>
                   <div className={styles.packageList__footer}>
-                    <div>
-                      <div className={styles.packageList__price}>
-                        {formatPrice(pkg.price)}
+                    {pkg.price ? (
+                      <div>
+                        <PackagePrice price={pkg.price} />
                       </div>
-                      <div className={styles.packageList__taxNote}>
-                        Includes Taxes & Fees
-                      </div>
-                    </div>
+                    ) : null}
                     <div className={styles.packageList__actions}>
                       <Button
                         variant="activeLine"
