@@ -37,12 +37,12 @@ export function adaptDestinationsToPackages(
         description: destination.description,
         duration: pkg.duration,
         includes,
-        price: 0, // TODO: make dynamic
+        price: pkg.price,
         popular: pkg.popular ?? false,
         destinationSlug: destSlug,
         packageId: pkg.packageId,
         shortItinerary: pkg.shortItinerary,
-        imagePath, // ✅ use imagePath, not imagePublicId
+        imagePath,
       });
     });
   });

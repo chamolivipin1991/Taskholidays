@@ -247,7 +247,9 @@
   align-items: center;
   justify-content: space-between;
 }
-
+.packagePrice {
+  color: var(--color-success);
+}
 @media (min-width: 640px) {
   .packageFooter {
     flex-direction: row;

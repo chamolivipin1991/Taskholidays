@@ -73,12 +73,12 @@ const Footer = () => {
                 </span>{" "}
                 contact@taskholidays.com
               </p>
-              {/* <p className={styles.getintouch_values}>
+              <p className={styles.getintouch_values}>
                 <span className={styles.getintouch_valuesIcon}>
                   <CallIcon fill="var(--color-bg-primary)" size={34} />
                 </span>{" "}
-                8888888888
-              </p> */}
+                +91 8800736864
+              </p>
 
               <SocialConnect />
             </div>

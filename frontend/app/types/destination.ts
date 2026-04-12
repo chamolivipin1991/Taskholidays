@@ -74,6 +74,7 @@ export interface DetailedItineraryDay {
 export interface TravelPackage {
   packageId: string;
   title: string;
+  price: number;
   duration: string;
   shortItinerary: ShortItineraryDay[];
   hotels: PackageHotel[];

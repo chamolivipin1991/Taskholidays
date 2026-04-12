@@ -67,7 +67,7 @@ export default function PackagesSection() {
           description: destination.description,
           duration: pkg.duration,
           includes,
-          price: 25000, // TODO: make dynamic
+          price: pkg.price,
           popular: pkg.popular ?? false,
           destinationSlug: destSlug,
           packageId: pkg.packageId,
@@ -186,7 +186,11 @@ export default function PackagesSection() {
                     <h3 className={styles.packageTitle}>
                       {pkg.duration} |{" "}
                       <span className={styles.packageLocation}>
-                        {pkg.location}
+                        {pkg.location}{" "}
+                      </span>
+                      |{" "}
+                      <span className={styles.packagePrice}>
+                        {formatPrice(pkg.price)}
                       </span>
                     </h3>
 

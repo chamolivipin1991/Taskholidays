@@ -92,6 +92,7 @@ export default async function PackageDetailsPage({
           destination={destination.title}
           duration={pkg.duration}
           showPopular={pkg.popular}
+          price={pkg.price}
         />
       </div>
       <PackageGallery imagePaths={packageImagePaths} alt={destination.title} />

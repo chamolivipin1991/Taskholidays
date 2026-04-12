@@ -38,7 +38,7 @@ const FloatingWhatsAppButton = () => {
   // Prefilled message
   const MESSAGE =
     "Hello Task Holidays, I am looking for a customized holiday package. Please connect me with a travel expert to discuss itinerary and pricing.";
-  const PHONE_NUMBER = 918826924076;
+  const PHONE_NUMBER = 918800736864;
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${PHONE_NUMBER}&text=${encodeURIComponent(MESSAGE)}`;
 
   return (

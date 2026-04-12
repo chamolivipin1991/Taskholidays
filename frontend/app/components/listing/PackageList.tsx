@@ -69,7 +69,7 @@ export default function PackageList({ packages, destinationTitle }: Props) {
         {packages.length > 0 ? (
           packages.map((pkg, index) => {
             const imagePath = packageImages[index] ?? null; // fallback to null
-
+            console.log("--------------", pkg);
             return (
               <article
                 key={pkg.id}

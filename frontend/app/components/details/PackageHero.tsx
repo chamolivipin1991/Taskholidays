@@ -1,10 +1,12 @@
 import styles from "./PackageHero.module.css";
+import { formatPrice } from "@/utils/formatPrice";
 
 interface Props {
   title: string;
   destination: string;
   duration: string;
   showPopular?: boolean;
+  price: number;
 }
 
 export default function PackageHero({
@@ -12,6 +14,7 @@ export default function PackageHero({
   destination,
   duration,
   showPopular,
+  price,
 }: Props) {
   return (
     <div className={styles.package_hero}>
@@ -37,6 +40,10 @@ export default function PackageHero({
             Popular
           </span>
         )}
+      </div>
+      <div className={styles.package_price__wrapper}>
+        <span>Package Price :</span>
+        <span className={styles.package_price__card}>{formatPrice(price)}</span>
       </div>
     </div>
   );

@@ -32,7 +32,8 @@ export const packagesdata: PackagesData[] = [
         packageId: "andaman-4n-5d",
         title: "Andaman Tour Package – 5 Days / 4 Nights",
         duration: "5 Days / 4 Nights",
-        popular: true, // ✅ Added
+        popular: true,
+        price: 31000,
         shortItinerary: [
           {
             day: "1",
@@ -248,7 +249,8 @@ export const packagesdata: PackagesData[] = [
         packageId: "andaman-5n-6d",
         title: "Andaman Tour Package – 6 Days / 5 Nights",
         duration: "6 Days / 5 Nights",
-        popular: false, // ✅ Added
+        popular: false,
+        price: 38000,
         shortItinerary: [
           {
             day: "1",
@@ -549,7 +551,8 @@ export const packagesdata: PackagesData[] = [
         packageId: "bali-4n-5d-east-bali",
         title: "Bali Tour Package – 5 Days / 4 Nights",
         duration: "5 Days / 4 Nights",
-        popular: true, // ✅ Added
+        popular: true,
+        price: 54000,
         shortItinerary: [
           {
             day: "1",
@@ -726,7 +729,8 @@ export const packagesdata: PackagesData[] = [
         packageId: "bali-5n-6d-east-bali-nusa-penida",
         title: "Bali Tour Package – 6 Days / 5 Nights",
         duration: "6 Days / 5 Nights",
-        popular: false, // ✅ Added
+        popular: false,
+        price: 65000,
         shortItinerary: [
           {
             day: "1",
@@ -965,7 +969,8 @@ export const packagesdata: PackagesData[] = [
         packageId: "ladakh-4n-5d",
         title: "Ladakh Tour Package – 5 Days / 4 Nights",
         duration: "5 Days / 4 Nights",
-        popular: true, // ✅ Added
+        popular: true,
+        price: 35000,
         shortItinerary: [
           {
             day: "1",
@@ -1139,7 +1144,8 @@ export const packagesdata: PackagesData[] = [
         packageId: "ladakh-5n-6d",
         title: "Leh Ladakh Tour Package – 6 Days / 5 Nights",
         duration: "6 Days / 5 Nights",
-        popular: false, // ✅ Added
+        popular: false,
+        price: 42000,
         shortItinerary: [
           {
             day: "1",
@@ -1438,7 +1444,8 @@ export const packagesdata: PackagesData[] = [
         packageId: "rajasthan-4n-5d",
         title: "5 Days/4 Nights Plan for Rajasthan",
         duration: "5 Days / 4 Nights",
-        popular: true, // ✅ Added
+        popular: true,
+        price: 28000,
         shortItinerary: [
           {
             day: "1",
@@ -1677,7 +1684,8 @@ export const packagesdata: PackagesData[] = [
         packageId: "rajasthan-5n-6d",
         title: "6 Days/5 Nights Plan for Rajasthan",
         duration: "6 Days / 5 Nights",
-        popular: false, // ✅ Added
+        popular: false,
+        price: 35000,
         shortItinerary: [
           {
             day: "1",
@@ -1920,7 +1928,8 @@ export const packagesdata: PackagesData[] = [
         packageId: "kerala-4n-5d",
         title: "Kerala Tour Package – 5 Days / 4 Nights",
         duration: "5 Days / 4 Nights",
-        popular: true, // ✅ Added
+        popular: true,
+        price: 32000,
         shortItinerary: [
           {
             day: "1",
@@ -2128,7 +2137,8 @@ export const packagesdata: PackagesData[] = [
         packageId: "kerala-5n-6d",
         title: "Kerala Tour Package – 6 Days / 5 Nights",
         duration: "6 Days / 5 Nights",
-        popular: false, // ✅ Added
+        popular: false,
+        price: 40000,
         shortItinerary: [
           {
             day: "1",
@@ -2462,7 +2472,8 @@ export const packagesdata: PackagesData[] = [
         packageId: "kerala-tour-4n-5d",
         title: "Kerala Tour Package – 5 Days / 4 Nights",
         duration: "5 Days / 4 Nights",
-        popular: true, // ✅ Added
+        popular: true,
+        price: 34000,
         shortItinerary: [
           {
             day: "1",
@@ -2682,7 +2693,8 @@ export const packagesdata: PackagesData[] = [
         packageId: "dubai-5n-6d",
         title: "6 Days/5 Nights Plan for Dubai",
         duration: "6 Days / 5 Nights",
-        popular: false, // ✅ Added
+        popular: false,
+        price: 65000,
         shortItinerary: [
           {
             day: "1",
@@ -2911,7 +2923,8 @@ export const packagesdata: PackagesData[] = [
         packageId: "dubai-4n-5d-beyond-skyline",
         title: "5 Days/4 Nights Plan for Dubai",
         duration: "5 Days / 4 Nights",
-        popular: true, // ✅ Added
+        popular: true,
+        price: 42000,
         shortItinerary: [
           {
             day: "1",
@@ -3108,7 +3121,8 @@ export const packagesdata: PackagesData[] = [
         packageId: "dubai-4n-5d-on-a-budget",
         title: "5 Days/4 Nights Plan for Dubai",
         duration: "5 Days / 4 Nights",
-        popular: true, // ✅ Added
+        popular: true,
+        price: 38000,
         shortItinerary: [
           {
             day: "1",
@@ -3314,7 +3328,8 @@ export const packagesdata: PackagesData[] = [
         packageId: "dubai-5n-6d-romantic-honeymoon",
         title: "6 Days/5 Nights Plan for Dubai",
         duration: "6 Days / 5 Nights",
-        popular: false, // ✅ Added
+        popular: false,
+        price: 54000,
         shortItinerary: [
           {
             day: "1",
